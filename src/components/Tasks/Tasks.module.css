@@ -6,6 +6,7 @@
     flex-direction: column;
     position: relative;
 }
+
 .container{
     width: 100%;
     height: calc(100% - 75px);
@@ -26,11 +27,19 @@
     background-color: #444444;
     padding: 10px;
     border-radius: 5px;
+    border: 2px solid transparent;
+}
+.task.selected{
+    border: 2px solid white;
+}
+.task input{
+    height: 30px;
+    width: 30px;
 }
 .task p{
     background-color: transparent;
 }
-.task h3{
+.task h4{
     margin-right: auto;
     background-color: transparent;
 }
@@ -71,8 +80,15 @@ button{
     max-height: 75px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 0 15px;
+}
+.header h2{
+    margin-right: auto;
+}
+.header .delete img{
+    height: 25px;
+    width: 25px;
+    margin-right: 20px;
 }
 .header button{
     background-color: transparent;

@@ -2,7 +2,7 @@ import { toggleTaskCompletion } from '../../../store/tasksSlice';
 import styles from '../Tasks.module.css';
 import { useDispatch } from 'react-redux';
 
-const Task = ({data}) => {
+const Task = ({data, isSelected, selectTask}) => {
 
     const dispatch = useDispatch();
 
@@ -11,8 +11,8 @@ const Task = ({data}) => {
     }
 
     return ( 
-        <div className={styles.task}>
-            <h3>{data.title}</h3>
+        <div className={`${styles.task} ${isSelected ? styles.selected : ''}`} onClick={()=>selectTask(data.id)}>
+            <h4>{data.title}</h4>
             <input type='checkbox' onChange={handleCheckTask} checked={data.isCompleted}></input>
         </div>
      );

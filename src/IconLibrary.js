@@ -9,6 +9,7 @@ import PlusCircle from './assets/icons/plus-circle.svg';
 import Restart from './assets/icons/restart.svg';
 import Settings from './assets/icons/settings.svg';
 import Start from './assets/icons/start.svg';
+import Delete from './assets/icons/delete.svg';
 
 export const IconLibrary = {
     Checkmark,
@@ -21,5 +22,6 @@ export const IconLibrary = {
     PlusCircle,
     Restart,
     Settings,
-    Start
+    Start,
+    Delete
 }
