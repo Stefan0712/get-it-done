@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { tasks } from '../mockData';
 
-const initialState = [];
+const initialState = [...tasks];
 
 const tasksSlice = createSlice({
     name: 'tasks',

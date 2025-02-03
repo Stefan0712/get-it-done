@@ -1,6 +1,6 @@
 import { IconLibrary } from '../../../IconLibrary';
+import NoSleep from 'nosleep.js';
 import styles from './Settings.module.css';
-import useWakeLock from '../../../hooks/useWakeLock';
 import { enterFullScreen, exitFullScreen } from '../../../helpers';
 import { useDispatch } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
@@ -9,9 +9,9 @@ import { resetAppSettings } from '../../../store/appSettingsSlice';
 
 
 const Settings = ({closeSettings}) => {
-    const dispatch = useDispatch();
 
-    const { requestWakeLock, releaseWakeLock } = useWakeLock();
+    const dispatch = useDispatch();
+    const noSleep = new NoSleep();
 
     return ( 
         <div className={styles.settings}>
@@ -28,8 +28,8 @@ const Settings = ({closeSettings}) => {
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Keep Screen Awake</h2>
-                        <button onClick={requestWakeLock}>Enable</button>
-                        <button onClick={releaseWakeLock}>Disable</button>
+                        <button onClick={()=>noSleep.enable()}>Enable</button>
+                        <button onClick={()=>noSleep.disable()}>Disable</button>
                     </div>
                 </div>
                 <div className={styles.section}>
