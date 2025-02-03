@@ -1,0 +1,131 @@
+.pomodoro{
+    height: 100%;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    grid-template-rows: 3fr 1fr;
+    overflow: hidden;
+    gap: 10px;
+    padding: 15px;
+    padding-right: 0;
+}
+.timer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+.timer-background{
+    background-color: white;
+    width: auto;
+    height: 90%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.timer-content{
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);;
+    background-color: #171717;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.timer-content .time{
+    font-size: 2rem;
+}
+.timer-content button{
+    width: 75px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: #0F0F0F;
+}
+
+
+
+
+
+.sessions-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+    border-left: 1px solid rgba(211, 211, 211, 0.1);
+    padding: 0 5px;
+    box-sizing: content-box;
+}
+.sessions-container .focus-session-square{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #0F0F0F;
+    display: flex;
+    flex-direction: column;
+}
+.sessions-container div p{
+    height: 100%;
+    width: 100%;
+    min-width: auto;
+    text-align: center;
+}
+.sessions-container .break-session-square{
+    height: 40px;
+    width: 40px;
+    font-size: 0.8rem;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: #0F0F0F;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+
+
+
+
+.buttons{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    padding: 0 10px;
+}
+.buttons button{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F0F0F;
+}
+.buttons .small-button{
+    width: calc((100% / 3) - 10px);
+}
+.buttons .big-button{
+    width: calc(50% - 8px);
+}
+.buttons .small-button img{
+    width: 30px;
+    height: 30px;
+}

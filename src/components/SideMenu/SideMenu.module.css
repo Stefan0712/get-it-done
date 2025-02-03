@@ -1,0 +1,53 @@
+.sideMenu{
+    border-right: 1px solid rgba(211, 211, 211, 0.2);
+    width: 60px;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.1s;
+    background-color: #171717;
+    padding: 10px 0;
+}
+.sideMenu.expand{
+    width: 30vw;
+    transition: all 0.1s;
+}
+
+
+
+
+
+
+
+
+
+
+.buttons{
+    height: 60px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    display: flex;
+    overflow: hidden;
+}
+.buttons button{
+    width: 50px;
+    height: 50px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #0F0F0F;
+}
+.buttons button img{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+}
+.toggle-button{
+    display: flex !important;
+}
+.expand .menu-button{
+    display: flex;
+}

@@ -1,0 +1,55 @@
+.settings{
+    position: absolute;
+    left: 100%;
+    top: 0;
+    height: 100%;
+    width: 70vw;
+    background-color: #171717;
+    padding: 10px;
+    animation-name: openSettings;
+    animation-duration: 0.1s;
+    overflow: hidden;
+}
+button{
+    background-color: transparent;
+    border: 1px solid transparent;
+    background-color: #0F0F0F;
+    height: 50px;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+@keyframes openSettings {
+    from{
+        width: 0;
+        opacity: 0;
+    }
+    to{
+        width: 70vw;
+        opacity: 1;
+    }
+}
+.header{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header button{
+    background-color: transparent;
+    border: none;
+}
+.header button img{
+    height: 40px;
+    width: 40px;
+}
+
+.button-set,
+.half-button-set{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.half-button-set{
+    width: 50%;
+}
