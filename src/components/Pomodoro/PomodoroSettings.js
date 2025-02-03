@@ -35,7 +35,6 @@ const PomodoroSettings = ({closeSettings}) => {
         return { focusSessions, breakSessions, remainingMinutes };
     };
     
-    // Usage
     const { focusSessions, breakSessions, remainingMinutes } = calculateSessions(totalDuration, focusDuration, breakDuration);
     
     const handleSave = () =>{

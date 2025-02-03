@@ -70,9 +70,11 @@
     padding: 0 5px;
     box-sizing: content-box;
     position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .total-time{
-    position: absolute;
+    position: sticky;
     bottom: 0;
     right: 0;
     font-size: 0.8rem;
@@ -83,6 +85,7 @@
     width: 100%;
     padding: 10px 0;
     border-top: 1px solid rgba(211, 211, 211, 0.1);
+    background-color: #171717;
 }
 .total-time p:nth-child(2){
     opacity: 0.5;
@@ -90,6 +93,8 @@
 .sessions-container .focus-session-square{
     width: 50px;
     height: 50px;
+    min-width: 50px;
+    min-height: 50px;
     border-radius: 5px;
     background-color: #0F0F0F;
     display: flex;
@@ -104,6 +109,8 @@
 .sessions-container .break-session-square{
     height: 40px;
     width: 40px;
+    min-width: 40px;
+    min-height: 40px;
     font-size: 0.8rem;
     overflow: hidden;
     border-radius: 5px;
@@ -164,6 +171,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    
     position: absolute;
     right: 0;
     bottom: 0;
