@@ -13,5 +13,5 @@
     display: flex;
     padding-left: 60px;
     background-color: #171717;
-    overflow: hidden;
+    overflow: hidden !important;
 }

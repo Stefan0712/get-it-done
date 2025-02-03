@@ -6,7 +6,8 @@ const initialState = {
     language: 'en',
     focusSessions: 4,
     breakSessions: 3,
-    soundAlarm: false
+    soundAlarm: false,
+    selectedProject: null
 
 };
 
@@ -32,9 +33,13 @@ const appSettingsSlice = createSlice({
         toggleSoundAlarm: (state)=>{
             state.soundAlarm = !state.soundAlarm;
         },
+        setSelectedProject: (state, action)=>{
+            state.selectedProject = action.payload;
+        }
+        ,
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, resetAppSettings } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, resetAppSettings,setSelectedProject } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

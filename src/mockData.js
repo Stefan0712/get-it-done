@@ -24,37 +24,37 @@ export const tasks = [
 
 export const projects = [
     {
-      id: 1,
+      id: 21,
       title: 'Website Redesign',
       color: '#ff6f61',
       tasks: [1, 3, 5, 9, 10]
     },
     {
-      id: 2,
+      id: 22,
       title: 'SEO & Content Strategy',
       color: '#6f7dff',
       tasks: [2, 4, 8, 12]
     },
     {
-      id: 3,
+      id: 23,
       title: 'Client Communication & Outreach',
       color: '#ffeb3b',
       tasks: [11, 15, 14]
     },
     {
-      id: 4,
+      id: 24,
       title: 'Website Performance Optimization',
       color: '#4caf50',
       tasks: [7, 13, 17]
     },
     {
-      id: 5,
+      id: 25,
       title: 'Development & Debugging',
       color: '#2196f3',
       tasks: [6, 9, 19]
     },
     {
-      id: 6,
+      id: 26,
       title: 'Personal Branding & Blog',
       color: '#ff9800',
       tasks: [18, 20]
