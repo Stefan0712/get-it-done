@@ -11,7 +11,7 @@ const Tasks = () => {
 
     const [showNewTask, setShowNewTask] = useState(false);
     const tasks = useSelector(state=>state.tasks);
-
+    console.log(tasks)
     return ( 
         <div className={styles.tasks}>
             {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
