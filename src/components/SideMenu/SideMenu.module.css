@@ -8,6 +8,7 @@
     transition: all 0.1s;
     background-color: #171717;
     padding: 10px 0;
+    z-index: 10;
 }
 .sideMenu.expand{
     width: 30vw;
