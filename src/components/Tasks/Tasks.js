@@ -2,12 +2,15 @@ import { IconLibrary } from '../../IconLibrary';
 import NewTask from './Task/NewTask';
 import styles from './Tasks.module.css';
 import { useState } from 'react';
+import Task from './Task/Task';
+import { useSelector } from 'react-redux';
 
 
 
 const Tasks = () => {
 
-    const [showNewTask, setShowNewTask] = useState(false)
+    const [showNewTask, setShowNewTask] = useState(false);
+    const tasks = useSelector(state=>state.tasks);
 
     return ( 
         <div className={styles.tasks}>
@@ -17,38 +20,7 @@ const Tasks = () => {
                 <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>
             </div>
             <div className={styles.container}>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
-                <div className={styles.task}>
-                    <h3>Task name</h3>
-                    <input type='checkbox'></input>
-                </div>
+                {tasks && tasks.length > 0 ? tasks.map((task, index)=>(<Task data={task} key={index} />)) : <p>No tasks found!</p>}
             </div>
             
         </div>

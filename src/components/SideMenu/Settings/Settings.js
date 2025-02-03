@@ -9,6 +9,7 @@ import { resetAppSettings } from '../../../store/appSettingsSlice';
 
 
 const Settings = ({closeSettings}) => {
+    const dispatch = useDispatch();
 
     const { requestWakeLock, releaseWakeLock } = useWakeLock();
 
@@ -34,9 +35,9 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.section}>
                     <div className={styles['half-button-set']}>
                         <h2>Reset Items</h2>
-                        <button onClick={enterFullScreen}>Reset Projects</button>
-                        <button onClick={exitFullScreen}>Reset Tasks</button>
-                        <button onClick={exitFullScreen}>Reset Settings</button>
+                        <button onClick={()=>dispatch(resetProjects())}>Reset Projects</button>
+                        <button onClick={()=>dispatch(resetTasks())}>Reset Tasks</button>
+                        <button onClick={()=>dispatch(resetAppSettings())}>Reset Settings</button>
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Themes</h2>
