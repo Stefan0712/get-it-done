@@ -33,7 +33,9 @@ img{
 }
 .header button{
     background-color: transparent !important;
+    border: none;
 }
+
 fieldset{
     border: none;
     display: flex;
