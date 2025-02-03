@@ -23,8 +23,7 @@ const projectsSlice = createSlice({
         },
         resetProjects: () => initialState,
     },
-    resetTasks: () => initialState
 });
 
-export const { addProject, deleteProject, addTaskToProject, resetProjects, resetTasks } = projectsSlice.actions;
+export const { addProject, deleteProject, addTaskToProject, resetProjects } = projectsSlice.actions;
 export default projectsSlice.reducer;

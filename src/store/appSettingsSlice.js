@@ -26,10 +26,10 @@ const appSettingsSlice = createSlice({
         setFocusSessions: (state, action)=>{
             state.focusSessions = action.payload;
         },
-        setBreakSessions: (state)=>{
+        setBreakSessions: (state, action)=>{
             state.breakSessions = action.payload;
         },
-        toggleSoundAlarm: (state, action)=>{
+        toggleSoundAlarm: (state)=>{
             state.soundAlarm = !state.soundAlarm;
         },
         resetAppSettings: () => initialState,

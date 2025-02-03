@@ -19,9 +19,10 @@ const tasksSlice = createSlice({
             if (task) {
                 task.isCompleted = !task.isCompleted;
             }
-        }
+        },
+        resetTasks: () => initialState
     }
 });
 
-export const { addTask, deleteTask, toggleTaskCompletion } = tasksSlice.actions;
+export const { addTask, deleteTask, toggleTaskCompletion, resetTasks } = tasksSlice.actions;
 export default tasksSlice.reducer;
