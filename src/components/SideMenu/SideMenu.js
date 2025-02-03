@@ -12,6 +12,16 @@ const SideMenu = () => {
     const [showSettings, setShowSettings] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
 
+
+    const toggleSideMenu = () =>{
+        if(isExpanded){
+            setShowSettings(false);
+            setIsExpanded(false);
+            setShowNewProject(false);
+        }else if(!isExpanded){
+            setIsExpanded(true);
+        }
+    }
     return ( 
         <div className={`${styles.sideMenu} ${isExpanded ? styles.expand : ''}`}>
             {showSettings ? <Settings closeSettings={()=>setShowSettings(false)} /> : null}
@@ -24,7 +34,7 @@ const SideMenu = () => {
                 <button className={styles['menu-button']} onClick={()=>setShowSettings(true)}>
                     <img src={IconLibrary.Settings}></img>
                 </button>
-                <button className={styles['toggle-button']} onClick={!showSettings ? ()=>setIsExpanded(isExpanded=>!isExpanded) : null}>
+                <button className={styles['toggle-button']} onClick={toggleSideMenu}>
                     <img src={isExpanded ? IconLibrary.ExpandLeft : IconLibrary.ExpandRight}></img>
                 </button>
             </div>
