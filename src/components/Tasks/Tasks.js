@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteTask } from '../../store/tasksSlice';
+import { removeTaskFromProject } from '../../store/projectsSlice';
 
 
 
@@ -21,7 +22,8 @@ const Tasks = () => {
     const [selectedTask, setSelectedTask] = useState(filteredTasks && filteredTasks.length > 0 ? filteredTasks[0].id : null);
 
     useEffect(()=>{
-        if(tasks && tasks.length > 0){
+        if(selectedProject && tasks && tasks.length > 0){
+            console.log('passed the check')
             const project = projects.find(p=>p.id === selectedProject)
             const filteredItems = tasks.filter(task => project.tasks.includes(task.id));
             setFilteredTasks(filteredItems)
@@ -35,6 +37,11 @@ const Tasks = () => {
         setSelectedTask(id);
         console.log(selectedTask)
     }
+    const handleDeleteTask = () =>{
+        dispatch(deleteTask(selectedTask));
+        dispatch(removeTaskFromProject({projectId: selectedProject, taskId: selectedTask }));
+        setSelectedTask(null);
+    }
     return ( 
         <div className={styles.tasks}>
             {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
@@ -42,7 +49,7 @@ const Tasks = () => {
                 <h2>Tasks</h2>
                 {selectedTask ? (
                     <div className={styles['delete']}>
-                        <button onClick={()=>dispatch(deleteTask(selectedTask))}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
+                        <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
                     </div>
                 ) : null}
                 <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>

@@ -22,9 +22,16 @@ const projectsSlice = createSlice({
                 project.tasks.push(taskId);
             }
         },
+        removeTaskFromProject: (state, action) => {
+            const { projectId, taskId } = action.payload;
+            const project = state.find(p => p.id === projectId);
+            if (project) {
+                project.tasks = project.tasks.filter(task=> task != taskId)
+            }
+        },
         resetProjects: () => initialState,
     },
 });
 
-export const { addProject, deleteProject, addTaskToProject, resetProjects } = projectsSlice.actions;
+export const { addProject, deleteProject, addTaskToProject, removeTaskFromProject, resetProjects } = projectsSlice.actions;
 export default projectsSlice.reducer;
