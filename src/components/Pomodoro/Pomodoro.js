@@ -1,9 +1,16 @@
 import { IconLibrary } from '../../IconLibrary';
 import styles from './Pomodoro.module.css';
+import { useState } from 'react';
+import PomodoroSettings from './PomodoroSettings';
 
 const Pomodoro = () => {
+
+    const [showSettings, setShowSettings] = useState(false);
+
+
     return ( 
         <div className={styles.pomodoro}>
+            {showSettings ? <PomodoroSettings closeSettings={()=>setShowSettings(false)} /> : null}
             <div className={styles.timer}>
                 <div className={styles['timer-background']}>
                     <div className={styles['timer-content']}>
@@ -32,6 +39,7 @@ const Pomodoro = () => {
                 <div className={styles['focus-session-square']}><p>25:00</p></div>
                 <div className={styles['break-session-square']}><p>25:00</p></div>
                 <div className={styles['focus-session-square']}><p>25:00</p></div>
+                <div className={styles['total-time']} onClick={()=>setShowSettings(true)}><p>00:00</p><p>01:00</p></div>
             </div>
         </div>
      );

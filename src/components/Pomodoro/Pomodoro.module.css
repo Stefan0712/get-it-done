@@ -8,6 +8,7 @@
     gap: 10px;
     padding: 15px;
     padding-right: 0;
+    position: relative;
 }
 .timer{
     height: 100%;
@@ -68,6 +69,23 @@
     border-left: 1px solid rgba(211, 211, 211, 0.1);
     padding: 0 5px;
     box-sizing: content-box;
+    position: relative;
+}
+.total-time{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 0;
+    border-top: 1px solid rgba(211, 211, 211, 0.1);
+}
+.total-time p:nth-child(2){
+    opacity: 0.5;
 }
 .sessions-container .focus-session-square{
     width: 50px;
@@ -128,4 +146,100 @@
 .buttons .small-button img{
     width: 30px;
     height: 30px;
+}
+
+
+
+
+
+
+
+
+
+/* settings */
+
+.settings{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background-color: #171717;
+    z-index: 20;
+    padding: 10px;
+    animation-name: showPomodoroSettings;
+    animation-duration: 0.1s;
+}
+@keyframes showPomodoroSettings {
+    from{
+        right: -100%;
+        opacity: 0;
+    }
+    to{
+        right: 0;
+        opacity: 1;
+    }
+    
+}
+.settings .header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.settings .header h2{
+    margin-right: auto;
+}
+.settings .header button{
+    background-color: transparent;
+    border: none;
+}
+.settings-section{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.settings-section .top p{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.settings-section .top{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.settings-section .top input{
+    width: 50px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    padding-left: 10px;
+    color: black;
+}
+.settings-summary-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.settings-summary-section .session-length{
+    width: 30%;
+    height: 60px;
+    background-color: #0F0F0F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 5px;
+    flex-direction: column;
+}
+.settings-summary-section .session-length p{
+    width: 100%;
+    height: auto;
 }
