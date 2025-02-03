@@ -24,7 +24,7 @@ const Tasks = () => {
         }else{
             console.log('Failed to get tasks')
         }
-    },[selectedProject])
+    },[selectedProject, tasks])
 
     return ( 
         <div className={styles.tasks}>
