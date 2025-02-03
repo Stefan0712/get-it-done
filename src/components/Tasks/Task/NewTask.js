@@ -2,17 +2,25 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../Tasks.module.css';
 import { IconLibrary } from "../../../IconLibrary";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask } from "../../../store/tasksSlice";
+import { addTaskToProject } from "../../../store/projectsSlice";
 
 
 const NewTask = ({closeNewTask}) => {
 
+    const dispatch = useDispatch();
+    const selectedProject = useSelector(state=>state.appSettings.selectedProject);
+
     const [title, setTitle] = useState('');
-    const [color, setColor] = useState('#171717');
+    const [color, setColor] = useState('#444444');
 
 
     const handleNewTask = () =>{
-        let data = {id: uuidv4(), title, color};
-        console.log(data);
+        const taskId = uuidv4();
+        dispatch(addTask({id: taskId,title, color}));
+        dispatch(addTaskToProject({projectId: selectedProject, taskId}));
+        closeNewTask();
     }
 
 
