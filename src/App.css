@@ -6,12 +6,12 @@
     font-family: "Average Sans", serif;
 }
 .App{
-    height: 100vh;
+    height: var(--app-height);
     max-height: 100vh;
     width: 100vw;
     max-width: 100vw;
     display: flex;
     padding-left: 60px;
     background-color: #171717;
-    overflow: hidden !important;
+    overflow: hidden;
 }
