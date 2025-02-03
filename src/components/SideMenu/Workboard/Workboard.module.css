@@ -11,7 +11,6 @@
 .item{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(0, 82, 136);
     border-radius: 5px;
     align-items: center;
     
