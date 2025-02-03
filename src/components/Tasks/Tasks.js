@@ -52,10 +52,10 @@ const Tasks = () => {
                         <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
                     </div>
                 ) : null}
-                <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>
+                {selectedProject ? (<button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>) : null}
             </div>
             <div className={styles.container}>
-                {filteredTasks && filteredTasks.length > 0 ? filteredTasks.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />)) : <p>No tasks found!</p>}
+                {filteredTasks && filteredTasks.length > 0 ? filteredTasks.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />)) : <h5>Select a project</h5>}
             </div>
             
         </div>
