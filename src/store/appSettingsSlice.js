@@ -8,6 +8,7 @@ const initialState = {
     breakSessions: 3,
     soundAlarm: false,
     selectedProject: null,
+    selectedTask: null,
     pomodoroSettings: {totalDuration: 3, focusSession: 25, breakSession: 5}
 
 };
@@ -40,9 +41,12 @@ const appSettingsSlice = createSlice({
         updatePomodoroSettings: (state, action)=>{
             state.pomodoroSettings = action.payload;
         },
+        setSelectedTask: (state, action) =>{
+            state.selectedTask = action.payload;
+        },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, resetAppSettings,setSelectedProject, updatePomodoroSettings } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

@@ -2,9 +2,16 @@ import { IconLibrary } from '../../IconLibrary';
 import styles from './Pomodoro.module.css';
 import { useState, useEffect } from 'react';
 import PomodoroSettings from './PomodoroSettings';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {toggleTaskCompletion} from '../../store/tasksSlice';
 
 const Pomodoro = () => {
+
+    const selectedTask = useSelector(state=>state.appSettings.selectedTask);
+    const isTaskChecked = useSelector(state=>state.tasks.find(task=>task.id===selectedTask).isCompleted)
+    const dispatch = useDispatch();
+
+
     const [showSettings, setShowSettings] = useState(false);
     const settings = useSelector(state => state.appSettings.pomodoroSettings);
 
@@ -74,7 +81,9 @@ const Pomodoro = () => {
         setIsRunning(false);
         handleSessionEnd();
     };
+    const toggleCompletion = (id)=>{
 
+    }
     return (
         <div className={styles.pomodoro}>
             {showSettings && <PomodoroSettings closeSettings={() => setShowSettings(false)} />}
@@ -109,7 +118,7 @@ const Pomodoro = () => {
                     <img src={IconLibrary.Finish} alt="Finish" />
                 </button>
                 <button className={styles['big-button']}>Skip Task</button>
-                <button className={styles['big-button']}>Finish Task</button>
+                <button className={styles['big-button']} onClick={()=>dispatch(toggleTaskCompletion(selectedTask))}>{isTaskChecked ? 'Uncheck Task' : 'Check Task'}</button>
             </div>
         </div>
     );
