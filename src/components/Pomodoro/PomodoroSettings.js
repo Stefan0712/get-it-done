@@ -10,7 +10,7 @@ const PomodoroSettings = ({closeSettings}) => {
 
     const settings = useSelector(state=>state.appSettings.pomodoroSettings);
 
-    const [totalDuration, setTotalDuration] = useState(settings.totalDuration || 60);
+    const [totalDuration, setTotalDuration] = useState(settings.totalDuration || 3);
     const [focusDuration, setFocusDuration] = useState(settings.focusDuration || 25);
     const [breakDuration, setBreakDuration] = useState(settings.breakDuration || 5);
 
@@ -52,11 +52,10 @@ const PomodoroSettings = ({closeSettings}) => {
 
             <div className={styles['settings-section']}>
                 <div className={styles.top}>
-                    <p>Total Duration:</p>
-                    <input type='number' min={0} max={720} value={totalDuration} onChange={(e)=>setTotalDuration(e.target.value)}></input>
-                    <p> minutes</p>
+                    <p>No of Cycles:</p>
+                    <input type='number' min={0} max={10} value={totalDuration} onChange={(e)=>setTotalDuration(e.target.value)}></input>
                 </div>
-                <input type='range' min={0} max={720} value={totalDuration} onChange={(e)=>setTotalDuration(e.target.value)}></input>
+                <input type='range' min={0} max={10} value={totalDuration} onChange={(e)=>setTotalDuration(e.target.value)}></input>
             </div>
             <div className={styles['settings-section']}>
                 <div className={styles.top}>
@@ -84,8 +83,8 @@ const PomodoroSettings = ({closeSettings}) => {
                     <p>{breakSessions}</p>
                 </div>
                 <div className={styles['session-length']}>
-                    <p>Remaining</p>
-                    <p>{remainingMinutes} min</p>
+                    <p>Total Time</p>
+                    <p>{(focusDuration+breakSessions)*totalDuration} min</p>
                 </div>
             </div>
         </div>

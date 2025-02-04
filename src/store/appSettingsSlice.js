@@ -8,7 +8,7 @@ const initialState = {
     breakSessions: 3,
     soundAlarm: false,
     selectedProject: null,
-    pomodoroSettings: {totalDuration: 60, focusSession: 25, breakSession: 5}
+    pomodoroSettings: {totalDuration: 3, focusSession: 25, breakSession: 5}
 
 };
 
