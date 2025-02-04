@@ -14,12 +14,13 @@ const Tasks = () => {
     const tasks = useSelector(state=>state.tasks);
     const projects = useSelector(state=>state.projects);
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
+    const savedSelectedTask = useSelector(state=>state.appSettings.selectedTask);
 
     const dispatch = useDispatch();
 
     const [showNewTask, setShowNewTask] = useState(false);
     const [filteredTasks, setFilteredTasks] = useState([]);
-    const [selectedTask, setSelectedTask] = useState(filteredTasks && filteredTasks.length > 0 ? filteredTasks[0].id : null);
+    const [selectedTask, setSelectedTask] = useState(savedSelectedTask);
 
     useEffect(()=>{
         if(selectedProject && tasks && tasks.length > 0){
@@ -55,8 +56,16 @@ const Tasks = () => {
                 {selectedProject ? (<button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>) : null}
             </div>
             <div className={styles.container}>
-                {filteredTasks && filteredTasks.length > 0 ? filteredTasks.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />)) : <h5>Select a project</h5>}
+                <h3>Not Completed</h3>
+                {filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>!item.isCompleted).map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />)) : <h5>Select a project</h5>}
+                <div className={styles.completed}>
+                    <h3>Completed</h3>
+                    <div className={styles['completed-container']}>
+                        {filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isCompleted).map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />)) : null}
+                    </div>
+                </div>
             </div>
+           
             
         </div>
      );
