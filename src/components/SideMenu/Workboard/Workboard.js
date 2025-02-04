@@ -20,7 +20,7 @@ const Workboard = ({isExpanded}) => {
                     {isExpanded ? <h4 style={{color: getTextColor(project.color)}}>{project.title}</h4> : null}
                     <p style={{color: getTextColor(project.color)}}>{project.tasks.length}</p>
                 </div>
-            )): null}
+            )): <p>Create a new project</p>}
             
         </div>
      );

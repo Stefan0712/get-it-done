@@ -2,16 +2,21 @@ import { IconLibrary } from '../../../IconLibrary';
 import styles from './Project.module.css';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { addProject } from '../../../store/projectsSlice';
 
 const NewProject = ({closeForm}) => {
 
     const [title, setTitle] = useState('');
     const [color, setColor] = useState('#171717');
 
+    const dispatch = useDispatch();
+
 
     const handleNewProject = () =>{
         let data = {id: uuidv4(), title, color};
-        console.log(data);
+        dispatch(addProject(data));
+        closeForm();
     }
 
     return ( 

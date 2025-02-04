@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import {projects} from '../mockData';
 
-const initialState = [...projects];
+const initialState = [];
 
 const projectsSlice = createSlice({
     name: 'projects',

@@ -8,7 +8,7 @@ import {toggleTaskCompletion} from '../../store/tasksSlice';
 const Pomodoro = () => {
 
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
-    const isTaskChecked = useSelector(state=>state.tasks.find(task=>task.id===selectedTask).isCompleted)
+    const isTaskChecked = useSelector(state=>state.tasks.find(task=>task.id===selectedTask)?.isCompleted)
     const dispatch = useDispatch();
 
 
@@ -16,9 +16,9 @@ const Pomodoro = () => {
     const settings = useSelector(state => state.appSettings.pomodoroSettings);
 
     // User settings
-    const [totalCycles, setTotalCycles] = useState(settings.totalDuration || 3);
-    const [focusDuration, setFocusDuration] = useState(settings.focusDuration || 25);
-    const [breakDuration, setBreakDuration] = useState(settings.breakDuration || 5);
+    const [totalCycles, setTotalCycles] = useState(settings?.totalDuration || 3);
+    const [focusDuration, setFocusDuration] = useState(settings?.focusDuration || 25);
+    const [breakDuration, setBreakDuration] = useState(settings?.breakDuration || 5);
 
     // Timer states
     const [timeLeft, setTimeLeft] = useState(focusDuration * 60); // Time left in seconds
