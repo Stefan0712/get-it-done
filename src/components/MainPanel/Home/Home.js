@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { useSelector } from 'react-redux';
+import Habbit from './Habbit';
 
 
 const Home = () => {
@@ -52,6 +53,9 @@ const Home = () => {
                 <div className={styles['calendar-container']}>
                     <Calendar onChange={setDate} value={date} className={styles["dark-calendar"]} showNavigation={false} />
                 </div>
+            </div>
+            <div className={styles.bottom}>
+                <Habbit />
             </div>
         </div>
      );
