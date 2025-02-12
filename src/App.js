@@ -1,7 +1,7 @@
 import './App.css';
+import MainPanel from './components/MainPanel/MainPanel';
 import Pomodoro from './components/Pomodoro/Pomodoro';
 import SideMenu from './components/SideMenu/SideMenu';
-import Tasks from './components/Tasks/Tasks';
 import { useEffect } from 'react';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <SideMenu />
-      <Tasks />
+      <MainPanel />
       <Pomodoro />
     </div>
   );

@@ -1,5 +1,5 @@
-import { setSelectedTask } from '../../../store/appSettingsSlice';
-import { toggleTaskCompletion } from '../../../store/tasksSlice';
+import { setSelectedTask } from '../../../../store/appSettingsSlice';
+import { toggleTaskCompletion } from '../../../../store/tasksSlice';
 import styles from '../Tasks.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 

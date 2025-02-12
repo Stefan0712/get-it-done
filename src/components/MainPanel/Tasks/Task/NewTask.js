@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../Tasks.module.css';
-import { IconLibrary } from "../../../IconLibrary";
+import { IconLibrary } from "../../../../IconLibrary";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "../../../store/tasksSlice";
-import { addTaskToProject } from "../../../store/projectsSlice";
+import { addTask } from "../../../../store/tasksSlice";
+import { addTaskToProject } from "../../../../store/projectsSlice";
 
 
 const NewTask = ({closeNewTask}) => {

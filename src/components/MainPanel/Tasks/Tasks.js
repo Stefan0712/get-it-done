@@ -1,11 +1,11 @@
-import { IconLibrary } from '../../IconLibrary';
+import { IconLibrary } from '../../../IconLibrary';
 import NewTask from './Task/NewTask';
 import styles from './Tasks.module.css';
 import { useState, useEffect } from 'react';
 import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTask } from '../../store/tasksSlice';
-import { removeTaskFromProject } from '../../store/projectsSlice';
+import { deleteTask } from '../../../store/tasksSlice';
+import { removeTaskFromProject } from '../../../store/projectsSlice';
 
 
 
