@@ -49,9 +49,16 @@ const tasksSlice = createSlice({
         }
       }
     },
+    togglePin: (state, action) =>{
+      const id = action.payload;
+      const task = state.tasks.find((item) => item.id === id);
+      if (task) {
+        task.isPinned = !task.isPinned;
+      }
+    },
     resetTasks: () => initialState,
   },
 });
 
-export const { addTask, deleteTask, toggleTaskCompletion, resetTasks } = tasksSlice.actions;
+export const { addTask, deleteTask, toggleTaskCompletion, togglePin, resetTasks } = tasksSlice.actions;
 export default tasksSlice.reducer;

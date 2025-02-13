@@ -4,7 +4,7 @@ import styles from './Tasks.module.css';
 import { useState, useEffect } from 'react';
 import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteTask } from '../../../store/tasksSlice';
+import { deleteTask, togglePin } from '../../../store/tasksSlice';
 import { removeTaskFromProject } from '../../../store/projectsSlice';
 
 
@@ -48,6 +48,9 @@ const Tasks = () => {
         dispatch(removeTaskFromProject({projectId: selectedProject, taskId: selectedTask }));
         setSelectedTask(null);
     }
+    const handlePinTask = () =>{
+        dispatch(togglePin(selectedTask));
+    }
     if(selectedProject){
         return ( 
             <div className={styles.tasks}>
@@ -55,7 +58,8 @@ const Tasks = () => {
                 <div className={styles.header}>
                     <h3>Tasks: {tasks?.length || 0}/{completedTasks?.length || 0}</h3>
                     {selectedTask ? (
-                        <div className={styles['delete']}>
+                        <div className={styles['task-buttons']}>
+                            <button onClick={handlePinTask}><img src={IconLibrary.Pin} alt='pin selected task'></img></button>
                             <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
                         </div>
                     ) : null}

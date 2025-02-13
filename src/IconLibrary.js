@@ -11,6 +11,7 @@ import Settings from './assets/icons/settings.svg';
 import Start from './assets/icons/start.svg';
 import Delete from './assets/icons/delete.svg';
 import Save from './assets/icons/save.svg';
+import Pin from './assets/icons/pin.svg';
 
 export const IconLibrary = {
     Checkmark,
@@ -25,5 +26,6 @@ export const IconLibrary = {
     Settings,
     Start,
     Delete,
-    Save
+    Save,
+    Pin
 }
