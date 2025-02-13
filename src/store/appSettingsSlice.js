@@ -4,9 +4,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     theme: 'dark',
     language: 'en',
-    focusSessions: 4,
-    breakSessions: 3,
-    soundAlarm: false,
     selectedProject: null,
     selectedTask: null,
     pomodoroSettings: {
@@ -17,7 +14,8 @@ const initialState = {
         includeLongBreaks: true,
         enableNotifications: false,
         autoSkip: false
-    }
+    },
+    history: []
 
 };
 
@@ -52,9 +50,15 @@ const appSettingsSlice = createSlice({
         setSelectedTask: (state, action) =>{
             state.selectedTask = action.payload;
         },
+        addToHistory: (state, action) =>{
+            const todayRawDate = new Date();
+            const todayDate = todayRawDate.toISOString().split("T")[0];
+            const newItem = {[todayDate]: action.payload};
+            state.history.push(newItem);
+        },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
