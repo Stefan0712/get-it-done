@@ -91,10 +91,6 @@ const Pomodoro = () => {
             <button className={styles['settings-button']} onClick={() => setShowSettings(true)}>
                 <img src={IconLibrary.Settings} alt="" />
             </button>
-            
-            <div className={styles.summaries}>
-                <p>{currentCycle}/{totalCycles}</p>
-            </div>
 
             <div className={styles.timer}>
                 <div className={styles['timer-background']}>
@@ -118,8 +114,6 @@ const Pomodoro = () => {
                 <button className={styles['small-button']} onClick={resetTimer}>
                     <img src={IconLibrary.Finish} alt="Finish" />
                 </button>
-                <button className={styles['big-button']}>Skip Task</button>
-                <button className={styles['big-button']} onClick={()=>dispatch(toggleTaskCompletion(selectedTask))}>{isTaskChecked ? 'Uncheck Task' : 'Check Task'}</button>
             </div>
         </div>
     );

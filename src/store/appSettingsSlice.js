@@ -9,7 +9,15 @@ const initialState = {
     soundAlarm: false,
     selectedProject: null,
     selectedTask: null,
-    pomodoroSettings: {totalDuration: 3, focusSession: 25, breakSession: 5}
+    pomodoroSettings: {
+        focusDuration: 25,
+        breakDuration: 5,
+        longBreakDuration: 30,
+        longBreakFrequency: 3,
+        includeLongBreaks: true,
+        enableNotifications: false,
+        autoSkip: false
+    }
 
 };
 

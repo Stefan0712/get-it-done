@@ -1,10 +1,10 @@
 .pomodoro{
     height: 100%;
     width: 50%;
-    display: grid;
-    grid-template-rows: 3fr 1fr;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    gap: 10px;
+    gap: 20px;
     padding: 15px;
     padding-right: 0;
     position: relative;
@@ -20,7 +20,7 @@
 .timer-background{
     background-color: white;
     width: auto;
-    height: 90%;
+    height: 100%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     display: flex;
@@ -52,21 +52,6 @@
 }
 
 
-.summaries{
-    position: absolute;
-    left: 15px;
-    top: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    align-items: start;
-}
-.summaries p{
-    width: auto;
-    height: auto;
-}
-
-
 
 .total-time{
     position: sticky;
@@ -89,8 +74,8 @@
 
 
 .buttons{
-    height: 100%;
     width: 100%;
+    height: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -137,7 +122,6 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
     position: absolute;
     right: 0;
     bottom: 0;
@@ -188,32 +172,13 @@
     gap: 10px;
     align-items: center;
 }
-.settings-section .top input{
+.settings-section .top input,
+.settings-section option,
+.settings-section select{
     width: 50px;
     height: 30px;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
     color: black;
-}
-.settings-summary-section{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.settings-summary-section .session-length{
-    width: 30%;
-    height: 60px;
-    background-color: #0F0F0F;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    border-radius: 5px;
-    flex-direction: column;
-}
-.settings-summary-section .session-length p{
-    width: 100%;
-    height: auto;
 }
