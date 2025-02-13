@@ -10,8 +10,10 @@ const tasksSlice = createSlice({
   initialState,
   reducers: {
     addTask: (state, action) => {
-      const { id, title, color } = action.payload;
-      state.tasks.push({ id, title, color, isCompleted: false });
+      const todayRawDate = new Date();
+      const todayDate = todayRawDate.toISOString().split("T")[0];
+      const data = action.payload;
+      state.tasks.push({ id: data.id, title: data.title, color: data.color, isCompleted: false, isPinned: data.isPinned || false, date: todayDate, dueDate: data.dueDate || null });
     },
     deleteTask: (state, action) => {
       const taskId = action.payload;
