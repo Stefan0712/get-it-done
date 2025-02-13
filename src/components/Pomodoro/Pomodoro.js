@@ -8,7 +8,8 @@ import {toggleTaskCompletion} from '../../store/tasksSlice';
 const Pomodoro = () => {
 
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
-    const isTaskChecked = useSelector(state=>state.tasks.find(task=>task.id===selectedTask)?.isCompleted)
+    const tasks = useSelector(state=>state.tasks)
+    const isTaskChecked = tasks && tasks.length > 0 ? tasks.find(task=>task.id===selectedTask)?.isCompleted : null;
     const dispatch = useDispatch();
 
 
