@@ -75,8 +75,8 @@ const Tasks = () => {
                         </div>
                     ) : null}
                     {completedTasks && completedTasks.length > 0 ? (
-                        <div className={`${styles['completed']} ${isCompletedExtended ? styles.extend : ''}`} onClick={()=>setIsCompletedExtended(isCompletedExtended=>!isCompletedExtended)}>
-                            <div className={styles['tasks-container-header']}>
+                        <div className={`${styles['completed']} ${isCompletedExtended ? styles.extend : ''}`}>
+                            <div className={styles['tasks-container-header']} onClick={()=>setIsCompletedExtended(isCompletedExtended=>!isCompletedExtended)}>
                                 <h4>Completed</h4>
                                 <p>{completedTasks?.length}</p>
                             </div>
