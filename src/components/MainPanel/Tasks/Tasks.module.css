@@ -73,6 +73,7 @@
     justify-content: space-between;
 }
 
+/* task */
 .task{
     width: 100%;
     height: 50px;
@@ -83,6 +84,12 @@
     padding: 10px;
     border-radius: 5px;
     border: 2px solid transparent;
+    overflow: hidden;
+}
+.color{
+    width: 10px;
+    height: 50px;
+    margin: -10px;
 }
 .task.selected{
     border: 2px solid white;
