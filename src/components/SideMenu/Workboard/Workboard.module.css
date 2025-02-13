@@ -35,7 +35,10 @@ p{
 .selected h4{
     color: white !important;
 }
-
+.no-projects-message{
+    width: 100%;
+    height: auto;
+}
 
 
 
