@@ -50,13 +50,9 @@ const Home = () => {
                         <p>{getTotalNoOfTasks()}</p>
                     </div>
                 </div>
-                <div className={styles['calendar-container']}>
-                    <Calendar onChange={setDate} value={date} className={styles["dark-calendar"]} showNavigation={false} />
-                </div>
+                
             </div>
-            <div className={styles.bottom}>
-                <Habbit />
-            </div>
+            <Habbit />
         </div>
      );
 }
