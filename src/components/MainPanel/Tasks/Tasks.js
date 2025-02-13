@@ -11,7 +11,7 @@ import { removeTaskFromProject } from '../../../store/projectsSlice';
 
 const Tasks = () => {
 
-    const tasks = useSelector(state=>state.tasks);
+    const tasks = useSelector(state=>state.tasks.tasks);
     const projects = useSelector(state=>state.projects);
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
     const savedSelectedTask = useSelector(state=>state.appSettings.selectedTask);
@@ -21,9 +21,12 @@ const Tasks = () => {
     const [showNewTask, setShowNewTask] = useState(false);
     const [filteredTasks, setFilteredTasks] = useState([]);
     const [selectedTask, setSelectedTask] = useState(savedSelectedTask);
+    const [isCompletedExtended, setIsCompletedExtended] = useState(false);
 
-    const completedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>!item.isCompleted) : null;
-    const notCompletedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isCompleted) : null;
+    const completedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isCompleted) : null;
+    const notCompletedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>!item.isCompleted) : null;
+
+
     useEffect(()=>{
         if(selectedProject && tasks && tasks.length > 0){
             console.log('passed the check')
@@ -50,7 +53,7 @@ const Tasks = () => {
             <div className={styles.tasks}>
                 {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
                 <div className={styles.header}>
-                    <h3>Tasks: {tasks.length || 0}/{completedTasks || 0}</h3>
+                    <h3>Tasks: {tasks?.length || 0}/{completedTasks?.length || 0}</h3>
                     {selectedTask ? (
                         <div className={styles['delete']}>
                             <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
@@ -59,14 +62,29 @@ const Tasks = () => {
                     {selectedProject ? (<button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>) : null}
                 </div>
                 <div className={styles.container}>
-                    <h3>Not Completed</h3>
-                    {completedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
-                    <div className={styles.completed}>
-                        <h3>Completed</h3>
-                        <div className={styles['completed-container']}>
-                            {notCompletedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
+                    
+                    {notCompletedTasks && notCompletedTasks.length > 0 ? (
+                        <div className={styles['not-completed']}>
+                            <div className={styles['tasks-container-header']}>
+                                <h4>Not Completed</h4>
+                                <p>{notCompletedTasks?.length}</p>
+                            </div>
+                            <div className={styles['tasks-container']}>
+                                {notCompletedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
+                            </div>
                         </div>
-                    </div>
+                    ) : null}
+                    {completedTasks && completedTasks.length > 0 ? (
+                        <div className={`${styles['completed']} ${isCompletedExtended ? styles.extend : ''}`} onClick={()=>setIsCompletedExtended(isCompletedExtended=>!isCompletedExtended)}>
+                            <div className={styles['tasks-container-header']}>
+                                <h4>Completed</h4>
+                                <p>{completedTasks?.length}</p>
+                            </div>
+                            <div className={styles['tasks-container']}>
+                                {completedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
+                            </div>
+                        </div>
+                    ) : null}
                 </div>
                
                 
