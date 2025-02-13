@@ -7,6 +7,7 @@ import History from './History/History';
 const MainPanel = () => {
     const [selectedScreen, setSelectedScreen] = useState('home');
 
+
     return ( 
         <div className={styles.mainPanel}>
             <div className={styles.navigation}>

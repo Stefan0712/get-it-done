@@ -6,6 +6,7 @@ import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteTask, togglePin } from '../../../store/tasksSlice';
 import { removeTaskFromProject } from '../../../store/projectsSlice';
+import { setSelectedTask } from '../../../store/appSettingsSlice';
 
 
 
@@ -17,11 +18,10 @@ const Tasks = () => {
     const tasks = useSelector(state=>state.tasks.tasks);
     const projects = useSelector(state=>state.projects);
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
-    const savedSelectedTask = useSelector(state=>state.appSettings.selectedTask);
+    const selectedTask = useSelector(state=>state.appSettings.selectedTask);
 
     const [showNewTask, setShowNewTask] = useState(false);
     const [filteredTasks, setFilteredTasks] = useState([]); //stores all tasks of the selected project
-    const [selectedTask, setSelectedTask] = useState(savedSelectedTask); 
 
     //keeps track of what containers are extended
     const [isCompletedExtended, setIsCompletedExtended] = useState(false);
@@ -36,8 +36,8 @@ const Tasks = () => {
 
 
     useEffect(()=>{
+        dispatch(setSelectedTask(null));
         if(selectedProject && tasks && tasks.length > 0){
-            console.log('passed the check')
             const project = projects.find(p=>p.id === selectedProject)
             const filteredItems = tasks.filter(task => project.tasks.includes(task.id));
             setFilteredTasks(filteredItems)
@@ -48,32 +48,32 @@ const Tasks = () => {
 
 
     const handleSelectTask = (id)=>{
-        setSelectedTask(id);
-        console.log(selectedTask)
+        dispatch(setSelectedTask(id));
     }
     const handleDeleteTask = () =>{
         dispatch(deleteTask(selectedTask));
         dispatch(removeTaskFromProject({projectId: selectedProject, taskId: selectedTask }));
-        setSelectedTask(null);
+        dispatch(setSelectedTask(null));
     }
     const handlePinTask = () =>{
         dispatch(togglePin(selectedTask));
+        dispatch(setSelectedTask(null));
     }
     const togglePinned = () =>{
         if(pinnedTasks.some(task=>task.id===selectedTask) && isPinnedExtended){
-            handleSelectTask(null)
+            dispatch(setSelectedTask(null));
         }
         setIsPinnedExtended(isPinnedExtended=>!isPinnedExtended);
     }
     const toggleCompleted = () =>{
         if(completedTasks.some(task=>task.id===selectedTask) && isCompletedExtended){
-            handleSelectTask(null)
+            dispatch(setSelectedTask(null));
         }
         setIsCompletedExtended(isCompletedExtended=>!isCompletedExtended);
     }
     const toggleNotCompleted = () =>{
         if(notCompletedTasks.some(task=>task.id===selectedTask) && isNotCompletedExtended){
-            handleSelectTask(null)
+            dispatch(setSelectedTask(null));
         }
         setIsNotCompletedExtended(isNotCompletedExtended=>!isNotCompletedExtended);
     }
