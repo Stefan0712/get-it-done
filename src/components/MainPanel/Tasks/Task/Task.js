@@ -16,7 +16,6 @@ const Task = ({data, isSelected, selectTask}) => {
         selectTask(data.id);
         dispatch(setSelectedTask(data.id))
     }
-    console.log(isSelected, isSelected)
     return ( 
         <div className={`${styles.task} ${isSelected && selectedTask === data.id ? styles.selected : ''}`} onClick={handleSelectTask}>
             <h4>{data.title}</h4>

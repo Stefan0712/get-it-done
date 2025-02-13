@@ -8,10 +8,13 @@ import Habbit from './Habbit';
 
 const Home = () => {
 
-    const projects = useSelector((state)=>state.projects)
+    const projects = useSelector((state)=>state.projects);
+    const tasks = useSelector((state)=>state.tasks.tasks);
+    const pinnedTasks = useSelector((state)=>state.tasks.tasks.filter(item=>item.isPinned))
 
     const [currentTime, setCurrentTime] = useState(new Date());
-    const [date, setDate] = useState(new Date());
+    const date = new Date();
+    const todayDate = date.toISOString().split("T")[0];
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -42,12 +45,27 @@ const Home = () => {
             <div className={styles.middle}>
                 <div className={styles.summaries}>
                     <div className={styles.summary}>
-                        <h3>Projects</h3>
-                        <p>{projects?.length}</p>
+                        <h4>Completed</h4>
+                        <p>{tasks.filter(item=>item.isCompleted).length}</p>
                     </div>
                     <div className={styles.summary}>
-                        <h3>Tasks</h3>
-                        <p>{getTotalNoOfTasks()}</p>
+                        <h4>Not Completed</h4>
+                        <p>{tasks.filter(item=>!item.isCompleted).length}</p>
+                    </div>
+                    <div className={styles.summary}>
+                        <h4>Due Today</h4>
+                        <p>{tasks.filter(item=>item.dueDate === todayDate).length}</p>
+                    </div>
+                </div>
+                <div className={styles.pinned}>
+                    <h4>Pinned Tasks</h4>
+                    <div className={styles['pinned-tasks-container']}>
+                        {pinnedTasks && pinnedTasks.length > 0 ? pinnedTasks.map((task, index)=>(
+                            <div className={styles['home-task']}>
+                                <p className={styles['task-title']}>{task.title}</p>
+                                {task.dueDate ? <p className={styles['task-dueDate']}>{task.dueDate}</p> : <p className={styles['task-dueDate']}>Not Set</p>}
+                            </div>  
+                        )) : null}
                     </div>
                 </div>
                 
