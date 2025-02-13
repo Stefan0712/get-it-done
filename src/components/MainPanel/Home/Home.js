@@ -38,38 +38,27 @@ const Home = () => {
     return ( 
         <div className={styles.home}>
             <div className={styles.top}>
-                <div className={styles['day-of-week']}>{dayOfWeek}</div>
-                <div className={styles['date']}>{formattedDate}</div>
-                <div className={styles['time']}>{formattedTime}</div>
+                <div className={styles['current-time']}>
+                    <div className={styles.date}>
+                        <div className={styles['day-of-week']}>{dayOfWeek}</div>
+                        <div className={styles['date']}>{formattedDate}</div>
+                    </div>
+                    <div className={styles['time']}>{formattedTime}</div>
+                </div>
+
             </div>
-            <div className={styles.middle}>
-                <div className={styles.summaries}>
-                    <div className={styles.summary}>
-                        <h4>Completed</h4>
-                        <p>{tasks.filter(item=>item.isCompleted).length}</p>
-                    </div>
-                    <div className={styles.summary}>
-                        <h4>Not Completed</h4>
-                        <p>{tasks.filter(item=>!item.isCompleted).length}</p>
-                    </div>
-                    <div className={styles.summary}>
-                        <h4>Due Today</h4>
-                        <p>{tasks.filter(item=>item.dueDate === todayDate).length}</p>
-                    </div>
+            <div className={styles.pinned}>
+                <h4>Due Today</h4>
+                <div className={styles['pinned-tasks-container']}>
+                    {pinnedTasks && pinnedTasks.length > 0 ? pinnedTasks.map((task, index)=>(
+                        <div className={styles['home-task']}>
+                            <p className={styles['task-title']}>{task.title}</p>
+                            {task.dueDate ? <p className={styles['task-dueDate']}>{task.dueDate}</p> : null}
+                        </div>  
+                    )) : null}
                 </div>
-                <div className={styles.pinned}>
-                    <h4>Pinned Tasks</h4>
-                    <div className={styles['pinned-tasks-container']}>
-                        {pinnedTasks && pinnedTasks.length > 0 ? pinnedTasks.map((task, index)=>(
-                            <div className={styles['home-task']}>
-                                <p className={styles['task-title']}>{task.title}</p>
-                                {task.dueDate ? <p className={styles['task-dueDate']}>{task.dueDate}</p> : <p className={styles['task-dueDate']}>Not Set</p>}
-                            </div>  
-                        )) : null}
-                    </div>
-                </div>
+            </div>
                 
-            </div>
             <Habbit />
         </div>
      );
