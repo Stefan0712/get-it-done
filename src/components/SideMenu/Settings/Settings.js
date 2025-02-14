@@ -14,6 +14,13 @@ const Settings = ({closeSettings}) => {
     const noSleep = new NoSleep();
     const isFullscreen = useSelector((state)=>state.appSettings.isFullscreen);
 
+
+
+    const handleResetAll = () =>{
+        dispatch(resetProjects());
+        dispatch(resetTasks());
+        dispatch(resetAppSettings());
+    }
     return ( 
         <div className={styles.settings}>
             <div className={styles.header}>
@@ -35,9 +42,10 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.section}>
                     <div className={styles['half-button-set']}>
                         <h2>Reset Items</h2>
-                        <button onClick={()=>dispatch(resetProjects())}>Reset Projects</button>
-                        <button onClick={()=>dispatch(resetTasks())}>Reset Tasks</button>
-                        <button onClick={()=>dispatch(resetAppSettings())}>Reset Settings</button>
+                        <button onClick={()=>dispatch(resetProjects())}>Projects</button>
+                        <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
+                        <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
+                        <button onClick={()=>handleResetAll}>All</button>
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Themes</h2>
