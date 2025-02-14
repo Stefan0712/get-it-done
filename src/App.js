@@ -4,10 +4,16 @@ import MainPanel from './components/MainPanel/MainPanel';
 import Pomodoro from './components/Pomodoro/Pomodoro';
 import SideMenu from './components/SideMenu/SideMenu';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toggleFullscreen } from './store/appSettingsSlice';
+
+
 
 function App() {
 
   const [showFullscreenModal, setShowFullscreenModal] = useState(true);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const setAppHeight = () => {
@@ -24,12 +30,26 @@ function App() {
   }, []);
   
   
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+        if (document.fullscreenElement) {
+            dispatch(toggleFullscreen(true))
+        } else {
+            dispatch(toggleFullscreen(false))
+        }
+    };
 
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+    return () => {
+        document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
 
 
   return (
     <div className="App">
-      {showFullscreenModal ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
+      {showFullscreenModal && window.innerWidth < 1000 ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
       <SideMenu />
       <MainPanel />
       <Pomodoro />

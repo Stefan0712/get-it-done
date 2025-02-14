@@ -2,7 +2,7 @@ import { IconLibrary } from '../../../IconLibrary';
 import NoSleep from 'nosleep.js';
 import styles from './Settings.module.css';
 import { enterFullScreen, exitFullScreen } from '../../../helpers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
 import { resetProjects } from '../../../store/projectsSlice';
 import { resetAppSettings } from '../../../store/appSettingsSlice';
@@ -12,6 +12,7 @@ const Settings = ({closeSettings}) => {
 
     const dispatch = useDispatch();
     const noSleep = new NoSleep();
+    const isFullscreen = useSelector((state)=>state.appSettings.isFullscreen);
 
     return ( 
         <div className={styles.settings}>
@@ -23,8 +24,7 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.section}>
                     <div className={styles['half-button-set']}>
                         <h2>Fullscreen</h2>
-                        <button onClick={enterFullScreen}>Enable</button>
-                        <button onClick={exitFullScreen}>Disable</button>
+                        {isFullscreen ? <button onClick={exitFullScreen}>Disable</button> : <button onClick={enterFullScreen}>Enable</button>}
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Keep Screen Awake</h2>

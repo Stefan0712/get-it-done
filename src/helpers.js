@@ -48,6 +48,14 @@ const luminance = getLuminance(backgroundColor);
 // If luminance is greater than 0.5, it's a light color (use black text), else use white
 return luminance > 0.5 ? 'black' : 'white';
 }
+const isFullscreen = () => {
+    return (
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement
+    );
+};
   
 
-export {enterFullScreen, exitFullScreen, getTextColor};
+export {enterFullScreen, exitFullScreen, getTextColor, isFullscreen};

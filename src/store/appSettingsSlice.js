@@ -6,6 +6,8 @@ const initialState = {
     language: 'en',
     selectedProject: null,
     selectedTask: null,
+    showFullscreenPrompt: true,
+    isFullscreen: false,
     pomodoroSettings: {
         focusDuration: 25,
         breakDuration: 5,
@@ -13,7 +15,7 @@ const initialState = {
         longBreakFrequency: 3,
         includeLongBreaks: true,
         enableNotifications: false,
-        autoSkip: false
+        autoSkip: false,
     },
     history: {}
 
@@ -63,9 +65,12 @@ const appSettingsSlice = createSlice({
             // Append the new object
             state.history[todayDate].push(action.payload);
         },
+        toggleFullscreen: (state, action) =>{
+            state.isFullscreen = action.payload
+        },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, setFocusSessions, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage, setFocusSessions, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
