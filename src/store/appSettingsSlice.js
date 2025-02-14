@@ -6,7 +6,7 @@ const initialState = {
     language: 'en',
     selectedProject: null,
     selectedTask: null,
-    showFullscreenPrompt: true,
+    showFullScreenPrompt: true,
     isFullscreen: false,
     isScreenAwakeOn: false,
     pomodoroSettings: {
@@ -72,9 +72,18 @@ const appSettingsSlice = createSlice({
         toggleScreenAwake: (state, action) =>{
             state.isScreenAwakeOn = action.payload
         },
+        updateSetting: (state, action) =>{
+            
+            const { settingKey, value } = action.payload;
+            // Ensure the settingKey is valid 
+            if (state.hasOwnProperty(settingKey)) {
+                console.log(action.payload)
+                state[settingKey] = value;
+            }
+        },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage, updateSetting, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
