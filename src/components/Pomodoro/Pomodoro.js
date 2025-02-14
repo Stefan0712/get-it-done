@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import PomodoroSettings from './PomodoroSettings';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToHistory } from '../../store/appSettingsSlice';
+import MessageModal from './MessageModal';
 
 const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false);
@@ -19,6 +20,8 @@ const Pomodoro = () => {
     const [focusSessions, setFocusSessions] = useState(0);
     const [breaks, setBreaks] = useState(0);
     const [longBreaks, setLongBreaks] = useState(0);
+
+    const [message, setMessage] = useState({type: 'success', msg: 'Work session is done!'});
 
     // Total cycles before long break
     const totalCycles = settings.longBreakFrequency;
@@ -110,6 +113,7 @@ const Pomodoro = () => {
 
     return (
         <div className={styles.pomodoro}>
+            {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
             {showSettings && <PomodoroSettings closeSettings={() => setShowSettings(false)} />}
             <button className={styles['settings-button']} onClick={() => setShowSettings(true)}>
                 <img src={IconLibrary.Settings} alt="Settings" />

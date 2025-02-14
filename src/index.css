@@ -1,3 +1,19 @@
 *{
     box-sizing: border-box;
 }
+
+
+
+
+.slideInFromTop{
+    animation-name: slideInFromTopAnimation;
+    animation-duration: 0.1s;
+}
+@keyframes slideInFromTopAnimation {
+    from{
+        top: -120%;
+    }
+    to{
+        top: 0
+    }
+}
