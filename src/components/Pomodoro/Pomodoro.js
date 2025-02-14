@@ -21,7 +21,7 @@ const Pomodoro = () => {
     const [breaks, setBreaks] = useState(0);
     const [longBreaks, setLongBreaks] = useState(0);
 
-    const [message, setMessage] = useState({type: 'success', msg: 'Work session is done!'});
+    const [message, setMessage] = useState(null);
 
     // Total cycles before long break
     const totalCycles = settings.longBreakFrequency;
@@ -85,6 +85,7 @@ const Pomodoro = () => {
     const skipSession = () => {
         setIsRunning(false);
         handleSessionEnd();
+        setElapsedTime(0);
         setMessage({type: 'info', msg: 'Session was skipped'})
     };
 
@@ -123,7 +124,7 @@ const Pomodoro = () => {
             </button>
 
             <div className={styles.timer}>
-                <div className={styles['timer-background']}>
+                <div className={styles['timer-background']} style={{background: `conic-gradient(#FF8C00 ${(elapsedTime / timeLeft)*100}%, white ${(elapsedTime / timeLeft)*100}% 100%)` }}>
                     <div className={styles['timer-content']}>
                         <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
                         <div className={styles.time}>
