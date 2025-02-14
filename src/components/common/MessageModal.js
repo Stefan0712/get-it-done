@@ -39,7 +39,9 @@ const MessageModal = ({data, closeModal}) => {
         width: '40px'
     };
 
-
+    useEffect(()=>{
+        setTimeout(()=>closeModal(), 3000)
+    },[])
     return ( 
         <div style={messageModal} className='slideInFromTop'>
             <div style={modalContent}>

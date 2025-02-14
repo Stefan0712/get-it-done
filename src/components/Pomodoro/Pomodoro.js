@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import PomodoroSettings from './PomodoroSettings';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToHistory } from '../../store/appSettingsSlice';
-import MessageModal from './MessageModal';
+import MessageModal from '../common/MessageModal';
 
 const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false);
