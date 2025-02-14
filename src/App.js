@@ -1,11 +1,13 @@
 import './App.css';
+import FullScreenModal from './components/common/FullScreenModal/FullScreenModal';
 import MainPanel from './components/MainPanel/MainPanel';
 import Pomodoro from './components/Pomodoro/Pomodoro';
 import SideMenu from './components/SideMenu/SideMenu';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function App() {
 
+  const [showFullscreenModal, setShowFullscreenModal] = useState(true);
 
   useEffect(() => {
     const setAppHeight = () => {
@@ -27,6 +29,7 @@ function App() {
 
   return (
     <div className="App">
+      {showFullscreenModal ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
       <SideMenu />
       <MainPanel />
       <Pomodoro />

@@ -25,7 +25,7 @@ const Tasks = () => {
 
     //keeps track of what containers are extended
     const [isCompletedExtended, setIsCompletedExtended] = useState(false);
-    const [isNotCompletedExtended, setIsNotCompletedExtended] = useState(false);
+    const [isNotCompletedExtended, setIsNotCompletedExtended] = useState(true);
     const [isPinnedExtended, setIsPinnedExtended] = useState(false);
 
     //categorize tasks by completed, not completed, and pinned
