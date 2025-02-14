@@ -91,6 +91,7 @@ const Pomodoro = () => {
 
     const handleFinish = () => {
         // Log session details
+        setElapsedTime(0);
         const sessionLog = {
             startTime: new Date().toISOString(),
             finishTime: new Date().toISOString(),
