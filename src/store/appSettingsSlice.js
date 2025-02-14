@@ -15,7 +15,7 @@ const initialState = {
         enableNotifications: false,
         autoSkip: false
     },
-    history: []
+    history: {}
 
 };
 
@@ -50,11 +50,18 @@ const appSettingsSlice = createSlice({
         setSelectedTask: (state, action) =>{
             state.selectedTask = action.payload;
         },
-        addToHistory: (state, action) =>{
-            const todayRawDate = new Date();
-            const todayDate = todayRawDate.toISOString().split("T")[0];
-            const newItem = {[todayDate]: action.payload};
-            state.history.push(newItem);
+        addToHistory: (state, action) => {
+            const todayDate = new Date().toISOString().split("T")[0];
+            // Ensure history object exists
+            if (!state.history) {
+                state.history = {};
+            }
+            // Ensure there's an array for today's date
+            if (!state.history[todayDate]) {
+                state.history[todayDate] = [];
+            }
+            // Append the new object
+            state.history[todayDate].push(action.payload);
         },
         resetAppSettings: () => initialState,
     }
