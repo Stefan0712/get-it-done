@@ -71,17 +71,21 @@ const Pomodoro = () => {
     };
 
     const startTimer = () => setIsRunning(true);
+    
     const pauseTimer = () => setIsRunning(false);
+
     const resetTimer = () => {
         setIsRunning(false);
         setCurrentCycle(1);
         setCurrentSession('focus');
         setTimeLeft(settings.focusDuration * 60);
+        setMessage({type: 'info', msg: 'The timer was reset'})
     };
 
     const skipSession = () => {
         setIsRunning(false);
         handleSessionEnd();
+        setMessage({type: 'info', msg: 'Session was skipped'})
     };
 
     const handleFinish = () => {
@@ -95,13 +99,12 @@ const Pomodoro = () => {
         };
         dispatch(addToHistory(sessionLog));
         resetTimer();
+        setMessage({type: 'success', msg: 'Work session is done!'})
     };
 
     const sendNotification = () => {
         if (settings.enableNotifications) {
-            new Notification('Pomodoro Timer', {
-                body: currentSession === 'focus' ? 'Focus time is over, take a break!' : 'Break time is over, get back to work!',
-            });
+            currentSession === 'focus' ? setMessage({type: 'info', msg: 'Focus time is over, take a break!'}) : setMessage({type: 'info', msg: 'Break time is over, get back to work!'})
         }
     };
 

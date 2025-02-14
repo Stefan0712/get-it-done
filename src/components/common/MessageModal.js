@@ -12,7 +12,7 @@ const MessageModal = ({data, closeModal}) => {
         top: '0',
         left: '5px',
         zIndex: '20',
-        backgroundColor: data.type === 'success' ? '#4CAF50' : '#E53935',
+        backgroundColor: data.type === 'success' ? '#4CAF50' : data.type === 'info' ? '#0F0F0F' : '#E53935',
         borderRadius: '5px'
     };
 
