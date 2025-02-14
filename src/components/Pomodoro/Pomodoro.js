@@ -70,13 +70,19 @@ const Pomodoro = () => {
         }
     };
 
-    const startTimer = () => setIsRunning(true);
+    const startTimer = () => {
+        setIsRunning(true);
+        if(elapsedTime === 0){
+            setMessage({type: 'success', msg: 'The timer was started'})
+        }
+    }
     
     const pauseTimer = () => setIsRunning(false);
 
     const resetTimer = () => {
         setIsRunning(false);
         setCurrentCycle(1);
+        setElapsedTime(0);
         setCurrentSession('focus');
         setTimeLeft(settings.focusDuration * 60);
         setMessage({type: 'info', msg: 'The timer was reset'})
