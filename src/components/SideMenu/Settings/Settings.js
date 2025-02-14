@@ -12,8 +12,7 @@ const Settings = ({closeSettings}) => {
 
     const dispatch = useDispatch();
     const noSleep = new NoSleep();
-    const isFullscreen = useSelector((state)=>state.appSettings.isFullscreen);
-    const isAwakeOn = useSelector((state)=>state.appSettings.isScreenAwakeOn);
+    const settings = useSelector((state)=>state.appSettings);
 
 
 
@@ -41,11 +40,11 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.section}>
                     <div className={styles['half-button-set']}>
                         <h2>Fullscreen</h2>
-                        {isFullscreen ? <button onClick={exitFullScreen}>Disable</button> : <button onClick={enterFullScreen}>Enable</button>}
+                        {settings.isFullscreen ? <button onClick={exitFullScreen}>Disable</button> : <button onClick={enterFullScreen}>Enable</button>}
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Keep Screen Awake</h2>
-                        {isAwakeOn ? <button onClick={toggleScreenAwakeOff}>Disable</button> : <button onClick={toggleScreenAwakeOn}>Enable</button>}
+                        {settings.isScreenAwakeOn ? <button onClick={toggleScreenAwakeOff}>Disable</button> : <button onClick={toggleScreenAwakeOn}>Enable</button>}
                     </div>
                 </div>
                 <div className={styles.section}>
