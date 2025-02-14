@@ -5,7 +5,7 @@ import { enterFullScreen, exitFullScreen } from '../../../helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
 import { resetProjects } from '../../../store/projectsSlice';
-import { resetAppSettings } from '../../../store/appSettingsSlice';
+import { resetAppSettings, toggleScreenAwake } from '../../../store/appSettingsSlice';
 
 
 const Settings = ({closeSettings}) => {
@@ -13,6 +13,7 @@ const Settings = ({closeSettings}) => {
     const dispatch = useDispatch();
     const noSleep = new NoSleep();
     const isFullscreen = useSelector((state)=>state.appSettings.isFullscreen);
+    const isAwakeOn = useSelector((state)=>state.appSettings.isScreenAwakeOn);
 
 
 
@@ -20,6 +21,15 @@ const Settings = ({closeSettings}) => {
         dispatch(resetProjects());
         dispatch(resetTasks());
         dispatch(resetAppSettings());
+    }
+    const toggleScreenAwakeOn = () =>{
+        noSleep.enable();
+        dispatch(toggleScreenAwake(true))
+
+    }
+    const toggleScreenAwakeOff = () =>{
+        noSleep.disable();
+        dispatch(toggleScreenAwake(false))
     }
     return ( 
         <div className={styles.settings}>
@@ -35,8 +45,7 @@ const Settings = ({closeSettings}) => {
                     </div>
                     <div className={styles['half-button-set']}>
                         <h2>Keep Screen Awake</h2>
-                        <button onClick={()=>noSleep.enable()}>Enable</button>
-                        <button onClick={()=>noSleep.disable()}>Disable</button>
+                        {isAwakeOn ? <button onClick={toggleScreenAwakeOff}>Disable</button> : <button onClick={toggleScreenAwakeOn}>Enable</button>}
                     </div>
                 </div>
                 <div className={styles.section}>
