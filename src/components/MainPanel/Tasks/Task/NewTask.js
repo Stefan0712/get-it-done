@@ -13,7 +13,7 @@ const NewTask = ({closeNewTask}) => {
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
 
     const [title, setTitle] = useState('');
-    const [color, setColor] = useState('#444444');
+    const [priority, setPriority] = useState('normal');
     const todayRawDate = new Date();
     const todayDate = todayRawDate.toISOString().split("T")[0];
     const [dueDate, setDueDate] = useState(todayDate);
@@ -22,7 +22,7 @@ const NewTask = ({closeNewTask}) => {
 
     const handleNewTask = () =>{
         const taskId = uuidv4();
-        dispatch(addTask({id: taskId, title, color, dueDate, dueHour, isPinned}));
+        dispatch(addTask({id: taskId, title, priority, dueDate, dueHour, isPinned}));
         dispatch(addTaskToProject({projectId: selectedProject, taskId}));
         closeNewTask();
     }
@@ -40,8 +40,12 @@ const NewTask = ({closeNewTask}) => {
                     <input id={styles['title-input']} type='text' name='title' onChange={(e)=>setTitle(e.target.value)} value={title} required></input>
                 </fieldset>
                 <fieldset>
-                    <label>Color</label>
-                    <input id={styles['color-input']} type='color' name='color' onChange={(e)=>setColor(e.target.value)} value={color} required></input>
+                    <label>Priority</label>
+                    <select id={styles['priority-input']} type='priority' name='priority' onChange={(e)=>setPriority(e.target.value)} value={priority} required>
+                        <option value={'low'}>Low</option>
+                        <option value={'normal'}>Normal</option>
+                        <option value={'high'}>High</option>
+                    </select>
                 </fieldset>
             </div>
             <div className={styles['same-line-bottom']}>

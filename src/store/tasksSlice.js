@@ -13,7 +13,7 @@ const tasksSlice = createSlice({
       const todayRawDate = new Date();
       const todayDate = todayRawDate.toISOString().split("T")[0];
       const data = action.payload;
-      state.tasks.push({ id: data.id, title: data.title, color: data.color, isCompleted: false, isPinned: data.isPinned || false, date: todayDate, dueDate: data.dueDate || null, dueHour: data.dueHour });
+      state.tasks.push({ id: data.id, title: data.title, priority: data.priority, isCompleted: false, isPinned: data.isPinned || false, date: todayDate, dueDate: data.dueDate || null, dueHour: data.dueHour });
     },
     deleteTask: (state, action) => {
       const taskId = action.payload;

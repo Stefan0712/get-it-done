@@ -18,7 +18,7 @@ const Task = ({data, isSelected, selectTask}) => {
     }
     return ( 
         <div className={`${styles.task} ${isSelected && selectedTask === data.id ? styles.selected : ''}`} onClick={handleSelectTask}>
-            <div className={styles.color} style={{backgroundColor: data.color}}></div>
+            <div className={styles.color} style={{backgroundColor: data.priority === 'high' ? 'red' : data.priority === 'normal' ? 'green' : data.priority === 'low' ? 'blue' : 'transparent'}}></div>
             <h4>{data.title}</h4>
             {data.isPinned ? <img className={styles['pin-task-icon']} src={IconLibrary.Pin} alt=''/> : null}
             <input type='checkbox' onChange={handleCheckTask} checked={data.isCompleted}></input>

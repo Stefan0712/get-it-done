@@ -1,6 +1,7 @@
 .pomodoro{
     height: 100%;
     width: 50%;
+    max-width: 50%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -8,15 +9,18 @@
     padding: 15px;
     padding-right: 0;
     position: relative;
+    box-sizing: border-box;
 }
 .top{
     width: 100%;
-    height: 30px;
+    height: 40px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-right: 60px;
+    justify-content: center;
+    gap: 10px;
+    
 }
+
 .timer{
     height: 100%;
     width: 100%;

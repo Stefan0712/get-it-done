@@ -129,11 +129,7 @@ const Pomodoro = () => {
             <button className={styles['settings-button']} onClick={() => setShowSettings(true)}>
                 <img src={IconLibrary.Settings} alt="Settings" />
             </button>
-            <div className={styles.top}>
-                <p>Focus Sessions: {focusSessions}</p>
-                <p>Short Breaks: {breaks}</p>
-                <p>Long Breaks: {longBreaks}</p>
-            </div>
+           
             <div className={styles.timer}>
                 <div className={styles['timer-background']} style={{background: `conic-gradient(#FF8C00 ${(elapsedTime / timeLeft)*100}%, white ${(elapsedTime / timeLeft)*100}% 100%)` }}>
                     <div className={styles['timer-content']}>
@@ -156,6 +152,11 @@ const Pomodoro = () => {
                 <button className={styles['small-button']} onClick={handleFinish}>
                     <img src={IconLibrary.Finish} alt="Finish" />
                 </button>
+            </div>
+            <div className={styles.top}>
+                <p>Focus Sessions: {focusSessions}</p>
+                <p>Short Breaks: {breaks}</p>
+                <p>Long Breaks: {longBreaks}</p>
             </div>
         </div>
     );
