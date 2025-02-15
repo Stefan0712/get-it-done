@@ -1,10 +1,11 @@
 import { getTextColor } from '../../../helpers';
+import { IconLibrary } from '../../../IconLibrary';
 import { setSelectedProject } from '../../../store/appSettingsSlice';
 import styles from './Workboard.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-const Workboard = ({isExpanded}) => {
+const Workboard = ({isExpanded, showNewProject}) => {
 
     const dispatch = useDispatch();
 
@@ -20,7 +21,7 @@ const Workboard = ({isExpanded}) => {
                     {isExpanded ? <h4 style={{color: getTextColor(project.color)}}>{project.title}</h4> : null}
                     <p style={{color: getTextColor(project.color)}}>{project.tasks.length}</p>
                 </div>
-            )): <p className={styles['no-projects-message']}>No projects</p>}
+            )): <button className={styles['new-project-button']}> <img src={IconLibrary.Plus} alt='new project' />{isExpanded ? 'New Project' : null}</button>}
             
         </div>
      );

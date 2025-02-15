@@ -26,7 +26,7 @@ const SideMenu = () => {
         <div className={`${styles.sideMenu} ${isExpanded ? styles.expand : ''}`}>
             {showSettings ? <Settings closeSettings={()=>setShowSettings(false)} /> : null}
             {showNewProject ? <NewProject closeForm={()=>setShowNewProject(false)} /> : null}
-            <Workboard isExpanded={isExpanded}/>
+            <Workboard isExpanded={isExpanded} showNewProject={()=>setShowNewProject(true)}/>
             <div className={styles.buttons}>
                 <button className={styles['menu-button']} onClick={()=>setShowNewProject(true)}>
                     <img src={IconLibrary.Plus}></img>
