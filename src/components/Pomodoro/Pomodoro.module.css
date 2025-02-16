@@ -101,10 +101,25 @@
     justify-content: center;
     background-color: #0F0F0F;
 }
-.buttons .small-button{
+.buttons .small-button {
     width: calc((100% / 4) - 10px);
+    transition: all 0.1s;
+    background-color: #0F0F0F;
 }
 
+.buttons .small-button:active {
+    animation-name: buttonPressAnimation;
+    animation-duration: 0.2s;
+    transform: scale(0.95);
+}
+@keyframes buttonPressAnimation {
+    from{
+        background-color: #FF8C00;
+    }
+    to{
+        background-color: #FF8C00;
+    }
+}
 .buttons .small-button img{
     width: 30px;
     height: 30px;
