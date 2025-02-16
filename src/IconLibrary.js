@@ -12,6 +12,7 @@ import Start from './assets/icons/start.svg';
 import Delete from './assets/icons/delete.svg';
 import Save from './assets/icons/save.svg';
 import Pin from './assets/icons/pin.svg';
+import Next from './assets/icons/next.svg';
 
 export const IconLibrary = {
     Checkmark,
@@ -27,5 +28,6 @@ export const IconLibrary = {
     Start,
     Delete,
     Save,
-    Pin
+    Pin,
+    Next
 }

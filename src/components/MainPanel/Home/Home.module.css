@@ -73,9 +73,11 @@
     align-items: center;
     justify-content: end;
 }
+.home .no-tasks-message{
+    margin-left: 15px;
+}
 /* habbit */
 .habbit{
-    background-color: #0F0F0F;
     width: 100%;
     height: 110px;
     margin-top: auto;
@@ -95,12 +97,13 @@
     align-items: center;
 }
 .week-day{
-    height: 60px;
-    width: calc(100% / 8);
+    height: 50px;
+    width: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #171717;
+    justify-content: center;
+    background-color: #0F0F0F;
     border-radius: 5px;
     border: 2px solid transparent;
 }

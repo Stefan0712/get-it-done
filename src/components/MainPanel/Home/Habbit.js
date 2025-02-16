@@ -43,7 +43,7 @@ const CurrentWeek = () => {
 
   return (
     <div className={styles.habbit}>
-      <h3>Tasks History</h3>
+      <h4>Tasks History</h4>
       <div className={styles['habbit-container']}>
         {weekData.map((day) => (
           <div key={day.weekDay} className={`${styles['week-day']} ${todayDate === day.date ? styles['selected-day'] : ''}`}>

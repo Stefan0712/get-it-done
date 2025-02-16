@@ -47,7 +47,7 @@ const Home = () => {
                             <p className={styles['task-title']}>{task.title}</p>
                             {task.dueDate ? <p className={styles['task-dueDate']}>{task.dueDate}</p> : null}
                         </div>  
-                    )) : <p>No Due Tasks Today</p>}
+                    )) : <p className={styles['no-tasks-message']}>There are no tasks due today.</p>}
                 </div>
             </div>
                 
