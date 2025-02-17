@@ -3,11 +3,13 @@
     width: 60px;
     height: 100vh;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     left: 0;
     top: 0;
     transition: all 0.1s;
     background-color: #171717;
-    padding: 10px 0;
     z-index: 10;
 }
 .sideMenu.expand{
@@ -15,15 +17,40 @@
     transition: all 0.1s;
 }
 
+.fullscreen-button{
+    width: 50px;
+    height: 50px;
+    min-height: 50px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.expand .fullscreen-button{
+    width: calc(90% - 10px);
+}
 
 
 
 
 
+.expand .buttons{
+    gap: 0;
+    background-color: #0F0F0F;
+}
 
-
-
-
+.expand .buttons button:nth-child(2){
+    border-right: 1px solid rgba(211, 211, 211, 0.1);
+    border-left: 1px solid rgba(211, 211, 211, 0.1);
+}
+.expand .buttons button{
+    height: 60px;
+    width: calc(100% / 3);
+    background-color: transparent;
+    border-radius: 0;
+    transition: all 0.1s;
+}
 .buttons{
     height: 60px;
     width: 100%;

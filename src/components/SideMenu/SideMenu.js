@@ -1,9 +1,11 @@
+import { useSelector } from 'react-redux';
 import { IconLibrary } from '../../IconLibrary';
 import NewProject from './Project/NewProject';
 import Settings from './Settings/Settings';
 import styles from './SideMenu.module.css';
 import Workboard from './Workboard/Workboard';
 import { useState } from 'react';
+import { enterFullScreen } from '../../helpers';
 
 
 const SideMenu = () => {
@@ -11,6 +13,8 @@ const SideMenu = () => {
     const [isExpanded, setIsExpanded] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showNewProject, setShowNewProject] = useState(false);
+
+    const settings = useSelector((state)=>state.appSettings)
 
 
     const toggleSideMenu = () =>{
@@ -26,6 +30,7 @@ const SideMenu = () => {
         <div className={`${styles.sideMenu} ${isExpanded ? styles.expand : ''}`}>
             {showSettings ? <Settings closeSettings={()=>setShowSettings(false)} /> : null}
             {showNewProject ? <NewProject closeForm={()=>setShowNewProject(false)} /> : null}
+            {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={enterFullScreen} ><img src={IconLibrary.EnableFullscreen} alt='enable fullscreen' />{isExpanded ? 'Enter Fullscreen' : null}</button> : null}
             <Workboard isExpanded={isExpanded} showNewProject={()=>setShowNewProject(true)}/>
             <div className={styles.buttons}>
                 <button className={styles['menu-button']} onClick={()=>setShowNewProject(true)}>

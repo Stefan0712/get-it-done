@@ -6,7 +6,8 @@ import SideMenu from './components/SideMenu/SideMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFullscreen } from './store/appSettingsSlice';
-
+import { IconLibrary } from './IconLibrary';
+import { enterFullScreen } from './helpers';
 
 
 function App() {

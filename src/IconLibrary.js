@@ -13,6 +13,8 @@ import Delete from './assets/icons/delete.svg';
 import Save from './assets/icons/save.svg';
 import Pin from './assets/icons/pin.svg';
 import Next from './assets/icons/next.svg';
+import EnableFullscreen from './assets/icons/enableFullscreen.svg';
+import DisableFullscreen from './assets/icons/disableFullscreen.svg';
 
 export const IconLibrary = {
     Checkmark,
@@ -29,5 +31,7 @@ export const IconLibrary = {
     Delete,
     Save,
     Pin,
-    Next
+    Next,
+    EnableFullscreen,
+    DisableFullscreen
 }

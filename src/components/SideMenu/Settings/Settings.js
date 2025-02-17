@@ -63,6 +63,10 @@ const Settings = ({closeSettings}) => {
                     {settings.showFullScreenPrompt ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: true }))}>Enable</button>}
                 </div>
                 <div className={styles.setting}>
+                    <h3>Show Fullscreen Button</h3>
+                    {settings.showFullscreenButton ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: true }))}>Enable</button>}
+                </div>
+                <div className={styles.setting}>
                     <h3>Notifications</h3>
                     {settings.showNotifications ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: true }))}>Enable</button>}
                 </div>
