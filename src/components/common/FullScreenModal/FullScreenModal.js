@@ -18,3 +18,4 @@ const FullScreenModal = ({closeModal}) => {
 }
  
 export default FullScreenModal;
+
