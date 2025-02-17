@@ -35,7 +35,9 @@ const Pomodoro = () => {
         // Run the function only if the timer is not running or of the skip function was triggered. Since the timer might be running when the skip buttons is pressed, if skip is true then it runs the function even if the timer is still running
         if(isRunning || skip){
             setIsRunning(false); 
-            setIsSessionFinished(true);
+            if(!skip){
+                setIsSessionFinished(true);
+            }
             if(currentSession === 'focus'){
                 const newFocusSessions = focusSessions + 1; // A "copy" of what the focusSessions state is supposed to be after updating them. I am using that since updating the state might not update on time and I need to use it right away
                 setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
