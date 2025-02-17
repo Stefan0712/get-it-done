@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# ⏱️ Get It Done
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Forget all those complex to-do apps or pomodoro timers with ads. This simple app is meant to boost your productivity by making you interact the least amount of time with your productivity app. Why waste time with a complex app where you have to press tens of buttons to get something done instead of focusing on your work? 
 
-## Available Scripts
+This app is simple. You launch it, you create your project, add tasks and get to work. No planning a month in advance, no spending more time on planning the task than actually doing it, no complex interface. You add the title of the task, the priority, and the optional due date and you're set to go. Start the timer and check your tasks one by one until you are done!
 
-In the project directory, you can run:
+## 📋 Features
 
-### `npm start`
+1. Clean and simple interface
+2. Everything at a glance
+3. Simple and always visible Pomodoro timer
+4. No learning curve - just do your tasks
+5. Everything in under 2 clicks/taps
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 What can it do?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The core idea is that it's a small and simple app that should improve producivity by reducing the time to manage tasks. With that in mind, it doesn't do much.
+You can create projects that are just a way to group tasks in a simple way. Each task can have an unlimited number of tasks, which are created with only a title, due date and due hour,
+priority, and if that task should be pinned or not. That's all. The only required input is the title, everything else being optional or already having a default item. You can edit, pin, complete, or delete a task. 
 
-### `npm test`
+Your screen will be split in two, on the left being the main panel with tasks, history, or home, and on the right being the pomodoro timer that is always shown. You can customize the duration of the focus session, of the short breaks, long breaks, the frequency of long breaks, if you want to include them, and notifications.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## ⚙️ How does it work?
 
-### `npm run build`
+It's just a simple React app that has three main components: the side panel, the main panel, and the Pomodoro timer.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Side Panel contains a Work Board with all projects and three buttons, one for creating a new project, one for showing settings, and one for maximizing/minimizing the side menu.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The Main Panel contains the Home page, with current date and time, tasks that are due today, and a goal tracker of how many tasks you completed each day in the current week.
+The Tasks page contains all tasks of the selected project. They are grouped into three categories: Pinned, Not Completed, and Completed. You can colapse/expand them as you wish. From the same page you can edit, delete, complete, or pin them.
+The History page contains all logged Work Sessions. A work session is the total of all focus sessions and breaks. Each log contains the number of each session, when you started and when you finished.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+The Pomodoro timer component contains a simple coundown that you can start, stop, or reset. It also handles different sessions (focus sessions, breaks and long breaks). It changes the duration based on them and let you skip them or reset them. All of those settings can be customized to fit you.
 
-### `npm run eject`
+The app only uses React and Redux (with persist so data stay saved even after closing the app). It can prompt the user to switch to fullscreen for best experience and show different messages.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🤝 Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Contributions are welcome! If you have suggestions, ideas, or bug fixes, feel free to:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Fork this repository. Create a new branch. Submit a pull request.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📜 License
+This project is licensed under the MIT License, which means you’re free to use, modify, and distribute it as long as you provide attribution.
