@@ -63,7 +63,21 @@
     background-color: #0F0F0F;
 }
 
+.timer-background.animated-session-end {
+    animation: flashGradient 0.5s infinite alternate ease-in-out;
+}
 
+@keyframes flashGradient {
+    0% {
+        background: conic-gradient(from 0deg, #ff8c00, #ff4500);
+    }
+    50% {
+        background: conic-gradient(from 0deg, #ff4500, #ff0000);
+    }
+    100% {
+        background: conic-gradient(from 0deg, #ff8c00, #ff4500);
+    }
+}
 
 .total-time{
     position: sticky;
@@ -103,23 +117,15 @@
 }
 .buttons .small-button {
     width: calc((100% / 4) - 10px);
-    transition: all 0.1s;
-    background-color: #0F0F0F;
+    border: 1px solid transparent;
+    transition: transform 0.1s ease-in-out, border-color 0.1s ease-in-out;
 }
 
 .buttons .small-button:active {
-    animation-name: buttonPressAnimation;
-    animation-duration: 0.2s;
     transform: scale(0.95);
+    border-color:rgba(211, 211, 211, 0.3);
 }
-@keyframes buttonPressAnimation {
-    from{
-        background-color: #FF8C00;
-    }
-    to{
-        background-color: #FF8C00;
-    }
-}
+
 .buttons .small-button img{
     width: 30px;
     height: 30px;

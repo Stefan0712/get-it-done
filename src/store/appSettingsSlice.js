@@ -9,6 +9,7 @@ const initialState = {
     showFullScreenPrompt: true,
     isFullscreen: false,
     isScreenAwakeOn: false,
+    showNotifications: true,
     pomodoroSettings: {
         focusDuration: 25,
         breakDuration: 5,

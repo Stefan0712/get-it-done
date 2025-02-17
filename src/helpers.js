@@ -56,6 +56,16 @@ const isFullscreen = () => {
         document.msFullscreenElement
     );
 };
-  
 
-export {enterFullScreen, exitFullScreen, getTextColor, isFullscreen};
+const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60); // Get full minutes
+    const remainingSeconds = seconds % 60; // Get remaining seconds
+    
+    // Pad the minutes and seconds with leading zeros if necessary
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    
+    return `${formattedMinutes}:${formattedSeconds}`;
+  };
+
+export {enterFullScreen, exitFullScreen, getTextColor, isFullscreen, formatTime};

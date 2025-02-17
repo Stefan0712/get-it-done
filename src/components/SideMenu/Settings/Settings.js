@@ -63,8 +63,8 @@ const Settings = ({closeSettings}) => {
                     {settings.showFullScreenPrompt ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: true }))}>Enable</button>}
                 </div>
                 <div className={styles.setting}>
-                    <h3>Keep Screen Awake</h3>
-                    {settings.isScreenAwakeOn ? <button onClick={toggleScreenAwakeOff}>Disable</button> : <button onClick={toggleScreenAwakeOn}>Enable</button>}
+                    <h3>Notifications</h3>
+                    {settings.showNotifications ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: true }))}>Enable</button>}
                 </div>
             </div>
         </div>
