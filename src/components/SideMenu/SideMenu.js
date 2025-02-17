@@ -5,7 +5,7 @@ import Settings from './Settings/Settings';
 import styles from './SideMenu.module.css';
 import Workboard from './Workboard/Workboard';
 import { useState } from 'react';
-import { enterFullScreen } from '../../helpers';
+import { enterFullScreen, exitFullScreen, isFullscreen } from '../../helpers';
 
 
 const SideMenu = () => {
@@ -30,7 +30,7 @@ const SideMenu = () => {
         <div className={`${styles.sideMenu} ${isExpanded ? styles.expand : ''}`}>
             {showSettings ? <Settings closeSettings={()=>setShowSettings(false)} /> : null}
             {showNewProject ? <NewProject closeForm={()=>setShowNewProject(false)} /> : null}
-            {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={enterFullScreen} ><img src={IconLibrary.EnableFullscreen} alt='enable fullscreen' />{isExpanded ? 'Enter Fullscreen' : null}</button> : null}
+            {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={isFullscreen() ? exitFullScreen : enterFullScreen} ><img src={isFullscreen() ? IconLibrary.DisableFullscreen : IconLibrary.EnableFullscreen} alt='enable fullscreen' />{isExpanded ? isFullscreen() ? 'Exit Fullscreen' : 'Enter Fullscreen' : null}</button> : null}
             <Workboard isExpanded={isExpanded} showNewProject={()=>setShowNewProject(true)}/>
             <div className={styles.buttons}>
                 <button className={styles['menu-button']} onClick={()=>setShowNewProject(true)}>

@@ -28,27 +28,19 @@
     gap: 20px;
 }
 .expand .fullscreen-button{
-    width: calc(90% - 10px);
+    width: calc(100% - 10px);
+    align-self: center;
 }
 
 
 
 
 
-.expand .buttons{
-    gap: 0;
-    background-color: #0F0F0F;
-}
-
-.expand .buttons button:nth-child(2){
-    border-right: 1px solid rgba(211, 211, 211, 0.1);
-    border-left: 1px solid rgba(211, 211, 211, 0.1);
-}
 .expand .buttons button{
     height: 60px;
-    width: calc(100% / 3);
-    background-color: transparent;
-    border-radius: 0;
+    width: 60px;
+    min-height: 60px;
+    min-width: 60px;
     transition: all 0.1s;
 }
 .buttons{
@@ -59,6 +51,7 @@
     gap: 15px;
     display: flex;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .buttons button{
     width: 50px;
@@ -67,6 +60,7 @@
     align-items: center;
     justify-content: center;
     background-color: #0F0F0F;
+    border-radius: 5px;
 }
 .buttons button img{
     width: 30px;
