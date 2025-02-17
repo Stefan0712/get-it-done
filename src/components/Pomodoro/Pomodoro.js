@@ -10,42 +10,39 @@ import {formatTime} from '../../helpers';
 const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false); 
     const dispatch = useDispatch();
-    const settings = useSelector(state => state.appSettings.pomodoroSettings); //all pomodoro related settings from the store
+    const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
 
-    const intervalRef  = useRef(); //ref for the timer interval
+    const intervalRef  = useRef(); // Ref for the timer interval
 
     // Timer states
-    const [timeLeft, setTimeLeft] = useState(2); // Set the initial time left to the duration of the focus session since it's always the first session
-    const [currentSession, setCurrentSession] = useState('focus'); //it can be 'focus', 'break', or 'longBreak'
-    const [elapsedTime, setElapsedTime] = useState(0); 
-    const [isRunning, setIsRunning] = useState(false); //track if the timer is running
-    const [isSessionFinished, setIsSessionFinished] = useState(false); //track if session is finished
+    const [timeLeft, setTimeLeft] = useState(settings.focusDuration * 60); // Set the initial time left to the duration of the focus session since it's always the first session
+    const [currentSession, setCurrentSession] = useState('focus'); // It can be 'focus', 'break', or 'longBreak'
+    const [isRunning, setIsRunning] = useState(false); // Track if the timer is running
+    const [isSessionFinished, setIsSessionFinished] = useState(false); // Track if session is finished
 
 
-    const [focusSessions, setFocusSessions] = useState(0); //counter for focus session
-    const [breaks, setBreaks] = useState(0); //counter for short breaks
-    const [longBreaks, setLongBreaks] = useState(0); //counter for long breaks
+    const [focusSessions, setFocusSessions] = useState(0); // Counter for focus session
+    const [breaks, setBreaks] = useState(0); // Counter for short breaks
+    const [longBreaks, setLongBreaks] = useState(0); // Counter for long breaks
 
     const [startTime, setStartTime] = useState(null)
     const [firstRun, setFirstRun] = useState(false)
 
-    const [message, setMessage] = useState(null); //state for pop-up message
+    const [message, setMessage] = useState(null); // State for pop-up message
 
 
     const handleSessionEnd = (skip = false) =>{
-        console.log('handleSessionEnd started running');
-        
+        // Run the function only if the timer is not running or of the skip function was triggered. Since the timer might be running when the skip buttons is pressed, if skip is true then it runs the function even if the timer is still running
         if(isRunning || skip){
-            console.log("The function passed the isRunning check")
-            setIsRunning(false);
+            setIsRunning(false); 
             setIsSessionFinished(true);
             if(currentSession === 'focus'){
-                const newFocusSessions = focusSessions + 1;
-                setFocusSessions(prev => prev + 1);
-                if(newFocusSessions % settings.longBreakFrequency === 0){
+                const newFocusSessions = focusSessions + 1; // A "copy" of what the focusSessions state is supposed to be after updating them. I am using that since updating the state might not update on time and I need to use it right away
+                setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
+                if(newFocusSessions % settings.longBreakFrequency === 0){ // Assuming that all cycles includes a focus session as the first session, I am using them to know if it's time for a long or short break
                     setCurrentSession('longBreak');
-                    setTimeLeft(settings.longBreakDuration * 60);
-                }else{
+                    setTimeLeft(settings.longBreakDuration * 60); // It multiply by 60 because the duration is in minutes
+                }else{ // If the current cycle no is not divisible by the frequency of long breaks, then make next session a normal break
                     setCurrentSession('break');
                     setTimeLeft(settings.breakDuration * 60);
                 }
@@ -59,35 +56,41 @@ const Pomodoro = () => {
                 setTimeLeft(settings.focusDuration * 60);
             }
             clearInterval(intervalRef.current);
-            console.log('handleSessionEnd ran successfully')
         }
     }
 
     const startTimer = () => {
-    if (!isRunning) {
+        if (!isRunning) { // Start the timer only if running
+            // Save the date and time of when the timer is started for the first time only for logging purposes
             if(firstRun){
                 setStartTime(new Date().toISOString());
                 setFirstRun(false);
             }
+            
             setIsSessionFinished(false);
             setIsRunning(true);
             intervalRef.current = setInterval(() => {
             setTimeLeft((prevTime) => {
                 if (prevTime <= 0) {
-                clearInterval(intervalRef.current); // Stop when time runs out
-                handleSessionEnd(); // Handle end of session
-                return 0;
+                    clearInterval(intervalRef.current); // Stop when time runs out
+                    handleSessionEnd(); // Handle end of session
+                    return 0;
                 }
                 return prevTime - 1;
             });
             }, 1000);
         }
     };
+
+    // Handles pausing the timer
     const pauseTimer = () =>{
         clearInterval(intervalRef.current);
         setIsRunning(false);
     }
+
+    // Reset the timer by sending a notification and then by setting the time left to whatever current session is and their corresponding values from settings
     const resetTimer = () => {
+        sendNotification({type: 'info', msg: 'The timer was reset!'})
         clearInterval(intervalRef.current);
         switch(currentSession){
             case 'focus':
@@ -100,27 +103,22 @@ const Pomodoro = () => {
                 setTimeLeft(settings.longBreakDuration * 60);
                 break;
         }
-         // Reset to the initial session time
-        setIsRunning(false);
+        
+        setIsRunning(false); // Pause the timer
     };
     
 
     // Effect to handle start/stop logic
     useEffect(() => {
+        // If the timer is running and there is time left, then do nothing
         if (timeLeft > 0 && isRunning) {
-            // Timer is running, do nothing, interval is already started
             return;
         }
-        // If timer reaches 0, handle session end (e.g., switch sessions)
+        // If timer reaches 0, end session
         if (timeLeft <= 0) {
             handleSessionEnd();
         }
     }, [isRunning, timeLeft]);
-
-
-    useEffect(() => {
-        console.log(isRunning ? 'Running' : 'Not Running');
-    }, [isRunning]);
 
     // Effect to clean up interval when the component unmounts or timer is reset
     useEffect(() => {
@@ -129,17 +127,28 @@ const Pomodoro = () => {
             clearInterval(intervalRef.current);
         };
     }, []);
- 
+    
+
+    // Handles skipping session by showing a notification and triggering handleSessionEnd with "true" parameter so the function can know the session was skipped
     const skipSession = () =>{
+        sendNotification({type: 'info', msg: 'Session was skipped!'})
         handleSessionEnd(true);
     };
     
-
+    // Resets all values to default state
+    const resetWorkSession = () =>{
+        resetTimer();
+        setFirstRun(true);
+        setIsRunning(false);
+        setCurrentSession('focus');
+        setTimeLeft(settings.focusDuration * 60);
+        setFocusSessions(0);
+        setBreaks(0);
+        setLongBreaks(0);
+    }
 
     const handleFinish = () => {
-        console.log('handleFinish was triggered')
-        // Log session details
-        setElapsedTime(0);
+        // Gather data about current work session
         const sessionLog = {
             startTime,
             finishTime: new Date().toISOString(),
@@ -149,16 +158,19 @@ const Pomodoro = () => {
         };
         console.log(sessionLog)
         // dispatch(addToHistory(sessionLog));
-        resetTimer();
+        resetWorkSession();
         sendNotification({type: 'success', msg: 'Work session is done!'})
     };
+   
     const sendNotification = (msg) => {
-        console.log('sendNotification was triggered')
+        //show message modal if notifications are enabled
         if (settings.enableNotifications) {
             setMessage(msg)
         }
     };
+    // Get percentage of elapsed time
     const percentageElapsed = () => {
+        // Check the current session to know what value to use as totalDuration
         const totalDuration = currentSession === "focus" 
             ? settings.focusDuration 
             : currentSession === "break" 
@@ -169,7 +181,6 @@ const Pomodoro = () => {
     
         const totalDurationInSeconds = totalDuration * 60; // Convert minutes to seconds
         const elapsedTime = totalDurationInSeconds - timeLeft; // Calculate elapsed time
-        console.log(elapsedTime, totalDurationInSeconds)
         return ((elapsedTime / totalDurationInSeconds) * 100).toFixed(1); // Calculate percentage of elapsed time and round it to 1 decimal
     };
     return (
