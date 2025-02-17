@@ -1,5 +1,6 @@
 const enterFullScreen = () => {
     const elem = document.documentElement; // Makes the whole page full-screen
+
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
     } else if (elem.mozRequestFullScreen) { // Firefox
@@ -12,6 +13,11 @@ const enterFullScreen = () => {
 };
 
 const exitFullScreen = () => {
+    if (!document.fullscreenElement) {
+        console.log("Already in normal view mode, cannot exit fullscreen.");
+        return;
+    }
+
     if (document.exitFullscreen) {
         document.exitFullscreen();
     } else if (document.mozCancelFullScreen) { // Firefox

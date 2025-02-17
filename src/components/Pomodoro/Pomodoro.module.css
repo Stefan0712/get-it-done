@@ -96,7 +96,15 @@
 .total-time p:nth-child(2){
     opacity: 0.5;
 }
-
+.sessions-counter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+.current-section-counter{
+    color: #ff4500 !important;
+}
 
 
 .buttons{

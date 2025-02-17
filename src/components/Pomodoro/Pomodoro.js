@@ -11,7 +11,6 @@ const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false); 
     const dispatch = useDispatch();
     const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
-    console.log(settings)
     const intervalRef  = useRef(); // Ref for the timer interval
 
     // Timer states
@@ -19,7 +18,7 @@ const Pomodoro = () => {
     const [currentSession, setCurrentSession] = useState('focus'); // It can be 'focus', 'break', or 'longBreak'
     const [isRunning, setIsRunning] = useState(false); // Track if the timer is running
     const [isSessionFinished, setIsSessionFinished] = useState(false); // Track if session is finished
-
+    const [totalTimeElapsed, setTotalTimeElapsed] = useState(0);
 
     const [focusSessions, setFocusSessions] = useState(0); // Counter for focus session
     const [breaks, setBreaks] = useState(0); // Counter for short breaks
@@ -27,7 +26,7 @@ const Pomodoro = () => {
 
     const [startTime, setStartTime] = useState(null)
     const [firstRun, setFirstRun] = useState(false)
-
+    const [action, setAction] = useState('Not Started')
     const [message, setMessage] = useState(null); // State for pop-up message
 
 
@@ -35,6 +34,7 @@ const Pomodoro = () => {
         // Run the function only if the timer is not running or of the skip function was triggered. Since the timer might be running when the skip buttons is pressed, if skip is true then it runs the function even if the timer is still running
         if(isRunning || skip){
             setIsRunning(false); 
+            setAction('Session ended')
             if(!skip){
                 setIsSessionFinished(true);
             }
@@ -68,7 +68,7 @@ const Pomodoro = () => {
                 setStartTime(new Date().toISOString());
                 setFirstRun(false);
             }
-            
+            setAction('Running')
             setIsSessionFinished(false);
             setIsRunning(true);
             intervalRef.current = setInterval(() => {
@@ -88,6 +88,7 @@ const Pomodoro = () => {
     const pauseTimer = () =>{
         clearInterval(intervalRef.current);
         setIsRunning(false);
+        setAction('Paused')
     }
 
     // Reset the timer by sending a notification and then by setting the time left to whatever current session is and their corresponding values from settings
@@ -105,7 +106,7 @@ const Pomodoro = () => {
                 setTimeLeft(settings.longBreakDuration * 60);
                 break;
         }
-        
+        setAction('Session Reset')
         setIsRunning(false); // Pause the timer
     };
     
@@ -114,6 +115,7 @@ const Pomodoro = () => {
     useEffect(() => {
         // If the timer is running and there is time left, then do nothing
         if (timeLeft > 0 && isRunning) {
+            setTotalTimeElapsed(prev => prev + 1)
             return;
         }
         // If timer reaches 0, end session
@@ -135,6 +137,7 @@ const Pomodoro = () => {
     const skipSession = () =>{
         sendNotification({type: 'info', msg: 'Session was skipped!'})
         handleSessionEnd(true);
+        setAction("Skipped")
     };
     
     // Resets all values to default state
@@ -147,6 +150,7 @@ const Pomodoro = () => {
         setFocusSessions(0);
         setBreaks(0);
         setLongBreaks(0);
+        setAction('Not Started')
     }
 
     const handleFinish = () => {
@@ -154,6 +158,7 @@ const Pomodoro = () => {
         const sessionLog = {
             startTime,
             finishTime: new Date().toISOString(),
+            totalTimeElapsed,
             longBreaks,
             breaks,
             focusSessions
@@ -162,6 +167,7 @@ const Pomodoro = () => {
         dispatch(addToHistory(sessionLog));
         resetWorkSession();
         sendNotification({type: 'success', msg: 'Work session is done!'})
+        setAction('Finished')
     };
    
     const sendNotification = (msg) => {
@@ -198,11 +204,16 @@ const Pomodoro = () => {
                     <div className={styles['timer-content']}>
                         
                         <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
+                        <div className={styles['sessions-counter']}>
+                            <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
+                        /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
+                            <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
                          <div className={styles.time}>
                             {formatTime(timeLeft)}
                         </div>
-                        <p className={styles['sessions-counter']}>{focusSessions}/{breaks}/{longBreaks}</p>
-                        <p>{isRunning ? 'Running' : 'Not Running'}</p>
+                        <p>{action}</p>
+                        <p>{formatTime(totalTimeElapsed)}</p>
+                        
                     </div>
                 </div>
             </div>
