@@ -51,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      {showFullscreenModal && window.innerWidth < 1000 && settings.showFullScreenPrompt ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
+      {true ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
       <SideMenu />
       <MainPanel />
       <Pomodoro />

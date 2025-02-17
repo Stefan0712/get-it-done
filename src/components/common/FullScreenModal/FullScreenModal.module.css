@@ -1,31 +1,29 @@
 .modal{
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 75px;
-    background-color: #0F0F0F;
+    top: 10px;
+    left: 10px;
+    border-radius: 10px;
+    width: calc(100vw - 20px);
+    height: 60px;
+    background-color: #0b090a;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    border-bottom: 1px solid rgba(211, 211, 211, 0.192);
 }
 .message{
-    margin-left: auto;
+    margin-left: 15px;
     font-size: 25px;
 }
 .modal button{
-    margin-right: auto;
     height: 40px;
     font-size: 20px;
-    padding: 0 20px;
+    padding: 0 10px;
     background-color: #171717;
 }
 .close-button{
     margin-left: auto;
-    margin-right: 20px !important;
     background-color: transparent !important;
     border: none;
 }

@@ -1,7 +1,6 @@
 import { IconLibrary } from "../../../IconLibrary";
 import { enterFullScreen } from "../../../helpers";
 import styles from './FullScreenModal.module.css';
-import { useDispatch } from "react-redux";
 
 const FullScreenModal = ({closeModal}) => {
 
