@@ -11,7 +11,7 @@ const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false); 
     const dispatch = useDispatch();
     const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
-
+    console.log(settings)
     const intervalRef  = useRef(); // Ref for the timer interval
 
     // Timer states
@@ -159,7 +159,7 @@ const Pomodoro = () => {
             focusSessions
         };
         console.log(sessionLog)
-        // dispatch(addToHistory(sessionLog));
+        dispatch(addToHistory(sessionLog));
         resetWorkSession();
         sendNotification({type: 'success', msg: 'Work session is done!'})
     };
