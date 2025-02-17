@@ -16,7 +16,6 @@ const Pomodoro = () => {
 
     // Timer states
     const [timeLeft, setTimeLeft] = useState(2); // Set the initial time left to the duration of the focus session since it's always the first session
-    const [currentCycle, setCurrentCycle] = useState(1); 
     const [currentSession, setCurrentSession] = useState('focus'); //it can be 'focus', 'break', or 'longBreak'
     const [elapsedTime, setElapsedTime] = useState(0); 
     const [isRunning, setIsRunning] = useState(false); //track if the timer is running
@@ -27,6 +26,8 @@ const Pomodoro = () => {
     const [breaks, setBreaks] = useState(0); //counter for short breaks
     const [longBreaks, setLongBreaks] = useState(0); //counter for long breaks
 
+    const [startTime, setStartTime] = useState(null)
+    const [firstRun, setFirstRun] = useState(false)
 
     const [message, setMessage] = useState(null); //state for pop-up message
 
@@ -37,7 +38,7 @@ const Pomodoro = () => {
         if(isRunning || skip){
             console.log("The function passed the isRunning check")
             setIsRunning(false);
-
+            setIsSessionFinished(true);
             if(currentSession === 'focus'){
                 const newFocusSessions = focusSessions + 1;
                 setFocusSessions(prev => prev + 1);
@@ -64,6 +65,11 @@ const Pomodoro = () => {
 
     const startTimer = () => {
     if (!isRunning) {
+            if(firstRun){
+                setStartTime(new Date().toISOString());
+                setFirstRun(false);
+            }
+            setIsSessionFinished(false);
             setIsRunning(true);
             intervalRef.current = setInterval(() => {
             setTimeLeft((prevTime) => {
@@ -127,33 +133,45 @@ const Pomodoro = () => {
     const skipSession = () =>{
         handleSessionEnd(true);
     };
-    const handleFinish = () =>{
-        console.log("Work session was finished")
-    }
+    
 
 
-    // const handleFinish = () => {
-    //     console.log('handleFinish was triggered')
-    //     // Log session details
-    //     setElapsedTime(0);
-    //     const sessionLog = {
-    //         startTime: new Date().toISOString(),
-    //         finishTime: new Date().toISOString(),
-    //         longBreaks,
-    //         breaks,
-    //         focusSessions
-    //     };
-    //     dispatch(addToHistory(sessionLog));
-    //     resetTimer();
-    //     sendNotification({type: 'success', msg: 'Work session is done!'})
-    // };
+    const handleFinish = () => {
+        console.log('handleFinish was triggered')
+        // Log session details
+        setElapsedTime(0);
+        const sessionLog = {
+            startTime,
+            finishTime: new Date().toISOString(),
+            longBreaks,
+            breaks,
+            focusSessions
+        };
+        console.log(sessionLog)
+        // dispatch(addToHistory(sessionLog));
+        resetTimer();
+        sendNotification({type: 'success', msg: 'Work session is done!'})
+    };
     const sendNotification = (msg) => {
         console.log('sendNotification was triggered')
         if (settings.enableNotifications) {
             setMessage(msg)
         }
     };
-
+    const percentageElapsed = () => {
+        const totalDuration = currentSession === "focus" 
+            ? settings.focusDuration 
+            : currentSession === "break" 
+            ? settings.breakDuration 
+            : currentSession === "longBreak" 
+            ? settings.longBreakDuration 
+            : 0;
+    
+        const totalDurationInSeconds = totalDuration * 60; // Convert minutes to seconds
+        const elapsedTime = totalDurationInSeconds - timeLeft; // Calculate elapsed time
+        console.log(elapsedTime, totalDurationInSeconds)
+        return ((elapsedTime / totalDurationInSeconds) * 100).toFixed(1); // Calculate percentage of elapsed time and round it to 1 decimal
+    };
     return (
         <div className={styles.pomodoro}>
             {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
@@ -163,7 +181,7 @@ const Pomodoro = () => {
             </button>
            
             <div className={styles.timer}>
-                <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${(elapsedTime / timeLeft) * 100}%, white ${(elapsedTime / timeLeft) * 100}% 100%)`}}>
+                <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${percentageElapsed()}%, white ${percentageElapsed()}% 100%)`}}>
                     <div className={styles['timer-content']}>
                         
                         <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
