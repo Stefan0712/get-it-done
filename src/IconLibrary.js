@@ -15,6 +15,7 @@ import Pin from './assets/icons/pin.svg';
 import Next from './assets/icons/next.svg';
 import EnableFullscreen from './assets/icons/enableFullscreen.svg';
 import DisableFullscreen from './assets/icons/disableFullscreen.svg';
+import Unpin from './assets/icons/unpin.svg';
 
 export const IconLibrary = {
     Checkmark,
@@ -33,5 +34,6 @@ export const IconLibrary = {
     Pin,
     Next,
     EnableFullscreen,
-    DisableFullscreen
+    DisableFullscreen,
+    Unpin
 }

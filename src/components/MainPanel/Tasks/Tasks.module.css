@@ -134,6 +134,7 @@
 }
 .task button{
     background-color: transparent;
+    border: none;
 }
 .task p{
     background-color: transparent;
@@ -178,7 +179,10 @@ button{
     align-items: center;
     justify-content: center;
 }
-
+.pin-task-icon{
+    height: 20px;
+    width: 20px;
+}
 
 /* new task */
 

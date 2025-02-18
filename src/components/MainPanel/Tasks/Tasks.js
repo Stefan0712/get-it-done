@@ -55,6 +55,7 @@ const Tasks = () => {
     const handlePinTask = () =>{
         dispatch(togglePin(selectedTask));
         dispatch(setSelectedTask(null));
+        console.log(selectedTask)
     }
     if(selectedProject){
         return ( 
@@ -70,7 +71,7 @@ const Tasks = () => {
                     <p>Tasks: {selectedCategory === 'all' ? tasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
                     {selectedTask ? (
                         <div className={styles['task-buttons']}>
-                            <button onClick={handlePinTask}><img src={IconLibrary.Pin} alt='pin selected task'></img></button>
+                            <button onClick={handlePinTask}><img src={pinnedTasks.some(item=>item.id === selectedTask) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
                             <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
                         </div>
                     ) : null}
