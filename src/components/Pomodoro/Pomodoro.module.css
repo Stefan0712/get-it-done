@@ -1,30 +1,31 @@
 .pomodoro{
-    height: 100%;
-    width: 50%;
-    max-width: 50%;
+    height: 100vh;
+    width: calc(50vw - 30px);
+    max-width: calc(50vw - 30px);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     gap: 20px;
-    padding: 15px;
-    padding-right: 0;
+    padding: 10px;
     position: relative;
     box-sizing: border-box;
 }
 .top{
     width: 100%;
-    height: 40px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    
+    margin-top: auto;
 }
 
 .timer{
-    height: 100%;
-    max-height: calc(100% - 75px);
+    height: calc(100% - 70px);
+    max-height: 100%;
     width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -235,7 +236,6 @@
 @media (orientation: landscape) {
     
     .timer{
-        max-height: calc(100% - 150px);
         height: 100%;
         width: auto;
         aspect-ratio: 1 / 1;
@@ -244,6 +244,10 @@
         width: auto;
         min-width: calc(100vh - 150px);
         height: 100%;
+    }
+    .pomodoro{
+        height: 100vh;
+        max-width: 100vh;
     }
 
 }
