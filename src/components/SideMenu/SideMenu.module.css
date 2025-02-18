@@ -128,5 +128,8 @@
     .expand .fullscreen-button p{
         display: none;
     }
+    .toggle-button img{
+        transform: rotateZ(-90deg);
+    }
 }
 
