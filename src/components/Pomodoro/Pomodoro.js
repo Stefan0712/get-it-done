@@ -24,10 +24,11 @@ const Pomodoro = () => {
     const [breaks, setBreaks] = useState(0); // Counter for short breaks
     const [longBreaks, setLongBreaks] = useState(0); // Counter for long breaks
 
-    const [startTime, setStartTime] = useState(null)
-    const [firstRun, setFirstRun] = useState(false)
-    const [action, setAction] = useState('Not Started')
+    const [startTime, setStartTime] = useState(null);
+    const [firstRun, setFirstRun] = useState(false);
+    const [action, setAction] = useState('Not Started');
     const [message, setMessage] = useState(null); // State for pop-up message
+    const [isActive, setIsActive] = useState(false);
 
 
     const handleSessionEnd = (skip = false) =>{
@@ -68,6 +69,7 @@ const Pomodoro = () => {
                 setStartTime(new Date().toISOString());
                 setFirstRun(false);
             }
+            setIsActive(true);
             setAction('Running')
             setIsSessionFinished(false);
             setIsRunning(true);
@@ -151,7 +153,8 @@ const Pomodoro = () => {
         setBreaks(0);
         setLongBreaks(0);
         setTotalTimeElapsed(0);
-        setAction('Not Started')
+        setAction('Not Started');
+        setIsActive(false);
     }
 
     const handleFinish = () => {
@@ -192,11 +195,21 @@ const Pomodoro = () => {
         const elapsedTime = totalDurationInSeconds - timeLeft; // Calculate elapsed time
         return ((elapsedTime / totalDurationInSeconds) * 100).toFixed(1); // Calculate percentage of elapsed time and round it to 1 decimal
     };
+
+    const enableSettings = () =>{
+        if(!isActive){
+            console.log('Passed !isActive')
+            setShowSettings(true);
+        }else{
+            console.log('Notification sent')
+            sendNotification({type: 'fail', msg: "Can't change setting while work session is active!"})
+        }
+    }
     return (
         <div className={styles.pomodoro}>
             {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
-            {showSettings && <PomodoroSettings closeSettings={() => setShowSettings(false)} />}
-            <button className={styles['settings-button']} onClick={() => setShowSettings(true)}>
+            {showSettings && totalTimeElapsed === 0 ? <PomodoroSettings closeSettings={() => setShowSettings(false)} /> : null}
+            <button className={styles['settings-button']} onClick={enableSettings}>
                 <img src={IconLibrary.Settings} alt="Settings" />
             </button>
            
