@@ -23,10 +23,7 @@ const Tasks = () => {
     const [showNewTask, setShowNewTask] = useState(false);
     const [filteredTasks, setFilteredTasks] = useState([]); //stores all tasks of the selected project
 
-    //keeps track of what containers are extended
-    const [isCompletedExtended, setIsCompletedExtended] = useState(false);
-    const [isNotCompletedExtended, setIsNotCompletedExtended] = useState(true);
-    const [isPinnedExtended, setIsPinnedExtended] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('all');
 
     //categorize tasks by completed, not completed, and pinned
     const completedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isCompleted && !item.isPinned) : [];
@@ -59,30 +56,18 @@ const Tasks = () => {
         dispatch(togglePin(selectedTask));
         dispatch(setSelectedTask(null));
     }
-    const togglePinned = () =>{
-        if(pinnedTasks.some(task=>task.id===selectedTask) && isPinnedExtended){
-            dispatch(setSelectedTask(null));
-        }
-        setIsPinnedExtended(isPinnedExtended=>!isPinnedExtended);
-    }
-    const toggleCompleted = () =>{
-        if(completedTasks.some(task=>task.id===selectedTask) && isCompletedExtended){
-            dispatch(setSelectedTask(null));
-        }
-        setIsCompletedExtended(isCompletedExtended=>!isCompletedExtended);
-    }
-    const toggleNotCompleted = () =>{
-        if(notCompletedTasks.some(task=>task.id===selectedTask) && isNotCompletedExtended){
-            dispatch(setSelectedTask(null));
-        }
-        setIsNotCompletedExtended(isNotCompletedExtended=>!isNotCompletedExtended);
-    }
     if(selectedProject){
         return ( 
             <div className={styles.tasks}>
                 {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
+                    <div className={styles.filters}>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('all')}>All</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('not-completed')}>Not Completed</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('pinned')}>Pinned</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('completed')}>Completed</button>
+                </div>
                 <div className={styles.header}>
-                    <h3>Tasks: {tasks?.length || 0}/{completedTasks?.length || 0}</h3>
+                    <p>Tasks: {selectedCategory === 'all' ? tasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
                     {selectedTask ? (
                         <div className={styles['task-buttons']}>
                             <button onClick={handlePinTask}><img src={IconLibrary.Pin} alt='pin selected task'></img></button>
@@ -91,44 +76,39 @@ const Tasks = () => {
                     ) : null}
                     {selectedProject ? (<button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>) : null}
                 </div>
-                <div className={styles.container}>
-
-                    {pinnedTasks && pinnedTasks.length > 0 ? (
-                        <div className={`${styles['tasks-category']} ${isPinnedExtended ? styles.extend : ''}`}>
-                            <div className={styles['tasks-container-header']} onClick={togglePinned}>
-                                <h4>Pinned</h4>
-                                <p>{pinnedTasks?.length}</p>
-                            </div>
-                            <div className={styles['tasks-container']}>
-                                {pinnedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
-                            </div>
-                        </div>
-                    ) : null}
-                    {notCompletedTasks && notCompletedTasks.length > 0 ? (
-                        <div className={`${styles['tasks-category']} ${isNotCompletedExtended ? styles.extend : ''}`}>
-                            <div className={styles['tasks-container-header']} onClick={toggleNotCompleted}>
-                                <h4>Not Completed</h4>
-                                <p>{notCompletedTasks?.length}</p>
-                            </div>
-                            <div className={styles['tasks-container']}>
-                                {notCompletedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
-                            </div>
-                        </div>
-                    ) : null}
-                    {completedTasks && completedTasks.length > 0 ? (
-                        <div className={`${styles['tasks-category']} ${isCompletedExtended ? styles.extend : ''}`}>
-                            <div className={styles['tasks-container-header']} onClick={toggleCompleted}>
-                                <h4>Completed</h4>
-                                <p>{completedTasks?.length}</p>
-                            </div>
-                            <div className={styles['tasks-container']}>
-                                {completedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))}
-                            </div>
-                        </div>
-                    ) : null}
-                </div>
-               
                 
+                {selectedCategory === 'all' ? (
+                    <div className={styles.container}>
+                        {tasks && tasks.length > 0 ? 
+                            tasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                         : null}
+                    </div>
+                    ) 
+                : null}
+                {selectedCategory === 'completed' ? (
+                    <div className={styles.container}>
+                        {completedTasks && completedTasks.length > 0 ? 
+                            completedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                         : null}
+                    </div>
+                    ) 
+                : null}
+                {selectedCategory === 'not-completed' ? (
+                    <div className={styles.container}>
+                        {notCompletedTasks && notCompletedTasks.length > 0 ? 
+                            notCompletedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                         : null}
+                    </div>
+                    ) 
+                : null}
+                {selectedCategory === 'pinned' ? (
+                    <div className={styles.container}>
+                        {pinnedTasks && pinnedTasks.length > 0 ? 
+                            pinnedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                         : null}
+                    </div>
+                    ) 
+                : null}   
             </div>
          );
     }else{
