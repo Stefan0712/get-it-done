@@ -16,3 +16,12 @@
     background-color: #171717;
     overflow: hidden !important;
 }
+@media (orientation: portrait) {
+    .App{
+        flex-wrap: wrap;
+        overflow-y: auto;
+        padding: 0;
+        padding-bottom: 60px;
+    }
+
+}

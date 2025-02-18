@@ -10,6 +10,7 @@
     animation-name: showNewProject;
     animation-duration: 0.1s;
 }
+
 @keyframes showNewProject {
     from{
         width: 0;
@@ -57,4 +58,12 @@ fieldset{
     background-color: #0F0F0F;
     margin-top: auto;
     margin-bottom: 25px;
+}
+
+@media (orientation: portrait) {
+    
+
+
+
+
 }

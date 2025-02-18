@@ -66,7 +66,7 @@ const NewTask = ({closeNewTask}) => {
                     
                 </fieldset>
             </div>
-            <button type='button' onClick={handleNewTask}>Save</button>
+            <button className={styles['save-button']} type='button' onClick={handleNewTask}>Save</button>
         </div>
      );
 }

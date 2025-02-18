@@ -55,6 +55,7 @@ button{
     width: 100%;
     display: flex;
     overflow-y: auto;
+    overflow-x: hidden;
     flex-direction: column;
     overflow-x: hidden;
     gap: 10px;
@@ -67,4 +68,21 @@ button{
     width: fit-content;
     gap: 10px;
     height: 40px;
+}
+
+
+
+
+
+@media (orientation: portrait) {
+
+    .settings{
+        width: 100vw;
+        height: 100vh;
+        z-index: 10;        
+        left: 0;
+        bottom: 0;
+        top: auto;
+    }
+
 }
