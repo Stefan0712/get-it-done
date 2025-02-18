@@ -31,16 +31,37 @@ const Tasks = () => {
 
 
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(setSelectedTask(null));
-        if(selectedProject && tasks && tasks.length > 0){
-            const project = projects.find(p=>p.id === selectedProject)
-            const filteredItems = tasks.filter(task => project.tasks.includes(task.id));
-            setFilteredTasks(filteredItems)
-        }else{
-            console.log('Failed to get tasks')
+        if (!selectedProject) {
+            console.log('No project selected');
+            return;
         }
-    },[selectedProject, tasks])
+        if (!tasks || tasks.length === 0) {
+            console.log('No tasks available');
+            return;
+        }
+
+        const project = projects.find(p => p.id === selectedProject);
+        if (!project || !project.tasks) {
+            console.log('Project not found or has no tasks');
+            return;
+        }
+        // Filter tasks that belong to the selected project
+        const filteredItems = tasks.filter(task => project.tasks.includes(task.id));
+    
+        // Sort tasks: pinned first, then not completed, then completed
+        const sortedTasks = filteredItems.sort((a, b) => {
+            if (a.isPinned && !b.isPinned) return -1;  // Pinned first
+            if (!a.isPinned && b.isPinned) return 1;
+            if (!a.isCompleted && b.isCompleted) return -1;  // Not completed before completed
+            if (a.isCompleted && !b.isCompleted) return 1;
+            return 0;
+        });
+    
+        setFilteredTasks(sortedTasks);
+    }, [selectedProject, tasks]);
+    
 
 
     const handleSelectTask = (id)=>{
