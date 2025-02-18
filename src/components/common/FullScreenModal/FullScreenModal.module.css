@@ -4,7 +4,9 @@
     left: 10px;
     border-radius: 10px;
     width: calc(100vw - 20px);
-    height: 60px;
+    min-height: 60px;
+    max-height: 150px;
+    padding: 10px 5px;
     background-color: #0b090a;
     z-index: 100;
     display: flex;
@@ -14,7 +16,7 @@
 }
 .message{
     margin-left: 15px;
-    font-size: 25px;
+    font-size: 20px;
 }
 .modal button{
     height: 40px;
