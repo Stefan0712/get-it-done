@@ -15,11 +15,10 @@ const Tasks = () => {
     const dispatch = useDispatch();
 
 
-    const tasks = useSelector(state=>state.tasks.tasks);
     const projects = useSelector(state=>state.projects);
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
+    const tasks = useSelector(state=>state.tasks.tasks)
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
-
     const [showNewTask, setShowNewTask] = useState(false);
     const [filteredTasks, setFilteredTasks] = useState([]); //stores all tasks of the selected project
 
@@ -68,7 +67,7 @@ const Tasks = () => {
                     <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('completed')}>Completed</button>
                 </div>
                 <div className={styles.header}>
-                    <p>Tasks: {selectedCategory === 'all' ? tasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
+                    <p>Tasks: {selectedCategory === 'all' ? filteredTasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
                     {selectedTask ? (
                         <div className={styles['task-buttons']}>
                             <button onClick={handlePinTask}><img src={pinnedTasks.some(item=>item.id === selectedTask) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
@@ -80,8 +79,8 @@ const Tasks = () => {
                 
                 {selectedCategory === 'all' ? (
                     <div className={styles.container}>
-                        {tasks && tasks.length > 0 ? 
-                            tasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                        {filteredTasks && filteredTasks.length > 0 ? 
+                            filteredTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
                          : null}
                     </div>
                     ) 

@@ -37,11 +37,10 @@ const Home = () => {
                     </div>
                     <div className={styles['time']}>{formattedTime}</div>
                 </div>
-
             </div>
-            <div className={styles.pinned}>
+            <div className={styles.tasks}>
                 <h4>Due Today</h4>
-                <div className={styles['pinned-tasks-container']}>
+                <div className={styles['tasks-container']}>
                     {dueTasks && dueTasks.length > 0 ? dueTasks.map((task, index)=>(
                         <div key={index} className={styles['home-task']}>
                             <p className={styles['task-title']}>{task.title}</p>
