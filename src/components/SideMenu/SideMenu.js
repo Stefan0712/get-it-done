@@ -30,7 +30,7 @@ const SideMenu = () => {
         <div className={`${styles.sideMenu} ${isExpanded ? styles.expand : ''}`}>
             {showSettings ? <Settings closeSettings={()=>setShowSettings(false)} /> : null}
             {showNewProject ? <NewProject closeForm={()=>setShowNewProject(false)} /> : null}
-            {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={isFullscreen() ? exitFullScreen : enterFullScreen} ><img src={isFullscreen() ? IconLibrary.DisableFullscreen : IconLibrary.EnableFullscreen} alt='enable fullscreen' />{isExpanded ? isFullscreen() ? <p>Exit Fullscreen</p> : <p>Enter Fullscreen</p> : null}</button> : null}
+            {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={isFullscreen() ? exitFullScreen : enterFullScreen} ><img src={isFullscreen() ? IconLibrary.DisableFullscreen : IconLibrary.EnableFullscreen} alt='enable fullscreen' /></button> : null}
             <Workboard isExpanded={isExpanded} showNewProject={()=>setShowNewProject(true)}/>
                 
             <button className={styles['toggle-button']} onClick={toggleSideMenu}>
