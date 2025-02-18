@@ -2,7 +2,7 @@ import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { useSelector } from 'react-redux';
-import Habbit from './Habbit';
+import Habit from './Habit';
 
 
 const Home = () => {
@@ -51,7 +51,7 @@ const Home = () => {
                 </div>
             </div>
                 
-            <Habbit />
+            <Habit />
         </div>
      );
 }

@@ -76,23 +76,50 @@
 .home .no-tasks-message{
     margin-left: 15px;
 }
-/* habbit */
-.habbit{
+/* habit */
+.habit{
     width: 100%;
-    height: 110px;
+    height: 30px;
+    overflow: hidden;
     margin-top: auto;
     margin-bottom: 15px;
-    padding: 10px 0;
+    
     border-radius: 5px;
     grid-row: 3 / 4;
     gap: 15px;
     display: flex;
     flex-direction: column;
+    transition: all 0.1s;
 }
-.habbit h3{
+.habit.expanded-habit{
+    height: 110px !important;
+    transition: all 0.1s;
+    padding: 10px 0;
+}
+.habit .habit-header{
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.expanded-habit .habit-header img{
+    transform: rotateZ(-90deg);
+    transition: transform 0.2s;
+}
+.habit .habit-header img{
+    height: 100%;
+    width: auto;
+    transition: transform 0.2s;
+}
+.habit .habit-header h3{
     padding-left: 10px;
+    height: 30px;
+    min-height: 30px;
+    width: fit-content;
 }
-.habbit-container{
+.habit-container{
     width: 100%;
     height: 50px;
     display: flex;

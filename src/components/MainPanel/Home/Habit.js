@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styles from './Home.module.css';
+import {IconLibrary} from '../../../IconLibrary';
 
 const CurrentWeek = () => {
   const completedTasks = useSelector((state) => state.tasks.completedTasksByDay);
   const todayRawDate = new Date();
   const todayDate = todayRawDate.toISOString().split("T")[0];
+  const [isExpanded, setIsExpanded] = useState(false);
 
   // Function to get the start of the current week (Monday)
   const getMonday = () => {
@@ -42,9 +44,9 @@ const CurrentWeek = () => {
   }, [completedTasks]); // Update when tasks change
 
   return (
-    <div className={styles.habbit}>
-      <h4>Tasks History</h4>
-      <div className={styles['habbit-container']}>
+    <div className={`${styles.habit} ${isExpanded ? styles['expanded-habit'] : ''}`}>
+      <div className={styles['habit-header']} onClick={()=>setIsExpanded(isExpanded=> !isExpanded)}><h4>Tasks History</h4><img src={IconLibrary.ExpandLeft} alt="" /></div>
+      <div className={`${styles['habit-container']}`}>
         {weekData.map((day) => (
           <div key={day.weekDay} className={`${styles['week-day']} ${todayDate === day.date ? styles['selected-day'] : ''}`}>
             <p className={styles['week-day-value']}>{day.value}</p>
