@@ -45,7 +45,7 @@ const Home = () => {
                     {dueTasks && dueTasks.length > 0 ? dueTasks.map((task, index)=>(
                         <div key={index} className={styles['home-task']}>
                             <p className={styles['task-title']}>{task.title}</p>
-                            {task.dueDate ? <p className={styles['task-dueDate']}>{task.dueDate}</p> : null}
+                            {task.priority ? <div className={styles.color} style={{backgroundColor: task.priority === 'high' ? 'red' : task.priority === 'normal' ? 'green' : task.priority === 'low' ? 'blue' : 'transparent'}}></div> : null}
                         </div>  
                     )) : <p className={styles['no-tasks-message']}>There are no tasks due today.</p>}
                 </div>
