@@ -150,6 +150,7 @@ const Pomodoro = () => {
         setFocusSessions(0);
         setBreaks(0);
         setLongBreaks(0);
+        setTotalTimeElapsed(0);
         setAction('Not Started')
     }
 
