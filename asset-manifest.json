@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/get-it-done/static/css/main.af539e68.css",
+    "main.js": "/get-it-done/static/js/main.4d2b1d79.js",
+    "static/media/settings.svg": "/get-it-done/static/media/settings.2498d573236dab36464096cc00740241.svg",
+    "static/media/pin.svg": "/get-it-done/static/media/pin.adf4e32a3d41d37e0fdecd9a3dfe9234.svg",
+    "static/media/disableFullscreen.svg": "/get-it-done/static/media/disableFullscreen.3e53f76ffbaa37d5041b82a2a5537d6e.svg",
+    "static/media/enableFullscreen.svg": "/get-it-done/static/media/enableFullscreen.86a291e032dc6952740fd9e86d6545cf.svg",
+    "static/media/next.svg": "/get-it-done/static/media/next.966111663399e2b7135c3d35a76cb3a5.svg",
+    "static/media/save.svg": "/get-it-done/static/media/save.f32b635572f75dabdd4aa585071470b4.svg",
+    "static/media/restart.svg": "/get-it-done/static/media/restart.cc9aca3a38ad756a1252a72ac05d08c5.svg",
+    "index.html": "/get-it-done/index.html",
+    "static/media/expand-left.svg": "/get-it-done/static/media/expand-left.e93e485172f6f5a2e301afc0dc8eb11f.svg",
+    "static/media/expand-right.svg": "/get-it-done/static/media/expand-right.f36539ea8a51566f6005021027fa429d.svg",
+    "static/media/plus-circle.svg": "/get-it-done/static/media/plus-circle.2afb0dd875f4ec5cbb104188c89cecd3.svg",
+    "static/media/checkmark.svg": "/get-it-done/static/media/checkmark.6c246c329c000a2c8e0695542c26a27a.svg",
+    "static/media/delete.svg": "/get-it-done/static/media/delete.4419437b7c28ceeb8d50f8f56d3fe08d.svg",
+    "static/media/start.svg": "/get-it-done/static/media/start.72362b61fe4ece3b66842f13442e4ba0.svg",
+    "static/media/close.svg": "/get-it-done/static/media/close.98cd6c76a2e1deaf383533ba038e1492.svg",
+    "static/media/plus.svg": "/get-it-done/static/media/plus.2219490fcaffbcbf3e4634b363ad41f6.svg",
+    "static/media/pause.svg": "/get-it-done/static/media/pause.4014fb6e8a328d0bc2037b631c3a24d7.svg",
+    "static/media/finish.svg": "/get-it-done/static/media/finish.15eb3505dbbd83f8ba9437562b75ef62.svg",
+    "main.af539e68.css.map": "/get-it-done/static/css/main.af539e68.css.map",
+    "main.4d2b1d79.js.map": "/get-it-done/static/js/main.4d2b1d79.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af539e68.css",
+    "static/js/main.4d2b1d79.js"
+  ]
+}
