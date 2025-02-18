@@ -32,14 +32,10 @@ const SideMenu = () => {
             {showNewProject ? <NewProject closeForm={()=>setShowNewProject(false)} /> : null}
             {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={isFullscreen() ? exitFullScreen : enterFullScreen} ><img src={isFullscreen() ? IconLibrary.DisableFullscreen : IconLibrary.EnableFullscreen} alt='enable fullscreen' />{isExpanded ? isFullscreen() ? <p>Exit Fullscreen</p> : <p>Enter Fullscreen</p> : null}</button> : null}
             <Workboard isExpanded={isExpanded} showNewProject={()=>setShowNewProject(true)}/>
-            <div className={styles.buttons}>
-                <button className={styles['menu-button']} onClick={()=>setShowSettings(true)}>
-                    <img src={IconLibrary.Settings}></img>
-                </button>
-                <button className={styles['toggle-button']} onClick={toggleSideMenu}>
-                    <img src={isExpanded ? IconLibrary.ExpandLeft : IconLibrary.ExpandRight}></img>
-                </button>
-            </div>
+                
+            <button className={styles['toggle-button']} onClick={toggleSideMenu}>
+                <img src={isExpanded ? IconLibrary.ExpandLeft : IconLibrary.ExpandRight}></img>
+            </button>
         </div>
      );
 }

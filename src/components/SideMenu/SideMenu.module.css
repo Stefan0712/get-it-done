@@ -32,53 +32,27 @@
     width: calc(100% - 10px);
     align-self: center;
 }
-
-
-
-.expand .buttons button{
-    height: 50px;
+.toggle-button{
     width: 50px;
+    height: 50px;
     min-height: 50px;
     min-width: 50px;
-    transition: all 0.1s;
-}
-.buttons{
-    height: 60px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    display: flex;
-    overflow: hidden;
-    margin-bottom: 10px;
-}
-.buttons button{
-    width: 50px;
-    height: 50px;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background-color: #0F0F0F;
+    background-color: transparent;
+    border: none;
     border-radius: 5px;
+    margin: 0 10px 10px auto;
 }
-.buttons button img{
+.expand .toggle-button{
+    transition: all 0.1s;
+    background-color: #0F0F0F;
+}
+.toggle-button img{
     width: 30px;
     height: 30px;
     background-color: transparent;
 }
-.toggle-button{
-    display: flex !important;
-    background-color: transparent !important;
-}
-.expand .menu-button{
-    display: flex;
-}
 .expand .toggle-button{
     background-color: #0F0F0F !important;
-}
-.expand .buttons{
-    justify-content: space-between;
-    padding: 0 10px;
 }
 
 @media (orientation: portrait) {
@@ -109,19 +83,21 @@
         grid-template-rows: 60px 1fr;
         gap: 10px;
     }
-    .expand .buttons{
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
+    .toggle-button{
         width: 100%;
         height: 100%;
+        display: flex;
+        align-items: center;
         justify-content: end;
         padding-right: 10px;
+        margin: 0;
     }
-    .expand .buttons button{
-        height: 50px;
-        width: 50px;
-        min-height: 50px;
-        min-width: 50px;
+    .expand .toggle-button{
+        background-color: transparent !important;
+    }
+    .toggle-button img{
+        height: 40px;
+        width: 40px;
     }
     .expand .fullscreen-button{
         grid-column: 1 / 2;
@@ -131,6 +107,10 @@
         margin: 0;
         margin-left: 10px;
         align-self: center;
+    }
+    .fullscreen-button{
+        border: none;
+        margin-right: 25px;
     }
     .expand .fullscreen-button p{
         display: none;
