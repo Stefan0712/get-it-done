@@ -26,6 +26,7 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
+    background-color: transparent;
 }
 .expand .fullscreen-button{
     width: calc(100% - 10px);
