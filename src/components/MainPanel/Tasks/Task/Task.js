@@ -21,7 +21,7 @@ const Task = ({data, isSelected, selectTask}) => {
             <div className={styles.color} style={{backgroundColor: data.priority === 'high' ? 'red' : data.priority === 'normal' ? 'green' : data.priority === 'low' ? 'blue' : 'transparent'}}></div>
             <h4>{data.title}</h4>
             {data.isPinned ? <img className={styles['pin-task-icon']} src={IconLibrary.Pin} alt=''/> : null}
-            <input type='checkbox' onChange={handleCheckTask} checked={data.isCompleted}></input>
+            {data.isCompleted ? <button onClick={handleCheckTask}><img src={IconLibrary.Checkmark} /></button> : <input type='checkbox' onChange={handleCheckTask} checked={data.isCompleted}></input>}
         </div>
      );
 }
