@@ -47,9 +47,17 @@ function App() {
     return () => {
         document.removeEventListener("fullscreenchange", handleFullscreenChange);
     };
+    
   }, []);
 
-
+  useEffect(()=>{
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/service-worker.js").then(() => {
+          console.log("Service Worker registered!");
+      });
+  }
+  
+  },[])
   return (
     <div className="App">
       {showFullscreenModal && window.innerWidth < 1000 && settings.showFullScreenPrompt ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
