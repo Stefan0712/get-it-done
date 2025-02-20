@@ -18,6 +18,9 @@
 .header h3{ 
     margin-right: auto;
 }
+.tasks .header p{
+    margin-right: auto;
+}
 .header .task-buttons{
     margin-left: auto;
 }
