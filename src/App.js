@@ -6,9 +6,10 @@ import SideMenu from './components/SideMenu/SideMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFullscreen } from './store/appSettingsSlice';
-import { IconLibrary } from './IconLibrary';
-import { enterFullScreen } from './helpers';
+import NoSleep from 'nosleep.js';
 
+
+const noSleep = new NoSleep();
 
 function App() {
 
@@ -17,6 +18,8 @@ function App() {
   const settings = useSelector((state)=>state.appSettings);
 
   const dispatch = useDispatch();
+
+  
 
   useEffect(() => {
     const setAppHeight = () => {
@@ -35,12 +38,13 @@ function App() {
   
   useEffect(() => {
     const handleFullscreenChange = () => {
-        if (document.fullscreenElement) {
-            dispatch(toggleFullscreen(true))
-        } else {
-            dispatch(toggleFullscreen(false))
-        }
+      if (document.fullscreenElement) {
+          dispatch(toggleFullscreen(true))
+      } else {
+          dispatch(toggleFullscreen(false))
+      }
     };
+    
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);
 
@@ -49,7 +53,13 @@ function App() {
     };
     
   }, []);
-
+  useEffect(() => {
+    if (settings.isScreenAwakeOn) {
+        noSleep.enable();
+    } else {
+        noSleep.disable();
+    }
+  }, [settings.isScreenAwakeOn]);
   useEffect(()=>{
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/service-worker.js").then(() => {

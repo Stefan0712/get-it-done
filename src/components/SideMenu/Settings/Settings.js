@@ -11,7 +11,7 @@ import { resetAppSettings, toggleScreenAwake, updateSetting } from '../../../sto
 const Settings = ({closeSettings}) => {
 
     const dispatch = useDispatch();
-    const noSleep = new NoSleep();
+    
     const settings = useSelector((state)=>state.appSettings);
 
 
@@ -22,12 +22,10 @@ const Settings = ({closeSettings}) => {
         dispatch(resetAppSettings());
     }
     const toggleScreenAwakeOn = () =>{
-        noSleep.enable();
         dispatch(toggleScreenAwake(true))
 
     }
     const toggleScreenAwakeOff = () =>{
-        noSleep.disable();
         dispatch(toggleScreenAwake(false))
     }
     return ( 
@@ -52,7 +50,7 @@ const Settings = ({closeSettings}) => {
                         <button onClick={()=>dispatch(resetProjects())}>Projects</button>
                         <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
                         <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
-                        <button onClick={()=>handleResetAll}>All</button>
+                        <button onClick={handleResetAll}>All</button>
                     </div>
                     
                 </div>
