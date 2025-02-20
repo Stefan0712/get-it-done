@@ -1,7 +1,7 @@
 {
     "name": "Get It Done",
     "short_name": "Pomodoro",
-    "start_url": "http://stefan0712.github.io/get-it-done",
+    "start_url": "https://stefan0712.github.io/get-it-done",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
