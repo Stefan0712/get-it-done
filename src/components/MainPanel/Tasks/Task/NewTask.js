@@ -57,14 +57,6 @@ const NewTask = ({closeNewTask}) => {
                     <label>Due Hour</label>
                     <input id={styles['due-hour-input']} type='time' name='dueHour' onChange={(e)=>setDueHour(e.target.value)} value={dueHour}></input>
                 </fieldset>
-                <fieldset>
-                    <label>Pin Task</label>
-                    <select id={styles['pin-task-input']} name='pinTask' onChange={(e)=>setIsPinned(e.target.value)} value={isPinned}>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                    </select>
-                    
-                </fieldset>
             </div>
             <button className={styles['save-button']} type='button' onClick={handleNewTask}>Save</button>
         </div>

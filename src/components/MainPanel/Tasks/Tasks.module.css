@@ -197,8 +197,9 @@ button{
 
 .new-task{
     position: absolute;
-    bottom: 0px;
-    width: 100%;
+    bottom: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
     height: 300px;
     background-color: #0F0F0F;
     display: flex;
@@ -209,6 +210,7 @@ button{
     animation-name: showNewTask;
     animation-duration: 0.1s;
     border-radius: 5px;
+    border: 1px solid rgba(211, 211, 211, 0.1);
 }
 .new-task-header{
     height: 30px;
@@ -247,8 +249,10 @@ button{
 .new-task .save-button{
     background-color: #171717;
     color: white;
-    margin-top: auto;
-    margin-bottom: 25px;
+    margin-top: 30px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
 }
 .new-task .header{
     width: 100%;
