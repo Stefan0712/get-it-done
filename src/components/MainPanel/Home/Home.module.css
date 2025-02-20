@@ -72,9 +72,10 @@
 }
 .home-task .task-title{
     width: auto;
-    max-width: calc(100% - 100px);
+    max-width: calc(100% - 20px);
     justify-content: start;
     height: fit-content;
+    overflow: hidden;
 }
 .home-task .color{
     width: 10px;
