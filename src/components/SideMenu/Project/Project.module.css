@@ -9,6 +9,7 @@
     position: absolute;
     animation-name: showNewProject;
     animation-duration: 0.1s;
+    z-index: 10;
 }
 
 @keyframes showNewProject {
