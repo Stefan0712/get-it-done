@@ -40,26 +40,25 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
 
 
     useEffect(() => {
-        dispatch(setSelectedTask(null));
-
+        dispatch(setSelectedTask(null));  // Reset selected task
+    
         if (!tasks || tasks.length === 0) {
             console.log('No tasks available');
+            setFilteredTasks([]);  // Ensure state is cleared
             return;
-        }else{
-            // Sort tasks: pinned first, then not completed, then completed
-            const sortedTasks = tasks?.sort((a, b) => {
-                if (a.isPinned && !b.isPinned) return -1;  // Pinned first
-                if (!a.isPinned && b.isPinned) return 1;
-                if (!a.isCompleted && b.isCompleted) return -1;  // Not completed before completed
-                if (a.isCompleted && !b.isCompleted) return 1;
-                return 0;
-            });
-            setFilteredTasks(sortedTasks);
         }
-        
     
-        
-    }, [tasks]);
+        // Create a new array before sorting to avoid mutating Redux state
+        const sortedTasks = [...tasks].sort((a, b) => {
+            if (a.isPinned && !b.isPinned) return -1;  // Pinned first
+            if (!a.isPinned && b.isPinned) return 1;
+            if (!a.isCompleted && b.isCompleted) return -1;  // Not completed before completed
+            if (a.isCompleted && !b.isCompleted) return 1;
+            return 0;
+        });
+    
+        setFilteredTasks(sortedTasks);
+    }, [tasks, dispatch]);
     
 
 

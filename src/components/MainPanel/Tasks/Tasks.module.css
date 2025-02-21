@@ -335,6 +335,7 @@ button{
     .tasks{
         height: calc(50vh - 70px);
         max-height: calc(100% - 70px);
+        width: 100%;
     }
     .tasks.extended-tasks{
         height: 100%;
