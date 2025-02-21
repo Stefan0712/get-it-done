@@ -56,9 +56,17 @@ const tasksSlice = createSlice({
         task.isPinned = !task.isPinned;
       }
     },
+    updateTask: (state, action) =>{
+      const { id, ...updatedTaskData } = action.payload;
+      const taskIndex = state.tasks.findIndex(task => task.id === id);
+      
+      if (taskIndex !== -1) {
+          state.tasks[taskIndex] = { ...state.tasks[taskIndex], ...updatedTaskData };
+      }
+    },
     resetTasks: () => initialState,
   },
 });
 
-export const { addTask, deleteTask, toggleTaskCompletion, togglePin, resetTasks } = tasksSlice.actions;
+export const { addTask, deleteTask, toggleTaskCompletion, togglePin, updateTask, resetTasks } = tasksSlice.actions;
 export default tasksSlice.reducer;

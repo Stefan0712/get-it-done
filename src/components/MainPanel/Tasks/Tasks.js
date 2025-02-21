@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteTask, togglePin } from '../../../store/tasksSlice';
 import { removeTaskFromProject } from '../../../store/projectsSlice';
 import { setSelectedTask } from '../../../store/appSettingsSlice';
+import EditTask from './EditTask';
 
 
 
@@ -20,6 +21,7 @@ const Tasks = () => {
     const tasks = useSelector(state=>state.tasks.tasks)
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
     const [showNewTask, setShowNewTask] = useState(false);
+    const [showEditTask, setShowEditTask] = useState(null);
     const [filteredTasks, setFilteredTasks] = useState([]); //stores all tasks of the selected project
 
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -77,11 +79,15 @@ const Tasks = () => {
         dispatch(setSelectedTask(null));
         console.log(selectedTask)
     }
+    const handleEditTask = () =>{
+        setShowEditTask(selectedTask);
+    }
     if(selectedProject){
         return ( 
             <div className={styles.tasks}>
                 {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
-                    <div className={styles.filters}>
+                {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
+                <div className={styles.filters}>
                     <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('all')}>All</button>
                     <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('not-completed')}>Not Completed</button>
                     <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('pinned')}>Pinned</button>
@@ -91,6 +97,7 @@ const Tasks = () => {
                     <p>Tasks: {selectedCategory === 'all' ? filteredTasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
                     {selectedTask ? (
                         <div className={styles['task-buttons']}>
+                            <button onClick={handleEditTask}><img src={IconLibrary.Edit} alt='edit selected task'></img></button>
                             <button onClick={handlePinTask}><img src={pinnedTasks.some(item=>item.id === selectedTask) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
                             <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
                         </div>
