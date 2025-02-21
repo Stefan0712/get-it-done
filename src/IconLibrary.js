@@ -17,6 +17,9 @@ import EnableFullscreen from './assets/icons/enableFullscreen.svg';
 import DisableFullscreen from './assets/icons/disableFullscreen.svg';
 import Unpin from './assets/icons/unpin.svg';
 import Edit from './assets/icons/edit.svg';
+import Minimize from './assets/icons/minimize.svg';
+import Maximize from './assets/icons/maximize.svg';
+
 
 export const IconLibrary = {
     Checkmark,
@@ -37,5 +40,7 @@ export const IconLibrary = {
     EnableFullscreen,
     DisableFullscreen,
     Unpin,
-    Edit
+    Edit,
+    Minimize,
+    Maximize
 }

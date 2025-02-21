@@ -3,7 +3,7 @@ import styles from './Pomodoro.module.css';
 import { useState, useEffect, useRef } from 'react';
 import PomodoroSettings from './PomodoroSettings';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToHistory } from '../../store/appSettingsSlice';
+import { addToHistory, updateSetting } from '../../store/appSettingsSlice';
 import MessageModal from '../common/MessageModal';
 import {formatTime} from '../../helpers';
 
@@ -11,6 +11,8 @@ const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false); 
     const dispatch = useDispatch();
     const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
+    const isMinimized = useSelector(state=>state.appSettings.isPomodoroMinimized);
+    console.log(isMinimized)
     const intervalRef  = useRef(); // Ref for the timer interval
 
     // Timer states
@@ -202,50 +204,94 @@ const Pomodoro = () => {
             sendNotification({type: 'fail', bypassSetting: true, msg: "Can't change setting while work session is active!"})
         }
     }
-    return (
-        <div className={styles.pomodoro}>
-            {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
-            {showSettings && totalTimeElapsed === 0 ? <PomodoroSettings closeSettings={() => setShowSettings(false)} /> : null}
-            <button className={styles['settings-button']} onClick={enableSettings}>
-                <img src={IconLibrary.Settings} alt="Settings" />
-            </button>
-           
-            <div className={styles.timer}>
-                <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${percentageElapsed()}%, white ${percentageElapsed()}% 100%)`}}>
-                    <div className={styles['timer-content']}>
-                        
-                        <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
-                        <div className={styles['sessions-counter']}>
-                            <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
-                        /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
-                            <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
-                         <div className={styles.time}>
-                            {formatTime(timeLeft)}
+    const formatTimeForMinimizedTimer = (time) => {
+        const [minutes, seconds] = time.split(":"); // Splitting MM:SS format
+    
+        return (
+            <div className={styles['minimized-time']}>
+                <p>{minutes}</p>
+                <p>{seconds}</p>
+            </div>
+        );
+    };
+    if(!isMinimized){
+        return (
+            <div className={styles.pomodoro} >
+                {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
+                {showSettings && totalTimeElapsed === 0 ? <PomodoroSettings closeSettings={() => setShowSettings(false)} /> : null}
+                <button className={styles['settings-button']} onClick={enableSettings}>
+                    <img src={IconLibrary.Settings} alt="Settings" />
+                </button>
+                <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
+                    <img src={IconLibrary.Minimize} alt="minimize pomodoro" />
+                </button>
+               
+                <div className={styles.timer}>
+                    <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${percentageElapsed()}%, white ${percentageElapsed()}% 100%)`}}>
+                        <div className={styles['timer-content']}>
+                            
+                            <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
+                            <div className={styles['sessions-counter']}>
+                                <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
+                            /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
+                                <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
+                             <div className={styles.time}>
+                                {formatTime(timeLeft)}
+                            </div>
+                            <p>{action}</p>
+                            <p>{formatTime(totalTimeElapsed)}</p>
+                            
                         </div>
-                        <p>{action}</p>
-                        <p>{formatTime(totalTimeElapsed)}</p>
-                        
                     </div>
                 </div>
+    
+                <div className={styles.buttons} >
+                    <button className={styles['small-button']} onClick={resetTimer}>
+                        <img src={IconLibrary.Restart} alt="Restart" />
+                    </button>
+                    <button className={styles['small-button']} onClick={skipSession}>
+                        <img src={IconLibrary.Next} alt="Skip" />
+                    </button>
+                    <button className={styles['small-button']} onClick={isRunning ? pauseTimer : startTimer}>
+                        <img src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
+                    </button>
+                    <button className={styles['small-button']} onClick={handleFinish}>
+                        <img src={IconLibrary.Finish} alt="Finish" />
+                    </button>
+                </div>
+                    
             </div>
+        );
+    }else if(isMinimized){
+        return (
+            <div className={styles['minimized-pomodoro']} style={{background: `linear-gradient(to top, #FF8C00 ${percentageElapsed()}%, transparent ${percentageElapsed()}%)`}}>
+                <button className={styles['maximize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))}>
+                    <img src={IconLibrary.Maximize} alt="enable pomodoro" />
+                </button>
+                <div className={styles.info}>
+                    <div className={`${styles.time} ${isSessionFinished ? styles.isFinished : ''}`}>
+                        {formatTimeForMinimizedTimer(formatTime(timeLeft))}
+                    </div>
+                </div>
 
-            <div className={styles.buttons}>
-                <button className={styles['small-button']} onClick={resetTimer}>
-                    <img src={IconLibrary.Restart} alt="Restart" />
-                </button>
-                <button className={styles['small-button']} onClick={skipSession}>
-                    <img src={IconLibrary.Next} alt="Skip" />
-                </button>
-                <button className={styles['small-button']} onClick={isRunning ? pauseTimer : startTimer}>
-                    <img src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
-                </button>
-                <button className={styles['small-button']} onClick={handleFinish}>
-                    <img src={IconLibrary.Finish} alt="Finish" />
-                </button>
-            </div>
-                
+                <div className={styles.buttons}>
+                    <button className={styles['small-button']} onClick={resetTimer}>
+                        <img src={IconLibrary.Restart} alt="Restart" />
+                    </button>
+                    <button className={styles['small-button']} onClick={skipSession}>
+                        <img src={IconLibrary.Next} alt="Skip" />
+                    </button>
+                    <button className={styles['small-button']} onClick={isRunning ? pauseTimer : startTimer}>
+                        <img src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
+                    </button>
+                    <button className={styles['small-button']} onClick={handleFinish}>
+                        <img src={IconLibrary.Finish} alt="Finish" />
+                    </button>
+                </div>
         </div>
-    );
+        )
+    }
+    
 };
 
 export default Pomodoro;

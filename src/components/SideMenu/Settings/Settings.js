@@ -57,9 +57,10 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.setting}>
                     <h3>Themes</h3>
                     <div className={styles['setting-buttons']}>
-                        <button onClick={()=>console.log('Dark')}>Dark</button>
-                        <button onClick={()=>console.log('Light')}>Light</button>
-                        <button onClick={()=>console.log('UWU')}>Kawaii</button>
+                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'dark' }))}>Dark</button>
+                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'light' }))}>Light</button>
+                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'amoled' }))}>AMOLED</button>
+                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'cute' }))}>Kawaii</button>
                     </div>
                     
                 </div>

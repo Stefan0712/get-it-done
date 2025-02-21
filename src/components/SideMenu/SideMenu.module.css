@@ -12,6 +12,15 @@
     background-color: #171717;
     z-index: 10;
 }
+:global(.App.amoled) .sideMenu{
+    background-color: #000000 !important;
+}
+:global(.App.light) .sideMenu{
+    background-color: white !important;
+    color: black !important;
+    border-color: black;
+}
+
 .sideMenu.expand{
     width: 30vw;
     transition: all 0.1s;

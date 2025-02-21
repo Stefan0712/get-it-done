@@ -19,7 +19,13 @@
     gap: 10px;
     margin-top: auto;
 }
-
+.minimize-button{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    border: none;
+}
 .timer{
     height: calc(100% - 70px);
     max-height: 100%;
@@ -53,6 +59,9 @@
     justify-content: center;
     gap: 10px;
 }
+:global(.App.amoled) .timer-content{
+    background-color: black;
+}
 .timer-content .time{
     font-size: 50px;
 }
@@ -65,6 +74,10 @@
     border-radius: 5px;
     background-color: #0F0F0F;
 }
+:global(.App.amoled) .buttons button{
+    background-color: black;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
 
 .timer-background.animated-session-end {
     animation: flashGradient 0.5s infinite alternate ease-in-out;
@@ -72,13 +85,13 @@
 
 @keyframes flashGradient {
     0% {
-        background: conic-gradient(from 0deg, #ff8c00, #ff4500);
+        background: red;
     }
     50% {
-        background: conic-gradient(from 0deg, #ff4500, #ff0000);
+        background: white;
     }
     100% {
-        background: conic-gradient(from 0deg, #ff8c00, #ff4500);
+        background: red;
     }
 }
 
@@ -235,7 +248,75 @@
     color: black;
 }
 
+/* minimized timer */
 
+.minimized-pomodoro{
+    width: 60px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid rgba(221, 221, 221, 0.2);
+    justify-content: center;
+    gap: 10px;
+}
+.minimized-pomodoro .info{
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    background-color: #171717;
+    border-radius: 5px;
+    padding: 10px 0;
+    border: 1px solid transparent;
+}
+.minimized-pomodoro .minimized-time{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.minimized-pomodoro .minimized-time p{
+    font-size: 25px;
+}
+.minimized-pomodoro .isFinished .minimized-time p{
+    animation: flashText 0.5s infinite alternate ease-in-out;
+}
+@keyframes flashText {
+    0% {
+        color: red;
+    }
+    50% {
+        color: white;
+    }
+    100% {
+        color: red;
+    }
+}
+.minimized-pomodoro .sessions-counter{
+    gap: 2px;
+}
+.maximize-button{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+}
+.minimized-pomodoro .buttons{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    padding-bottom: 15px;
+}
+.minimized-pomodoro .buttons button{
+    width: 50px;
+    height: 50px;
+}
 
 
 

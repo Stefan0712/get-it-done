@@ -20,7 +20,9 @@ const initialState = {
         enableNotifications: false,
         autoSkip: false,
     },
-    history: {}
+    history: {},
+    theme: 'dark',
+    isPomodoroMinimized: false
 
 };
 

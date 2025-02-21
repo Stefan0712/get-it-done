@@ -69,7 +69,7 @@ function App() {
   
   },[])
   return (
-    <div className="App">
+    <div className={`App ${settings.theme}`}>
       {showFullscreenModal && window.innerWidth < 1000 && settings.showFullScreenPrompt ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
       <SideMenu />
       <MainPanel />
