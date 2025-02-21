@@ -25,7 +25,6 @@ const Pomodoro = () => {
     const [longBreaks, setLongBreaks] = useState(0); // Counter for long breaks
 
     const [startTime, setStartTime] = useState(null);
-    const [firstRun, setFirstRun] = useState(false);
     const [action, setAction] = useState('Not Started');
     const [message, setMessage] = useState(null); // State for pop-up message
     const [isActive, setIsActive] = useState(false);
@@ -65,9 +64,8 @@ const Pomodoro = () => {
     const startTimer = () => {
         if (!isRunning) { // Start the timer only if running
             // Save the date and time of when the timer is started for the first time only for logging purposes
-            if(firstRun){
+            if(!startTime){
                 setStartTime(new Date().toISOString());
-                setFirstRun(false);
             }
             setIsActive(true);
             setAction('Running')
@@ -145,7 +143,6 @@ const Pomodoro = () => {
     // Resets all values to default state
     const resetWorkSession = () =>{
         resetTimer();
-        setFirstRun(true);
         setIsRunning(false);
         setCurrentSession('focus');
         setTimeLeft(settings.focusDuration * 60);
