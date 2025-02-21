@@ -32,54 +32,56 @@ const PomodoroSettings = ({closeSettings}) => {
                 <button onClick={handleSave}><img style={{height: '25px', width: '25px', marginRight: '20px'}} src={IconLibrary.Save} alt='save pomodoro settings'></img></button>
                 <button onClick={closeSettings}><img src={IconLibrary.Close} alt='close pomodoro settings'></img></button>
             </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Duration of Focus Sessions:</p>
-                    <input type='number' min={0} value={focusDuration} onChange={(e)=>setFocusDuration(e.target.value)}></input>
-                    <p> minutes</p>
+            <div className={styles['settings-container']}>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Duration of Focus Sessions:</p>
+                        <input type='number' min={0} value={focusDuration} onChange={(e)=>setFocusDuration(e.target.value)}></input>
+                        <p> minutes</p>
+                    </div>
                 </div>
-            </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Duration of Break Sessions:</p>
-                    <input type='number' min={0} value={breakDuration} onChange={(e)=>setBreakDuration(e.target.value)}></input>
-                    <p> minutes</p>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Duration of Break Sessions:</p>
+                        <input type='number' min={0} value={breakDuration} onChange={(e)=>setBreakDuration(e.target.value)}></input>
+                        <p> minutes</p>
+                    </div>
                 </div>
-            </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Include long break ?</p>
-                    <select value={includeLongBreaks} onChange={(e)=>setIncludeLongBreaks(e.target.value)}>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                    </select>
-                    <input type='number' name='longBreak' min={0} value={longBreakDuration} onChange={(e)=>setLongBreakDuration(e.target.value)}></input>
-                    <p> minutes</p>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Include long break ?</p>
+                        <select value={includeLongBreaks} onChange={(e)=>setIncludeLongBreaks(e.target.value)}>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+                        <input type='number' name='longBreak' min={0} value={longBreakDuration} onChange={(e)=>setLongBreakDuration(e.target.value)}></input>
+                        <p> minutes</p>
+                    </div>
                 </div>
-            </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Long Break each </p>
-                    <input type='number' min={3} value={longBreakFrequency} onChange={(e)=>setLongBreakFrequency(e.target.value)}></input>
-                    <p> focus sessions</p>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Long Break each </p>
+                        <input type='number' min={3} value={longBreakFrequency} onChange={(e)=>setLongBreakFrequency(e.target.value)}></input>
+                        <p> focus sessions</p>
+                    </div>
                 </div>
-            </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Enable Notifications</p>
-                    <select value={enableNotifications} onChange={(e)=>setEnableNotifications(e.target.value)}>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                    </select>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Enable Notifications</p>
+                        <select value={enableNotifications} onChange={(e)=>setEnableNotifications(e.target.value)}>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div className={styles['settings-section']}>
-                <div className={styles.top}>
-                    <p>Auto Skip Sessions</p>
-                    <select value={autoSkip} onChange={(e)=>setAutoSkip(e.target.value)}>
-                        <option value={true}>Yes</option>
-                        <option value={false}>No</option>
-                    </select>
+                <div className={styles['settings-section']}>
+                    <div className={styles.top}>
+                        <p>Auto Skip Sessions</p>
+                        <select value={autoSkip} onChange={(e)=>setAutoSkip(e.target.value)}>
+                            <option value={true}>Yes</option>
+                            <option value={false}>No</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>

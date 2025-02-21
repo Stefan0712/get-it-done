@@ -172,6 +172,15 @@
     padding: 10px;
     animation-name: showPomodoroSettings;
     animation-duration: 0.1s;
+
+}
+.settings-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
 }
 @keyframes showPomodoroSettings {
     from{
