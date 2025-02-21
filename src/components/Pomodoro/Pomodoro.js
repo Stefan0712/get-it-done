@@ -172,8 +172,8 @@ const Pomodoro = () => {
     };
    
     const sendNotification = (msg) => {
-        //show message modal if notifications are enabled
-        if (settings.enableNotifications) {
+        //show message modal if notifications are enabled or if it's urgent
+        if (settings.enableNotifications || msg.bypassSetting) {
             setMessage(msg)
         }
     };
@@ -195,11 +195,9 @@ const Pomodoro = () => {
 
     const enableSettings = () =>{
         if(!isActive){
-            console.log('Passed !isActive')
             setShowSettings(true);
         }else{
-            console.log('Notification sent')
-            sendNotification({type: 'fail', msg: "Can't change setting while work session is active!"})
+            sendNotification({type: 'fail', bypassSetting: true, msg: "Can't change setting while work session is active!"})
         }
     }
     return (
