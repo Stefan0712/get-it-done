@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   tasks: [],
   completedTasksByDay: [], // Stores completed tasks per day
+  deleted: []
 };
 
 const tasksSlice = createSlice({
@@ -18,6 +19,7 @@ const tasksSlice = createSlice({
     deleteTask: (state, action) => {
       const taskId = action.payload;
       const task = state.tasks.find(t => t.id === taskId);
+      state.deleted.push(task);
       if (task && task.isCompleted) {
         // If task is completed, decrease the count before deleting
         const today = new Date().toISOString().split("T")[0];
