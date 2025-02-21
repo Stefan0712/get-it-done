@@ -99,6 +99,7 @@ const Pomodoro = () => {
     const resetTimer = () => {
         sendNotification({type: 'info', msg: 'The timer was reset!'})
         clearInterval(intervalRef.current);
+        setIsSessionFinished(false);
         switch(currentSession){
             case 'focus':
                 setTimeLeft(settings.focusDuration * 60);
