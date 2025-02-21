@@ -20,7 +20,7 @@ const Pomodoro = () => {
     const [isSessionFinished, setIsSessionFinished] = useState(false); // Track if session is finished
     const [totalTimeElapsed, setTotalTimeElapsed] = useState(0);
 
-    const [focusSessions, setFocusSessions] = useState(0); // Counter for focus session
+    const [focusSessions, setFocusSessions] = useState(1); // Counter for focus session
     const [breaks, setBreaks] = useState(0); // Counter for short breaks
     const [longBreaks, setLongBreaks] = useState(0); // Counter for long breaks
 
@@ -40,21 +40,23 @@ const Pomodoro = () => {
             }
             if(currentSession === 'focus'){
                 const newFocusSessions = focusSessions + 1; // A "copy" of what the focusSessions state is supposed to be after updating them. I am using that since updating the state might not update on time and I need to use it right away
-                setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
-                if(newFocusSessions % settings.longBreakFrequency === 0){ // Assuming that all cycles includes a focus session as the first session, I am using them to know if it's time for a long or short break
+                
+                if((newFocusSessions - 1) % settings.longBreakFrequency === 0){ // Assuming that all cycles includes a focus session as the first session, I am using them to know if it's time for a long or short break
                     setCurrentSession('longBreak');
+                    setLongBreaks(prev => prev + 1);
                     setTimeLeft(settings.longBreakDuration * 60); // It multiply by 60 because the duration is in minutes
                 }else{ // If the current cycle no is not divisible by the frequency of long breaks, then make next session a normal break
                     setCurrentSession('break');
+                    setBreaks(prev => prev + 1);
                     setTimeLeft(settings.breakDuration * 60);
                 }
             }else if(currentSession === 'break'){
-                setBreaks(prev => prev + 1);
                 setCurrentSession('focus');
+                setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
                 setTimeLeft(settings.focusDuration * 60);
             }else if(currentSession === 'longBreak'){
-                setLongBreaks(prev => prev + 1);
                 setCurrentSession('focus');
+                setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
                 setTimeLeft(settings.focusDuration * 60);
             }
             clearInterval(intervalRef.current);
