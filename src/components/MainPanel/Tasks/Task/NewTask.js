@@ -2,14 +2,13 @@ import { useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 import styles from '../Tasks.module.css';
 import { IconLibrary } from "../../../../IconLibrary";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTask } from "../../../../store/tasksSlice";
 
 
 const NewTask = ({closeNewTask}) => {
 
     const dispatch = useDispatch();
-    const selectedProject = useSelector(state=>state.appSettings.selectedProject);
 
     const [title, setTitle] = useState('');
     const [priority, setPriority] = useState('normal');
@@ -30,7 +29,7 @@ const NewTask = ({closeNewTask}) => {
         <div className={styles['new-task']}>
             <div className={styles['new-task-header']}>
                 <h3>New Task</h3>
-                <button onClick={closeNewTask}><img src={IconLibrary.Close} alt='close new task'></img></button>
+                <button onClick={closeNewTask}><img className='medium-icon' src={IconLibrary.Close} alt='close new task'></img></button>
             </div>
             <div className={styles['same-line-top']}>
                 <fieldset>

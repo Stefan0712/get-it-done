@@ -30,7 +30,7 @@ const PomodoroSettings = ({closeSettings}) => {
             <div className={styles.header}>
                 <h2>Pomodoro Settings</h2>
                 <button onClick={handleSave}><img style={{height: '25px', width: '25px', marginRight: '20px'}} src={IconLibrary.Save} alt='save pomodoro settings'></img></button>
-                <button onClick={closeSettings}><img src={IconLibrary.Close} alt='close pomodoro settings'></img></button>
+                <button onClick={closeSettings}><img className='medium-icon' src={IconLibrary.Close} alt='close pomodoro settings'></img></button>
             </div>
             <div className={styles['settings-container']}>
                 <div className={styles['settings-section']}>
