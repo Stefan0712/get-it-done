@@ -14,7 +14,7 @@ import EditTask from './EditTask';
 
 
 
-const Tasks = () => {
+const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
 
     const dispatch = useDispatch();
 
@@ -79,22 +79,23 @@ const Tasks = () => {
         setShowEditTask(selectedTask);
     }
         return ( 
-            <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''} ${isTasksMaximized ? styles['maximized-tasks'] : ''}`}>
+            <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''} ${isTasksExpanded ? styles['maximized-tasks'] : ''}`}>
                 
                 {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
                 {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
-                <div className={styles.filters}>
+                <div className={`${styles.filters} ${isTasksExpanded ? styles.hide : ''}`}>
                     <div className={styles['filters-container']}>
                         <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('all')}>All</button>
                         <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('not-completed')}>Not Completed</button>
                         <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('pinned')}>Pinned</button>
                         <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('completed')}>Completed</button>
                     </div>
-                    <button className={styles['maximize-tasks-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isTasksMaximized', value: true }))}>
-                        <img className='medium-icon' src={IconLibrary.Maximize} alt='toggle tasks maximize'></img>
-                    </button>
+                    
                 </div>
-                <div className={styles.header}>
+                <div className={`${styles.header} `}>
+                    <button className={styles['maximize-tasks-button']} onClick={isTasksExpanded ? minimizeTasks : expandTasks}>
+                        <img className='small-icon' src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
+                    </button>       
                     <p>Tasks: {selectedCategory === 'all' ? filteredTasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
                     {selectedTask ? (
                         <div className={styles['task-buttons']}>

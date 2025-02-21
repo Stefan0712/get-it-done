@@ -224,7 +224,7 @@ const Pomodoro = () => {
                     <img src={IconLibrary.Settings} alt="Settings" />
                 </button>
                 <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
-                    <img src={IconLibrary.Minimize} alt="minimize pomodoro" />
+                    <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
                 </button>
                
                 <div className={styles.timer}>

@@ -6,6 +6,13 @@
     flex-direction: column;
     position: relative;
 }
+.tasks.maximized-tasks{
+    height: 100vh !important;
+}
+.tasks.maximized-tasks .tasks-header{
+    height: 100% !important;
+    min-height: 100% !important;
+}
 .header{
     width: 100%;
     height: 30px;
@@ -14,6 +21,20 @@
     padding: 0 15px;
     margin-bottom: 15px;
     margin-top: 10px;
+}
+.maximize-tasks-button{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.maximize-tasks-button img{
+    width: 25px !important;
+    height: 25px !important;
 }
 .header h3{ 
     margin-right: auto;
@@ -80,7 +101,12 @@
     align-items: center;
     justify-content: space-between;
 }
-
+.hide{
+    height: 0 !important;
+    overflow: hidden !important;
+    transition: all 0.1s;
+    margin: 0 !important;
+}
 .filters{
     width: 100%;
     height: 50px;
@@ -98,7 +124,6 @@
     overflow-x: auto;
     white-space: nowrap
 }
-.maximize-tasks-button,
 .expand-side-menu{
     background-color: transparent;
     border: none;
@@ -167,6 +192,8 @@
 .task h4{
     margin-right: auto;
     background-color: transparent;
+    width: calc(100% - 50px);
+    overflow: hidden;
 }
 button{
     border: 1px solid rgba(211, 211, 211, 0.1);
