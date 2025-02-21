@@ -292,7 +292,12 @@ button{
 @media (orientation: portrait) {
     .tasks{
         height: calc(50vh - 70px);
-        max-height: calc(50vh - 70px);
+        max-height: calc(100% - 70px);
+    }
+    .tasks.extended-tasks{
+        height: 100%;
+        max-height: calc(100% - 120px);
+        
     }
     .new-task{
         width: 100%;

@@ -29,7 +29,7 @@ const Settings = ({closeSettings}) => {
         dispatch(toggleScreenAwake(false))
     }
     return ( 
-        <div className={styles.settings}>
+        <div className={`${styles.settings} ${settings.isPomodoroMinimized ? styles['extended-settings'] : ''}`}>
             <div className={styles.container}>
                 <div className={styles.setting}>
                     <h3>Fullscreen</h3>

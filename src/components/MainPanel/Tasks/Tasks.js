@@ -20,6 +20,7 @@ const Tasks = () => {
     const selectedProject = useSelector(state=>state.appSettings.selectedProject);
     const tasks = useSelector(state=>state.tasks.tasks)
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
+    const isMaximized = useSelector(state=>state.appSettings.isPomodoroMinimized);
     const [showNewTask, setShowNewTask] = useState(false);
     const [showEditTask, setShowEditTask] = useState(null);
     const [filteredTasks, setFilteredTasks] = useState([]); //stores all tasks of the selected project
@@ -84,7 +85,7 @@ const Tasks = () => {
     }
     if(selectedProject){
         return ( 
-            <div className={styles.tasks}>
+            <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''}`}>
                 {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
                 {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
                 <div className={styles.filters}>

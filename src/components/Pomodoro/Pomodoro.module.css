@@ -379,6 +379,7 @@
     .minimized-pomodoro .minimized-time{
         flex-direction: row;
         padding: 0 10px;
+        width: auto;
     }
     .minimized-pomodoro .maximize-button{
         margin: 0 15px;
