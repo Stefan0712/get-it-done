@@ -1,14 +1,11 @@
-import { IconLibrary } from '../../../IconLibrary';
-import NoSleep from 'nosleep.js';
 import styles from './Settings.module.css';
 import { enterFullScreen, exitFullScreen } from '../../../helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
-import { resetProjects } from '../../../store/projectsSlice';
 import { resetAppSettings, toggleScreenAwake, updateSetting } from '../../../store/appSettingsSlice';
 
 
-const Settings = ({closeSettings}) => {
+const Settings = () => {
 
     const dispatch = useDispatch();
     
@@ -17,7 +14,6 @@ const Settings = ({closeSettings}) => {
 
 
     const handleResetAll = () =>{
-        dispatch(resetProjects());
         dispatch(resetTasks());
         dispatch(resetAppSettings());
     }
@@ -47,9 +43,8 @@ const Settings = ({closeSettings}) => {
                 <div className={styles.setting}>
                     <h3>Reset Items</h3>
                     <div className={styles['setting-buttons']}>
-                        <button onClick={()=>dispatch(resetProjects())}>Projects</button>
-                        <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
                         <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
+                        <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
                         <button onClick={handleResetAll}>All</button>
                     </div>
                     

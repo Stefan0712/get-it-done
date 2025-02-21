@@ -22,7 +22,8 @@ const initialState = {
     },
     history: {},
     theme: 'dark',
-    isPomodoroMinimized: false
+    isPomodoroMinimized: false,
+    isTasksMaximized: false
 
 };
 

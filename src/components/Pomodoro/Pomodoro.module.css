@@ -1,7 +1,8 @@
 .pomodoro{
     height: 100vh;
-    width: calc(50vw - 30px);
-    max-width: calc(50vw - 30px);
+    width: 50vw;
+    max-width: 50vw;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -30,8 +31,8 @@
     height: calc(100% - 70px);
     max-height: 100%;
     width: 100%;
+    max-width: 50vw;
     aspect-ratio: 1 / 1;
-    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -160,6 +161,10 @@
     top: 15px;
     background-color: transparent;
     border: none;
+}
+.settings-button img{
+    height: 40px;
+    width: 40px;
 }
 
 
@@ -338,15 +343,16 @@
     }
     .pomodoro{
         height: 100vh;
-        max-width: 100vh;
+        max-width: 50vw;
     }
 
 }
 @media (orientation: portrait) {
     .pomodoro{
-        width: 100%;
-        max-width: 100%;
-        height: calc(50vh - 30px);
+        height: 50vw;
+        width: 100vh;
+        max-width: 50vw;
+        max-height: 100vh;
         border-top: 1px solid rgba(211, 211, 211, 0.1);
     }
     .buttons{

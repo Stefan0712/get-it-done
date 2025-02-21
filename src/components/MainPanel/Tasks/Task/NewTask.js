@@ -4,7 +4,6 @@ import styles from '../Tasks.module.css';
 import { IconLibrary } from "../../../../IconLibrary";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../../../store/tasksSlice";
-import { addTaskToProject } from "../../../../store/projectsSlice";
 
 
 const NewTask = ({closeNewTask}) => {
@@ -23,7 +22,6 @@ const NewTask = ({closeNewTask}) => {
     const handleNewTask = () =>{
         const taskId = uuidv4();
         dispatch(addTask({id: taskId, title, priority, dueDate, dueHour, isPinned}));
-        dispatch(addTaskToProject({projectId: selectedProject, taskId}));
         closeNewTask();
     }
 

@@ -2,7 +2,6 @@ import './App.css';
 import FullScreenModal from './components/common/FullScreenModal/FullScreenModal';
 import MainPanel from './components/MainPanel/MainPanel';
 import Pomodoro from './components/Pomodoro/Pomodoro';
-import SideMenu from './components/SideMenu/SideMenu';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFullscreen } from './store/appSettingsSlice';
@@ -71,7 +70,6 @@ function App() {
   return (
     <div className={`App ${settings.theme}`}>
       {showFullscreenModal && window.innerWidth < 1000 && settings.showFullScreenPrompt ? <FullScreenModal closeModal={()=>setShowFullscreenModal(false)} /> : null}
-      <SideMenu />
       <MainPanel />
       <Pomodoro />
     </div>

@@ -1,6 +1,6 @@
 .tasks{
     height: calc(100vh - 70px);
-    width: 100%;
+    width: 50vw;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -46,7 +46,8 @@
     flex-direction: column;
     gap: 10px;
     padding: 20px;
-    padding-top: 0
+    padding-top: 0;
+    position: relative;
 }
 .tasks-category{
     width: 100%;
@@ -85,13 +86,28 @@
     height: 50px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 0 10px;
     margin-top: 10px;
+    overflow: hidden;
+}
+.filters-container{
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
     overflow-x: auto;
-    overflow-y: hidden;
     white-space: nowrap
 }
+.maximize-tasks-button,
+.expand-side-menu{
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    margin-left: auto;
+}
+
+
+
 .filters::-webkit-scrollbar{
     display: none;
 }
@@ -193,6 +209,7 @@ button{
     width: 20px;
 }
 
+
 /* new task */
 
 .new-task{
@@ -284,8 +301,6 @@ button{
 #pin-task-input option{
     color: black;
 }
-
-
 
 
 

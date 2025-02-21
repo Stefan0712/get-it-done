@@ -1,6 +1,8 @@
 .mainPanel{
     height: 100vh;
-    width: 50%;
+    width: 50vw;
+    max-width: 50vw;
+    max-height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -14,6 +16,25 @@
     height: 50px;
     display: flex;
     align-items: center;
+    gap: 10px;
+}
+.mainPanel .fullscreen-button{
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mainPanel .fullscreen-button img{
+    width: 30px;
+    height: 30px;
+}
+.navigation-cotnainer{
+    width: calc(100% - 50px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
 }
 .navigation button{
     width: auto;

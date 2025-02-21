@@ -1,5 +1,4 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import projectsReducer from './projectsSlice';
 import tasksReducer from './tasksSlice';
 import appSettingsReducer from './appSettingsSlice';
 import {
@@ -19,7 +18,6 @@ const persistConfig = {
     storage,
 }
 const rootReducer = combineReducers({
-    projects: projectsReducer,
     tasks: tasksReducer,
     appSettings: appSettingsReducer,
 });
