@@ -33,5 +33,10 @@
         height: calc(50vh - 30px);
         max-height: calc(50vh - 30px);
     }
+    .mainPanel.extended{
+        height: calc(100% - 60px);
+        width: 100%;
+        max-height: calc(100% - 60px)
+    }
 
 }

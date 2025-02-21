@@ -299,5 +299,9 @@ button{
         height: 100%;
         left: 0;
     }
+    .tasks .container{
+        height: 100%;
+        max-height: 100%;
+    }
 
 }

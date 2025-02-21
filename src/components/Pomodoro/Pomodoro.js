@@ -264,7 +264,7 @@ const Pomodoro = () => {
         );
     }else if(isMinimized){
         return (
-            <div className={styles['minimized-pomodoro']} style={{background: `linear-gradient(to top, #FF8C00 ${percentageElapsed()}%, transparent ${percentageElapsed()}%)`}}>
+            <div className={styles['minimized-pomodoro']} style={{ '--progress': `${percentageElapsed()}%`,}}>
                 <button className={styles['maximize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))}>
                     <img src={IconLibrary.Maximize} alt="enable pomodoro" />
                 </button>
