@@ -46,3 +46,9 @@
     width: 30px;
     height: 30px;
 }
+.hide{
+    height: 0 !important;
+    transition: all 0.1s;
+    overflow: hidden;
+    opacity: 0;
+}

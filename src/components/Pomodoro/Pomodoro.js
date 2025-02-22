@@ -31,6 +31,8 @@ const Pomodoro = () => {
     const [message, setMessage] = useState(null); // State for pop-up message
     const [isActive, setIsActive] = useState(false);
 
+    const [areButtonsHidden, setAreButtonsHidden] = useState(false);
+
 
     const handleSessionEnd = (skip = false) =>{
         // Run the function only if the timer is not running or of the skip function was triggered. Since the timer might be running when the skip buttons is pressed, if skip is true then it runs the function even if the timer is still running
@@ -220,46 +222,62 @@ const Pomodoro = () => {
             <div className={styles.pomodoro} >
                 {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
                 {showSettings && totalTimeElapsed === 0 ? <PomodoroSettings closeSettings={() => setShowSettings(false)} /> : null}
-                <button className={styles['settings-button']} onClick={enableSettings}>
-                    <img src={IconLibrary.Settings} alt="Settings" />
-                </button>
-                <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
-                    <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
-                </button>
+                
                
                 <div className={styles.timer}>
+                    <button className={styles['settings-button']} onClick={enableSettings}>
+                        <img className='medium-icon' src={IconLibrary.Settings} alt="Settings" />
+                    </button>
+                    <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
+                        <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
+                    </button>
                     <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${percentageElapsed()}%, white ${percentageElapsed()}% 100%)`}}>
                         <div className={styles['timer-content']}>
                             
-                            <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
-                            <div className={styles['sessions-counter']}>
-                                <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
-                            /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
-                                <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
-                             <div className={styles.time}>
-                                {formatTime(timeLeft)}
+                            <div className={`${styles['timer-info']} ${areButtonsHidden ? styles['expanded-info'] : ''}`}>
+                                <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
+                                <div className={styles['sessions-counter']}>
+                                    <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
+                                /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
+                                    <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
+                                <div className={styles.time}>
+                                    {formatTime(timeLeft)}
+                                </div>
+                                
                             </div>
-                            <p>{action}</p>
-                            <p>{formatTime(totalTimeElapsed)}</p>
-                            
+                            <div className={`${styles.buttons} ${areButtonsHidden ? styles['minimized-buttons'] : ''}`} >
+                                <div className={`${styles['extra-info']} ${areButtonsHidden ? 'hide' : ''}`}>
+                                    <p className={styles.action}>{action}</p>
+                                    <p className={styles.elapsedTime}>Time Elapsed: {formatTime(totalTimeElapsed)}</p>
+                                </div>
+                                <div className={`${styles['buttons-container']} ${areButtonsHidden ? 'hide' : ''}`}>
+                                    <button onClick={resetTimer}>
+                                        <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
+                                    </button>
+                                    <button onClick={skipSession}>
+                                        <img className='medium-icon' src={IconLibrary.Next} alt="Skip" />
+                                    </button>
+                                    <button onClick={isRunning ? pauseTimer : startTimer}>
+                                        <img className='medium-icon' src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
+                                    </button>
+                                    <button onClick={handleFinish}>
+                                        <img className='medium-icon' src={IconLibrary.Finish} alt="Finish" />
+                                    </button>
+                                    <button onClick={()=>setAreButtonsHidden(true)}>
+                                        <img className='small-icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(90deg)'}} alt='hide timer buttons'></img>
+                                    </button>
+                                </div>
+                                <button className={`${styles['expand-buttons-button']} ${areButtonsHidden ? '' : 'hide'}`} onClick={()=>setAreButtonsHidden(false)}>
+                                    <img className='icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(-90deg)'}} alt='show timer buttons' />
+                                </button>
+                            </div>
                         </div>
+                        
                     </div>
+                    
                 </div>
     
-                <div className={styles.buttons} >
-                    <button className={styles['small-button']} onClick={resetTimer}>
-                        <img src={IconLibrary.Restart} alt="Restart" />
-                    </button>
-                    <button className={styles['small-button']} onClick={skipSession}>
-                        <img src={IconLibrary.Next} alt="Skip" />
-                    </button>
-                    <button className={styles['small-button']} onClick={isRunning ? pauseTimer : startTimer}>
-                        <img src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
-                    </button>
-                    <button className={styles['small-button']} onClick={handleFinish}>
-                        <img src={IconLibrary.Finish} alt="Finish" />
-                    </button>
-                </div>
+                
                     
             </div>
         );

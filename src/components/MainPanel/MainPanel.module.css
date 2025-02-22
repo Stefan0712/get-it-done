@@ -1,8 +1,7 @@
 .mainPanel{
     height: 100vh;
-    width: 50vw;
-    max-width: 50vw;
-    max-height: 100vh;
+    flex-grow: 1;
+    width: auto;
     overflow: hidden;
     display: flex;
     flex-direction: column;

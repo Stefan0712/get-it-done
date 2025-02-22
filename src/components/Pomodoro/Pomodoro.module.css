@@ -1,50 +1,46 @@
 .pomodoro{
     height: 100vh;
-    width: 50vw;
-    max-width: 50vw;
+    width: 100vh;
+    max-width: 100vh;
     max-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    gap: 20px;
-    padding: 10px;
-    position: relative;
-    box-sizing: border-box;
-}
-.top{
-    width: 100%;
-    height: 50px;
+    min-width: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    margin-top: auto;
+    overflow: hidden;
+    padding: 10px;
+    position: relative;
 }
-.minimize-button{
+.minimize-button,
+.settings-button{
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 15px;
     background-color: transparent;
     border: none;
 }
+.settings-button{
+    right: 15px;
+    left: auto;
+}
+
+
 .timer{
-    height: calc(100% - 70px);
-    max-height: 100%;
+    height: 100%;
     width: 100%;
-    max-width: 50vw;
     aspect-ratio: 1 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    grid-row: 1 / 2;
     overflow: hidden;
+    position: relative;
 }
 .timer-background{
     background-color: white;
     width: 100%;
     height: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,27 +49,29 @@
     width: calc(100% - 10px);
     height: calc(100% - 10px);
     background-color: #171717;
-    border-radius: 50%;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
 }
+.timer-info{
+    width: 100%;
+    height: calc(100% - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.timer-info.expanded-info{
+    height: calc(100% - 40px);
+}
 :global(.App.amoled) .timer-content{
     background-color: black;
 }
 .timer-content .time{
     font-size: 50px;
-}
-.timer-content button{
-    width: 75px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    background-color: #0F0F0F;
 }
 :global(.App.amoled) .buttons button{
     background-color: black;
@@ -95,24 +93,6 @@
         background: red;
     }
 }
-
-.total-time{
-    position: sticky;
-    bottom: 0;
-    right: 0;
-    font-size: 0.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 10px 0;
-    border-top: 1px solid rgba(211, 211, 211, 0.1);
-    background-color: #171717;
-}
-.total-time p:nth-child(2){
-    opacity: 0.5;
-}
 .sessions-counter{
     display: flex;
     align-items: center;
@@ -123,15 +103,37 @@
     color: #ff4500 !important;
 }
 
-
 .buttons{
     width: 100%;
-    height: 50px;
+    height: 80px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    grid-row: 2 / 3;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0 10px;
+    margin-bottom: 10px;
+    transition: height 0.1s;
+}
+.buttons.minimized-buttons{
+    height: 30px;
+}
+
+.buttons .extra-info{
+    width: 90%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.1s;
+}
+.buttons-container{
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: all 0.1s;
 }
 .buttons button{
     height: 50px;
@@ -139,32 +141,17 @@
     align-items: center;
     justify-content: center;
     background-color: #0F0F0F;
-}
-.buttons .small-button {
-    width: calc((100% / 4) - 10px);
+    width: 75px;
     border: 1px solid transparent;
     transition: transform 0.1s ease-in-out, border-color 0.1s ease-in-out;
 }
-
-.buttons .small-button:active {
+.buttons button:active {
     transform: scale(0.95);
     border-color:rgba(211, 211, 211, 0.3);
 }
-
-.buttons .small-button img{
-    width: 30px;
-    height: 30px;
-}
-.settings-button{
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    background-color: transparent;
-    border: none;
-}
-.settings-button img{
-    height: 40px;
-    width: 40px;
+.expand-buttons-button{
+    background-color: transparent !important;
+    
 }
 
 

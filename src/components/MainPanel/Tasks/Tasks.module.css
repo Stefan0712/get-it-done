@@ -1,6 +1,6 @@
 .tasks{
     height: calc(100vh - 70px);
-    width: 50vw;
+    width: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
