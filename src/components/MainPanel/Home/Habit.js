@@ -45,7 +45,7 @@ const CurrentWeek = () => {
 
   return (
     <div className={`${styles.habit} ${isExpanded ? styles['expanded-habit'] : ''}`}>
-      <div className={styles['habit-header']} onClick={()=>setIsExpanded(isExpanded=> !isExpanded)}><h4>Tasks History</h4><img src={IconLibrary.ExpandLeft} alt="" /></div>
+      <div className={styles['habit-header']} ><h4>Tasks History</h4></div>
       <div className={`${styles['habit-container']}`}>
         {weekData.map((day) => (
           <div key={day.weekDay} className={`${styles['week-day']} ${todayDate === day.date ? styles['selected-day'] : ''}`}>

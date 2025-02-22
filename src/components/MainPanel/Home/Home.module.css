@@ -31,65 +31,11 @@
     align-items: center;
 }
 
-/* pinned tasks */
-.tasks{
-    height: 200px;
-    max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 10px 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    grid-row: 2 / 3;
-    flex-grow: 1;
-}
-.tasks-container{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-
-.home-task{
-    width: 100%;
-    height: 40px;
-    min-height: 40px;
-    max-height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #0F0F0F;
-    border-radius: 5px;
-    padding: 0 15px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-}
-.home-task .task-title{
-    width: auto;
-    max-width: calc(100% - 20px);
-    justify-content: start;
-    height: fit-content;
-    overflow: hidden;
-}
-.home-task .color{
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-}
-.home .no-tasks-message{
-    margin-left: 15px;
-}
-
 /* habit */
 .habit{
     width: 100%;
-    height: 30px;
+    height: 110px;
+    min-height: 110px;
     overflow: hidden;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -97,14 +43,9 @@
     display: flex;
     margin-bottom: 10px;
     flex-direction: column;
-    transition: all 0.1s;
-}
-.habit.expanded-habit{
-    height: 110px !important;
-    min-height: 110px !important;
-    transition: all 0.1s;
     padding: 10px 0;
 }
+
 .habit .habit-header{
     width: 100%;
     height: 30px;
@@ -113,10 +54,7 @@
     align-items: center;
     flex-direction: row;
 }
-.expanded-habit .habit-header img{
-    transform: rotateZ(-90deg);
-    transition: transform 0.2s;
-}
+
 .habit .habit-header img{
     height: 100%;
     width: auto;
