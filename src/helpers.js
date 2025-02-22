@@ -72,6 +72,19 @@ const formatTime = (seconds) => {
     const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
     
     return `${formattedMinutes}:${formattedSeconds}`;
-  };
+};
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    
+    // Options for the formatting
+    const options = { day: '2-digit', month: 'short', year: 'numeric' };
 
-export {enterFullScreen, exitFullScreen, getTextColor, isFullscreen, formatTime};
+    // Using Intl.DateTimeFormat for formatted date
+    const formattedDate = new Intl.DateTimeFormat('en-GB', options).format(date);
+
+    return formattedDate;
+}
+
+
+
+export {enterFullScreen, exitFullScreen, getTextColor, isFullscreen, formatTime, formatDate};

@@ -1,3 +1,4 @@
+import { formatDate } from '../../../helpers';
 import styles from './History.module.css';
 import { useSelector } from 'react-redux';
 
@@ -29,7 +30,7 @@ const History = () => {
                     .sort((a, b) => new Date(b) - new Date(a))
                     .map(date => (
                         <div className={styles['day-container']} key={date}>
-                            <h4 className={styles.date}>{date}</h4> 
+                            <h4 className={styles.date}>{formatDate(date)}</h4> 
                             <div className={styles['day-entries']}>
                                 {history[date]?.map((session, index) => (
                                     <div className={styles.entry} key={index}>
