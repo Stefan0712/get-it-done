@@ -285,7 +285,7 @@ const Pomodoro = () => {
         return (
             <div className={styles['minimized-pomodoro']} style={{ '--progress': `${percentageElapsed()}%`,}}>
                 <button className={styles['maximize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))}>
-                    <img src={IconLibrary.Maximize} alt="enable pomodoro" />
+                    <img className='medium-icon' src={IconLibrary.Maximize} alt="enable pomodoro" />
                 </button>
                 <div className={styles.info}>
                     <div className={`${styles.time} ${isSessionFinished ? styles.isFinished : ''}`}>
@@ -294,17 +294,17 @@ const Pomodoro = () => {
                 </div>
 
                 <div className={styles.buttons}>
-                    <button className={styles['small-button']} onClick={resetTimer}>
-                        <img src={IconLibrary.Restart} alt="Restart" />
+                    <button onClick={resetTimer}>
+                        <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
                     </button>
-                    <button className={styles['small-button']} onClick={skipSession}>
-                        <img src={IconLibrary.Next} alt="Skip" />
+                    <button onClick={skipSession}>
+                        <img className='medium-icon' src={IconLibrary.Next} alt="Skip" />
                     </button>
-                    <button className={styles['small-button']} onClick={isRunning ? pauseTimer : startTimer}>
-                        <img src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
+                    <button onClick={isRunning ? pauseTimer : startTimer}>
+                        <img className='medium-icon' src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
                     </button>
-                    <button className={styles['small-button']} onClick={handleFinish}>
-                        <img src={IconLibrary.Finish} alt="Finish" />
+                    <button onClick={handleFinish}>
+                        <img className='medium-icon' src={IconLibrary.Finish} alt="Finish" />
                     </button>
                 </div>
         </div>
