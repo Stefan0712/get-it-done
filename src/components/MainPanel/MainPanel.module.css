@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: column;
     min-width: 350px;
-    
 }
 .hide{
     height: 0 !important;
@@ -65,11 +64,14 @@
     .mainPanel{
         width: 100vw;
         max-width: 100vw;
-        height: 50vh;
-        max-height: 50vh;
+        flex-grow: 1;
+        height: auto;
+
     }
     .mainPanel .content{
         width: 100vw;
+        height: 100%;
+        flex-grow: 1;
     }
     .mainPanel.extended{
         height: calc(100% - 60px);

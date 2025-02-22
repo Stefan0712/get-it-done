@@ -316,51 +316,23 @@
 
 /* media queries */
 
-@media (orientation: landscape) {
-    
-    .timer{
-        height: 100%;
-        width: auto;
-        aspect-ratio: 1 / 1;
-    }
-    .timer-background{
-        width: auto;
-        min-width: calc(100vh - 150px);
-        height: 100%;
-    }
-    .pomodoro{
-        height: 100vh;
-        max-width: 50vw;
-    }
-
-}
 @media (orientation: portrait) {
     .pomodoro{
-        height: 50vh;
+        height: 100vw;
         width: 100vw;
         max-width: 100vw;
-        max-height: 50vh;
+        max-height: 100vw;
+        min-width: 100vw;
+        min-height: 100vw;
         border-top: 1px solid rgba(211, 211, 211, 0.1);
-    }
-    .buttons{
-        width: 100%;
-        height: 75px;
-        justify-content: center;
-    }
-    .buttons .small-button{
-        width: 50px;
-        height: 50px;
+        margin-top: auto;
+        margin-bottom: 10px;
     }
     .timer{
-        height: calc(50vh - 75px);
-        max-height: calc(50vh - 75px);
+        height: 100vw;
         width: 100vw;
         max-width: 100vw;
-    }
-    .timer-background{
-        height: 100%;
-        max-height: 100%;
-        width: auto;
+        max-height: 100vw;
     }
     .minimized-pomodoro{
         height: 60px;
