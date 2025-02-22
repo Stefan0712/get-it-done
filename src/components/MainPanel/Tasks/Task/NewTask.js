@@ -31,30 +31,26 @@ const NewTask = ({closeNewTask}) => {
                 <h3>New Task</h3>
                 <button onClick={closeNewTask}><img className='medium-icon' src={IconLibrary.Close} alt='close new task'></img></button>
             </div>
-            <div className={styles['same-line-top']}>
-                <fieldset>
-                    <label>Title</label>
-                    <input id={styles['title-input']} type='text' name='title' onChange={(e)=>setTitle(e.target.value)} value={title} required></input>
-                </fieldset>
-                <fieldset>
-                    <label>Priority</label>
-                    <select id={styles['priority-input']} type='priority' name='priority' onChange={(e)=>setPriority(e.target.value)} value={priority} required>
-                        <option value={'low'}>Low</option>
-                        <option value={'normal'}>Normal</option>
-                        <option value={'high'}>High</option>
-                    </select>
-                </fieldset>
-            </div>
-            <div className={styles['same-line-bottom']}>
-                <fieldset>
-                    <label>Due Date</label>
-                    <input id={styles['due-date-input']} type='date' name='dueDate' onChange={(e)=>setDueDate(e.target.value)} value={dueDate}></input>
-                </fieldset>
-                <fieldset>
-                    <label>Due Hour</label>
-                    <input id={styles['due-hour-input']} type='time' name='dueHour' onChange={(e)=>setDueHour(e.target.value)} value={dueHour}></input>
-                </fieldset>
-            </div>
+            <fieldset id={styles['title-input']}>
+                <label>Title</label>
+                <input  type='text' name='title' onChange={(e)=>setTitle(e.target.value)} value={title} required></input>
+            </fieldset>
+            <fieldset id={styles['priority-input']}>
+                <label>Priority</label>
+                <select type='priority' name='priority' onChange={(e)=>setPriority(e.target.value)} value={priority} required>
+                    <option value={'low'}>Low</option>
+                    <option value={'normal'}>Normal</option>
+                    <option value={'high'}>High</option>
+                </select>
+            </fieldset>
+            <fieldset id={styles['due-date-input']}>
+                <label>Due Date</label>
+                <input type='date' name='dueDate' onChange={(e)=>setDueDate(e.target.value)} value={dueDate}></input>
+            </fieldset>
+            <fieldset id={styles['due-hour-input']}>
+                <label>Due Hour</label>
+                <input type='time' name='dueHour' onChange={(e)=>setDueHour(e.target.value)} value={dueHour}></input>
+            </fieldset>
             <button className={styles['save-button']} type='button' onClick={handleNewTask}>Save</button>
         </div>
      );
