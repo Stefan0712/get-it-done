@@ -1,6 +1,8 @@
 import styles from './Home.module.css';
 import { useState, useEffect } from 'react';
 import Habit from './Habit';
+import Summary from './Summary';
+import WorkHistory from './WorkHistory';
 
 
 const Home = () => {
@@ -33,6 +35,8 @@ const Home = () => {
                 </div>
             </div>  
             <Habit />
+            <Summary />
+            <WorkHistory />
         </div>
      );
 }

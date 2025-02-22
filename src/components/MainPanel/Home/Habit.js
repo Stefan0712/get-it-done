@@ -44,7 +44,7 @@ const CurrentWeek = () => {
   }, [completedTasks]); // Update when tasks change
 
   return (
-    <div className={`${styles.habit} ${isExpanded ? styles['expanded-habit'] : ''}`}>
+    <div className={`${styles.habit} ${isExpanded ? styles['expanded-habit'] : ''} ${styles.module}`}>
       <div className={styles['habit-header']} ><h4>Tasks History</h4></div>
       <div className={`${styles['habit-container']}`}>
         {weekData.map((day) => (
