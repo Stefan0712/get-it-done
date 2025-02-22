@@ -338,10 +338,18 @@
         height: 60px;
         width: 100vw;
         flex-direction: row;
+        border-top: 1px solid rgba(211, 211, 211, 0.1);
     }
     .minimized-pomodoro .buttons{
         flex-direction: row;
         padding: 0;
+        height: 100%;
+        margin: 0;
+    }
+   
+    .minimized-pomodoro .info{
+        height: 50px;
+        width: 100px;
     }
     .minimized-pomodoro .minimized-time{
         flex-direction: row;
