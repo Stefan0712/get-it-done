@@ -15,7 +15,7 @@ import { isPending } from '@reduxjs/toolkit';
 
 
 
-const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
+const Tasks = () => {
 
     const dispatch = useDispatch();
 
@@ -102,15 +102,12 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
         setShowEditTask(selectedTask);
     }
     return ( 
-        <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''} ${isTasksExpanded ? styles['maximized-tasks'] : ''}`}>
+        <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''}`}>
             
             {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
             {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
   
             <div className={`${styles.header} `}>
-                <button className={styles['maximize-tasks-button']} onClick={isTasksExpanded ? minimizeTasks : expandTasks}>
-                    <img src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
-                </button> 
                 <select className={styles.category} onChange={(e)=>changeCategory(e.target.value)} value={selectedCategory}> 
                     <option value={'all'}>All</option>
                     <option value={'not-completed'}>Not Completed</option>
@@ -119,12 +116,14 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
                 </select>      
                 {selectedTask ? (
                     <div className={styles['task-buttons']}>
-                        <button onClick={handleEditTask}><img src={IconLibrary.Edit} alt='edit selected task'></img></button>
-                        <button onClick={handlePinTask}><img src={tasks.some(item=>item.id === selectedTask && item.isPinned) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
-                        <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
+                        <button onClick={handleEditTask}><img className='small-icon' src={IconLibrary.Edit} alt='edit selected task'></img></button>
+                        <button onClick={handlePinTask}><img className='small-icon' src={tasks.some(item=>item.id === selectedTask && item.isPinned) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
+                        <button onClick={handleDeleteTask}><img className='small-icon' src={IconLibrary.Delete} alt='delete selected task'></img></button>
                     </div>
                 ) : null}
-                <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>
+                <button onClick={()=>setShowNewTask(true)}>
+                    <img className='small-icon' src={IconLibrary.Plus} alt='open new project'></img>
+                </button>
             </div>
             <div className={styles.container}>
                 {filteredTasks && filteredTasks.length > 0 ? 
