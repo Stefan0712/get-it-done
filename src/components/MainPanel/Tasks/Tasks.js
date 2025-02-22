@@ -106,20 +106,17 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
             
             {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
             {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
-            <div className={`${styles.filters} ${isTasksExpanded ? styles.hide : ''}`}>
-                <div className={styles['filters-container']}>
-                    <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('all')}>All</button>
-                    <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('not-completed')}>Not Completed</button>
-                    <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('pinned')}>Pinned</button>
-                    <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('completed')}>Completed</button>
-                </div>
-                
-            </div>
+  
             <div className={`${styles.header} `}>
                 <button className={styles['maximize-tasks-button']} onClick={isTasksExpanded ? minimizeTasks : expandTasks}>
-                    <img className='small-icon' src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
-                </button>       
-                <p>Tasks: {filteredTasks?.length}</p>
+                    <img src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
+                </button> 
+                <select className={styles.category} onChange={(e)=>changeCategory(e.target.value)} value={selectedCategory}> 
+                    <option value={'all'}>All</option>
+                    <option value={'not-completed'}>Not Completed</option>
+                    <option value={'pinned'}>Pinned</option>
+                    <option value={'completed'}>Completed</option>
+                </select>      
                 {selectedTask ? (
                     <div className={styles['task-buttons']}>
                         <button onClick={handleEditTask}><img src={IconLibrary.Edit} alt='edit selected task'></img></button>
