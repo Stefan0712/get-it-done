@@ -1,6 +1,5 @@
 .settings{
     height: 100%;
-    max-height: calc(100vh - 75px);
     width: 100%;
     padding: 10px;
     display: flex;
@@ -44,16 +43,7 @@
 
 @media (orientation: portrait) {
     .container{
-        max-height: calc(50vh - 75px);
         padding-bottom: 50px;
-    }
-    .settings.extended-settings{
-        height: 100%;
-        max-height: calc(100% - 120px);  
-    }
-    .settings.extended-settings .container{
-        height: 100%;
-        max-height: 100%;  
     }
 }
 

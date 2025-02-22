@@ -341,16 +341,22 @@
         max-height: 100vw;
     }
     .minimized-pomodoro{
-        height: 60px;
+        height: 70px;
         width: 100vw;
+        padding: 0;
         flex-direction: row;
         border-top: 1px solid rgba(211, 211, 211, 0.1);
+        overflow: hidden;
+        align-items: center;
     }
     .minimized-pomodoro .buttons{
         flex-direction: row;
         padding: 0;
-        height: 100%;
+        height: 60px;
         margin: 0;
+        background-color: transparent;
+        align-items: center;
+        
     }
    
     .minimized-pomodoro .info{
@@ -364,6 +370,7 @@
     }
     .minimized-pomodoro .maximize-button{
         margin: 0 15px;
+        z-index: 10;
     }
     .minimized-pomodoro{
         background: linear-gradient(to right, #FF8C00 var(--progress), transparent var(--progress));

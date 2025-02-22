@@ -1,5 +1,5 @@
 .tasks{
-    height: calc(100vh - 70px);
+    height: 100%;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -283,8 +283,8 @@ fieldset{
 
 @media (orientation: portrait) {
     .tasks{
-        height: calc(50vh - 70px);
-        max-height: calc(100% - 70px);
+        height: 100%;
+        flex-grow: 1;
         width: 100%;
     }
     .tasks.extended-tasks{

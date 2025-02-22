@@ -17,7 +17,7 @@
 }
 @media (orientation: portrait) {
     .App{
-        flex-wrap: wrap;
+        flex-direction: column;
         overflow-y: auto;
         padding: 0;
     }

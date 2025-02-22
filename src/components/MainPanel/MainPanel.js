@@ -32,7 +32,7 @@ const MainPanel = () => {
                     </button> 
             </div>
             <div className={styles.content}>
-                    {isPanelExpanded ? 
+                    {isPanelExpanded ?
                         <button className={styles['minimize-panel-button']} onClick={()=>setIsPanelExpanded(false)}>
                             <img className='small-icon' src={IconLibrary.Minimize} alt='minimize panel'></img>
                         </button> 

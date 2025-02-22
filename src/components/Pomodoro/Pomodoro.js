@@ -12,7 +12,6 @@ const Pomodoro = () => {
     const dispatch = useDispatch();
     const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
     const isMinimized = useSelector(state=>state.appSettings.isPomodoroMinimized);
-    console.log(isMinimized)
     const intervalRef  = useRef(); // Ref for the timer interval
 
     // Timer states
