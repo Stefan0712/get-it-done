@@ -30,10 +30,7 @@
     align-items: center;
     justify-content: center;
 }
-.mainPanel .fullscreen-button img{
-    width: 30px;
-    height: 30px;
-}
+
 .navigation .buttons{
     width: calc(100% - 50px);
     height: 100%;

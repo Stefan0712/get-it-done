@@ -8,9 +8,10 @@ import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { deleteTask, togglePin } from '../../../store/tasksSlice';
-import { setSelectedTask, updateSetting } from '../../../store/appSettingsSlice';
+import { setSelectedTask } from '../../../store/appSettingsSlice';
 
 import EditTask from './EditTask';
+import { isPending } from '@reduxjs/toolkit';
 
 
 
@@ -22,7 +23,6 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
     const tasks = useSelector(state=>state.tasks.tasks)
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
 
-    const isTasksMaximized = useSelector(state=>state.appSettings.isTasksMaximized);
     const isMaximized = useSelector(state=>state.appSettings.isPomodoroMinimized);
 
     const [showNewTask, setShowNewTask] = useState(false);
@@ -32,10 +32,7 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
     const [selectedCategory, setSelectedCategory] = useState('all');
 
 
-    //categorize tasks by completed, not completed, and pinned
-    const completedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isCompleted && !item.isPinned) : [];
-    const notCompletedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>!item.isCompleted && !item.isPinned) : [];
-    const pinnedTasks = filteredTasks && filteredTasks.length > 0 ? filteredTasks.filter(item=>item.isPinned) : [];
+
 
 
 
@@ -60,8 +57,35 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
         setFilteredTasks(sortedTasks);
     }, [tasks, dispatch]);
     
-
-
+    const changeCategory = (category) => {
+        if (!tasks) {
+            setFilteredTasks([]);
+            return;
+        }
+    
+        switch (category) {
+            case 'all':
+                setFilteredTasks([...tasks]);
+                setSelectedCategory('all');
+                break;
+            case 'completed':
+                setFilteredTasks(tasks.filter(item => item.isCompleted && !item.isPinned));
+                setSelectedCategory('completed');
+                break;
+            case 'not-completed':
+                setFilteredTasks(tasks.filter(item => !item.isCompleted && !item.isPinned));
+                setSelectedCategory('not-completed');
+                break;
+            case 'pinned':
+                setFilteredTasks(tasks.filter(item => item.isPinned));
+                setSelectedCategory('pinned');
+                break;
+            default:
+                setFilteredTasks([...tasks]);
+                setSelectedCategory('all');
+                break;
+        }
+    };
     const handleSelectTask = (id)=>{
         dispatch(setSelectedTask(id));
     }
@@ -77,71 +101,42 @@ const Tasks = ({isTasksExpanded, expandTasks, minimizeTasks}) => {
     const handleEditTask = () =>{
         setShowEditTask(selectedTask);
     }
-        return ( 
-            <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''} ${isTasksExpanded ? styles['maximized-tasks'] : ''}`}>
+    return ( 
+        <div className={`${styles.tasks} ${isMaximized ? styles['extended-tasks'] : ''} ${isTasksExpanded ? styles['maximized-tasks'] : ''}`}>
+            
+            {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
+            {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
+            <div className={`${styles.filters} ${isTasksExpanded ? styles.hide : ''}`}>
+                <div className={styles['filters-container']}>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('all')}>All</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('not-completed')}>Not Completed</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('pinned')}>Pinned</button>
+                    <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>changeCategory('completed')}>Completed</button>
+                </div>
                 
-                {showNewTask ? <NewTask closeNewTask={()=>setShowNewTask(false)} /> : null}
-                {showEditTask ? <EditTask closeEditTask={()=>setShowEditTask(false)} taskId={showEditTask} /> : null}
-                <div className={`${styles.filters} ${isTasksExpanded ? styles.hide : ''}`}>
-                    <div className={styles['filters-container']}>
-                        <button className={`${styles['filter-button']} ${selectedCategory === "all" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('all')}>All</button>
-                        <button className={`${styles['filter-button']} ${selectedCategory === "not-completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('not-completed')}>Not Completed</button>
-                        <button className={`${styles['filter-button']} ${selectedCategory === "pinned" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('pinned')}>Pinned</button>
-                        <button className={`${styles['filter-button']} ${selectedCategory === "completed" ? styles['selected-category'] : ''}`} onClick={()=>setSelectedCategory('completed')}>Completed</button>
-                    </div>
-                    
-                </div>
-                <div className={`${styles.header} `}>
-                    <button className={styles['maximize-tasks-button']} onClick={isTasksExpanded ? minimizeTasks : expandTasks}>
-                        <img className='small-icon' src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
-                    </button>       
-                    <p>Tasks: {selectedCategory === 'all' ? filteredTasks.length : selectedCategory === 'not-completed' ? notCompletedTasks.length : selectedCategory === "completed" ? completedTasks.length : selectedCategory === "pinned" ? pinnedTasks.length : null}</p>
-                    {selectedTask ? (
-                        <div className={styles['task-buttons']}>
-                            <button onClick={handleEditTask}><img src={IconLibrary.Edit} alt='edit selected task'></img></button>
-                            <button onClick={handlePinTask}><img src={pinnedTasks.some(item=>item.id === selectedTask) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
-                            <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
-                        </div>
-                    ) : null}
-                    <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>
-                </div>
-                <div className={styles.container}>
-                    {selectedCategory === 'all' ? (
-                    <>
-                        {filteredTasks && filteredTasks.length > 0 ? 
-                            filteredTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
-                         : null}
-                    </>
-                    ) 
-                    : null}
-                    {selectedCategory === 'completed' ? (
-                        <>
-                            {completedTasks && completedTasks.length > 0 ? 
-                                completedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
-                            : null}
-                        </>
-                        ) 
-                    : null}
-                    {selectedCategory === 'not-completed' ? (
-                        <>
-                            {notCompletedTasks && notCompletedTasks.length > 0 ? 
-                                notCompletedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
-                            : null}
-                        </>
-                        ) 
-                    : null}
-                    {selectedCategory === 'pinned' ? (
-                        <>
-                            {pinnedTasks && pinnedTasks.length > 0 ? 
-                                pinnedTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
-                            : null}
-                        </>
-                        ) 
-                    : null}   
-                </div>
-               
             </div>
-         );
+            <div className={`${styles.header} `}>
+                <button className={styles['maximize-tasks-button']} onClick={isTasksExpanded ? minimizeTasks : expandTasks}>
+                    <img className='small-icon' src={isTasksExpanded ? IconLibrary.Minimize : IconLibrary.Maximize} alt='toggle tasks maximize'></img>
+                </button>       
+                <p>Tasks: {filteredTasks?.length}</p>
+                {selectedTask ? (
+                    <div className={styles['task-buttons']}>
+                        <button onClick={handleEditTask}><img src={IconLibrary.Edit} alt='edit selected task'></img></button>
+                        <button onClick={handlePinTask}><img src={tasks.some(item=>item.id === selectedTask && item.isPinned) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
+                        <button onClick={handleDeleteTask}><img src={IconLibrary.Delete} alt='delete selected task'></img></button>
+                    </div>
+                ) : null}
+                <button onClick={()=>setShowNewTask(true)}><img src={IconLibrary.Plus} alt='open new project'></img></button>
+            </div>
+            <div className={styles.container}>
+                {filteredTasks && filteredTasks.length > 0 ? 
+                    filteredTasks?.map((task, index)=>(<Task data={task} key={index} isSelected={task.id === selectedTask} selectTask={handleSelectTask}  />))
+                : null}
+            </div>
+            
+        </div>
+        );
    
 }
  
