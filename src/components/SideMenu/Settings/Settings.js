@@ -3,6 +3,8 @@ import { enterFullScreen, exitFullScreen } from '../../../helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
 import { resetAppSettings, toggleScreenAwake, updateSetting } from '../../../store/appSettingsSlice';
+import Toggle from '../../common/Toggle';
+import { IconLibrary } from '../../../IconLibrary';
 
 
 const Settings = () => {
@@ -30,57 +32,55 @@ const Settings = () => {
                 <div className={styles.setting}>
                     <h3>Fullscreen</h3>
                     <div className={styles['setting-buttons']}>
-                        {settings.isFullscreen ? <button onClick={exitFullScreen}>Disable</button> : <button onClick={enterFullScreen}>Enable</button>}
+                        <Toggle isActive={settings.isScreenAwakeOn} functionToRun={settings.isFullscreen ? exitFullScreen : enterFullScreen} />
                     </div>
                 </div>
                 <div className={styles.setting}>
                     <h3>Keep Screen Awake</h3>
-                    <div className={styles['setting-buttons']}>
-                        {settings.isScreenAwakeOn ? <button onClick={toggleScreenAwakeOff}>Disable</button> : <button onClick={toggleScreenAwakeOn}>Enable</button>}
-                    </div>
+                    <Toggle isActive={settings.isScreenAwakeOn} functionToRun={settings.isScreenAwakeOn ? toggleScreenAwakeOff : toggleScreenAwakeOn} />
                     
                 </div>
-                <div className={styles.setting}>
-                    <h3>Reset Items</h3>
-                    <div className={styles['setting-buttons']}>
-                        <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
-                        <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
-                        <button onClick={handleResetAll}>All</button>
-                    </div>
-                    
-                </div>
-                <div className={styles.setting}>
-                    <h3>Themes</h3>
-                    <div className={styles['setting-buttons']}>
-                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'dark' }))}>Dark</button>
-                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'light' }))}>Light</button>
-                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'amoled' }))}>AMOLED</button>
-                        <button onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'cute' }))}>Kawaii</button>
-                    </div>
-                    
-                </div>
+                
                 <div className={styles.setting}>
                     <h3>Show Fullscreen Promp on start</h3>
-                    <div className={styles['setting-buttons']}>
-                        {settings.showFullScreenPrompt ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: true }))}>Enable</button>}
-                    </div>
+                    <Toggle isActive={settings.showFullScreenPrompt} functionToRun={settings.showFullScreenPrompt ? ()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: false })) : ()=>dispatch(updateSetting({ settingKey: 'showFullScreenPrompt', value: true }))} />
                     
                 </div>
                 <div className={styles.setting}>
                     <h3>Show Fullscreen Button</h3>
-                    <div className={styles['setting-buttons']}>
-                        {settings.showFullscreenButton ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: true }))}>Enable</button>}
-                    </div>
+                    <Toggle isActive={settings.showFullscreenButton} functionToRun={settings.showFullscreenButton ? ()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: false })) : ()=>dispatch(updateSetting({ settingKey: 'showFullscreenButton', value: true }))} />
                     
                     
                 </div>
                 <div className={styles.setting}>
                     <h3>Notifications</h3>
-                    <div className={styles['setting-buttons']}>
-                        {settings.showNotifications ? <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: false }))}>Disable</button> : <button onClick={()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: true }))}>Enable</button>}
-                    </div>
+                    <Toggle isActive={settings.showNotifications} functionToRun={settings.showNotifications ? ()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: false })) : ()=>dispatch(updateSetting({ settingKey: 'showNotifications', value: true }))} />
+                </div>
+                <h3>Reset Items</h3>
+                <div className={styles.setting}>
+                    <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
+                </div>
+                <div className={styles.setting}>
+                    <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
+                </div>
+                <div className={styles.setting}>
+                    <button onClick={handleResetAll}>All</button>
+                </div>
+                <h3>Themes</h3>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'dark' }))}><p>Dark</p>{settings.theme === 'dark' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                </div>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'light' }))}><p>Light</p>{settings.theme === 'light' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                </div>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'amoled' }))}><p>AMOLED</p>{settings.theme === 'amoled' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                </div>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'cute' }))}><p>Kawaii</p>{settings.theme === 'cute' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
                 </div>
             </div>
+            
         </div>
      );
 }
