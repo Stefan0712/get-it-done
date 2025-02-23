@@ -1,5 +1,6 @@
 import { IconLibrary } from '../../IconLibrary';
 import { updatePomodoroSettings } from '../../store/appSettingsSlice';
+import Toggle from '../common/Toggle';
 import styles from './Pomodoro.module.css';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,55 +34,35 @@ const PomodoroSettings = ({closeSettings}) => {
                 <button onClick={closeSettings}><img className='medium-icon' src={IconLibrary.Close} alt='close pomodoro settings'></img></button>
             </div>
             <div className={styles['settings-container']}>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Duration of Focus Sessions:</p>
-                        <input type='number' min={0} value={focusDuration} onChange={(e)=>setFocusDuration(e.target.value)}></input>
-                        <p> minutes</p>
-                    </div>
+                <div className={styles['setting']}>
+                    <p>Duration of Focus Sessions: (min)</p>
+                    <input type='number' min={0} value={focusDuration} onChange={(e)=>setFocusDuration(e.target.value)}></input>
                 </div>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Duration of Break Sessions:</p>
-                        <input type='number' min={0} value={breakDuration} onChange={(e)=>setBreakDuration(e.target.value)}></input>
-                        <p> minutes</p>
-                    </div>
+                <div className={styles['setting']}>
+                    <p>Duration of Break Sessions: (min)</p>
+                    <input type='number' min={0} value={breakDuration} onChange={(e)=>setBreakDuration(e.target.value)}></input>
                 </div>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Include long break ?</p>
-                        <select value={includeLongBreaks} onChange={(e)=>setIncludeLongBreaks(e.target.value)}>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                        </select>
+                <div className={styles['setting']}>
+                    <p>Include long break</p>
+                    <Toggle isActive={includeLongBreaks} functionToRun={includeLongBreaks ? ()=>setIncludeLongBreaks(false) : ()=>setIncludeLongBreaks(true)} />
+                </div>
+                {includeLongBreaks ? 
+                    <div className={styles['setting']}>
+                        <p>Duration of Long Breaks: (min)</p>
                         <input type='number' name='longBreak' min={0} value={longBreakDuration} onChange={(e)=>setLongBreakDuration(e.target.value)}></input>
-                        <p> minutes</p>
-                    </div>
+                    </div> 
+                : null}
+                <div className={styles['setting']}>
+                    <p>Long Break each </p>
+                    <input type='number' min={3} value={longBreakFrequency} onChange={(e)=>setLongBreakFrequency(e.target.value)}></input>
                 </div>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Long Break each </p>
-                        <input type='number' min={3} value={longBreakFrequency} onChange={(e)=>setLongBreakFrequency(e.target.value)}></input>
-                        <p> focus sessions</p>
-                    </div>
+                <div className={styles['setting']}>
+                    <p>Enable Notifications</p>
+                    <Toggle isActive={enableNotifications} functionToRun={enableNotifications ? ()=>setEnableNotifications(false) : ()=>setEnableNotifications(true)} />
                 </div>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Enable Notifications</p>
-                        <select value={enableNotifications} onChange={(e)=>setEnableNotifications(e.target.value)}>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                        </select>
-                    </div>
-                </div>
-                <div className={styles['settings-section']}>
-                    <div className={styles.top}>
-                        <p>Auto Skip Sessions</p>
-                        <select value={autoSkip} onChange={(e)=>setAutoSkip(e.target.value)}>
-                            <option value={true}>Yes</option>
-                            <option value={false}>No</option>
-                        </select>
-                    </div>
+                <div className={styles['setting']}>
+                    <p>Auto Skip Sessions</p>
+                    <Toggle isActive={autoSkip} functionToRun={autoSkip ? ()=>setAutoSkip(false) : ()=>setAutoSkip(true)} />
                 </div>
             </div>
         </div>

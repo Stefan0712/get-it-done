@@ -217,33 +217,29 @@
     background-color: transparent;
     border: none;
 }
-.settings-section{
+.setting{
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-.settings-section .top p{
-    width: auto;
+    height: 50px;
+    min-height: 50px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    padding: 0 15px;
+    border-bottom: 1px solid rgba(221,221,221,0.1);
+    gap: 20px;
 }
-.settings-section .top{
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: start;
+.setting p{
+    margin-right: auto;
 }
-.settings-section .top input,
-.settings-section option,
-.settings-section select{
+.setting input,
+.setting option,
+.setting select{
     width: 50px;
     height: 30px;
     border: none;
     border-radius: 5px;
     padding-left: 10px;
     color: black;
+    margin-left: auto;
 }
 
 /* minimized timer */
