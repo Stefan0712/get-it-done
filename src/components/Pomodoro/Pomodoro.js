@@ -63,6 +63,9 @@ const Pomodoro = () => {
                 setTimeLeft(settings.focusDuration * 60);
             }
             clearInterval(intervalRef.current);
+            if(settings.autoSkip){
+                startTimer();
+            }
         }
     }
 
