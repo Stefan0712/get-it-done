@@ -12,8 +12,8 @@ const MessageModal = ({data, closeModal}) => {
         position: 'absolute',
         top: '10px',
         left: '10px',
-        zIndex: '20',
-        backgroundColor: data.type === 'success' ? '#4CAF50' : data.type === 'info' ? '#0F0F0F' : '#E53935',
+        zIndex: '60',
+        backgroundColor: data.type === 'success' ? '#4CAF50' : data.type === 'info' ? 'var(--secondary-color)' : '#E53935',
         borderRadius: '10px',
         padding: '10px 5px'
     };

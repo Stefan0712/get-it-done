@@ -2,9 +2,9 @@
     box-sizing: border-box !important;
     padding: 0;
     margin: 0;
-    color: white;
     font-family: "Average Sans", serif;
 }
+
 .App{
     height: var(--app-height);
     max-height: 100vh;
@@ -12,7 +12,7 @@
     width: 100vw;
     max-width: 100vw;
     display: flex;
-    background-color: #171717;
+    background-color: var(--bg-color);
     overflow: hidden !important;
 }
 @media (orientation: portrait) {
@@ -23,16 +23,7 @@
     }
 
 }
-.amoled{
-    background-color: #000000 !important;
-}
-.light{
-    background-color: white;
-    color: black !important;
-}
-.light p{
-    color: black !important;
-}
+
 .icon{
     width: 40px;
     height: 40px;

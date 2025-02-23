@@ -1,6 +1,4 @@
-*{
-    box-sizing: border-box;
-}
+
 
 .toggle-button div{
     transition: all 0.1s;
@@ -18,4 +16,70 @@
     to{
         top: 0
     }
+}
+/* themes */
+
+
+
+:root {
+    --bg-color: #171717;
+    --text-color: #ffffff;
+    --accent-color: #ff4500;
+    --secondary-color: #0F0F0F;  
+    --module-bg-color: #0F0F0F;
+}
+*{
+    box-sizing: border-box;
+    color: var(--text-color);
+}
+
+
+
+/* Dark Theme */
+.dark-theme {
+    --bg-color: #171717;
+    --text-color: #ffffff;
+    --accent-color: #ff4500;
+    --secondary-color: #0F0F0F; 
+    --module-bg-color: #0F0F0F;
+}
+
+/* Light Theme */
+.light-theme {
+    --bg-color: #ffffff;
+    --text-color: #171717;
+    --accent-color: #ff4500;
+    --secondary-color: #d8d8d8;  
+    --module-bg-color: #d8d8d8;
+}
+.light-theme img{
+    filter: invert(1);
+}
+/* Amoled Theme */
+.amoled-theme {
+    --bg-color: black;
+    --text-color: #ffffff;
+    --accent-color: #ff4500;
+    --secondary-color: rgb(37, 37, 37);  
+    --module-bg-color: rgb(0, 0, 0);
+}
+
+/* Sakura Theme */
+.sakura-theme {
+    --bg-color: #ffffff;
+    --text-color: #171717;
+    --accent-color: #F5B7B1;
+    --secondary-color: #cacaca;  
+    --module-bg-color: #F5B7B1;
+}
+.sakura-theme img{
+    filter: invert(1);
+}
+/* Hatsune Miku Theme */
+.miku-theme {
+    --bg-color: #373b3e;
+    --text-color: #ffffff;
+    --accent-color: #47c8c0;
+    --secondary-color: #bec8d1; 
+    --module-bg-color: #252525;
 }

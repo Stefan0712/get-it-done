@@ -68,16 +68,19 @@ const Settings = () => {
                 </div>
                 <h3>Themes</h3>
                 <div className={styles.setting}>
-                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'dark' }))}><p>Dark</p>{settings.theme === 'dark' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'dark-theme' }))}><p>Dark</p>{settings.theme === 'dark-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
                 </div>
                 <div className={styles.setting}>
-                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'light' }))}><p>Light</p>{settings.theme === 'light' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'light-theme' }))}><p>Light</p>{settings.theme === 'light-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
                 </div>
                 <div className={styles.setting}>
-                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'amoled' }))}><p>AMOLED</p>{settings.theme === 'amoled' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'amoled-theme' }))}><p>AMOLED</p>{settings.theme === 'amoled-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
                 </div>
                 <div className={styles.setting}>
-                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'cute' }))}><p>Kawaii</p>{settings.theme === 'cute' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'sakura-theme' }))}><p>Sakura</p>{settings.theme === 'sakura-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                </div>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'miku-theme' }))}><p>Miku</p>{settings.theme === 'miku-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
                 </div>
             </div>
             

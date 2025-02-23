@@ -233,7 +233,7 @@ const Pomodoro = () => {
                     <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
                         <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
                     </button>
-                    <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(#FF8C00 ${percentageElapsed()}%, white ${percentageElapsed()}% 100%)`}}>
+                    <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--secondary-color) ${percentageElapsed()}% 100%)`}}>
                         <div className={styles['timer-content']}>
                             
                             <div className={`${styles['timer-info']} ${areButtonsHidden ? styles['expanded-info'] : ''}`}>
@@ -248,10 +248,6 @@ const Pomodoro = () => {
                                 
                             </div>
                             <div className={`${styles.buttons} ${areButtonsHidden ? styles['minimized-buttons'] : ''}`} >
-                                <div className={`${styles['extra-info']} ${areButtonsHidden ? 'hide' : ''}`}>
-                                    <p className={styles.action}>{action}</p>
-                                    <p className={styles.elapsedTime}>Time Elapsed: {formatTime(totalTimeElapsed)}</p>
-                                </div>
                                 <div className={`${styles['buttons-container']} ${areButtonsHidden ? 'hide' : ''}`}>
                                     <button onClick={resetTimer}>
                                         <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
@@ -295,7 +291,7 @@ const Pomodoro = () => {
                     </div>
                 </div>
 
-                <div className={styles.buttons}>
+                <div className={styles.minimizedButtons}>
                     <button onClick={resetTimer}>
                         <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
                     </button>

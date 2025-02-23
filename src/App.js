@@ -52,6 +52,12 @@ function App() {
     };
     
   }, []);
+
+  useEffect(() => {
+    document.documentElement.className = settings.theme;
+    console.log('Theme was changed')
+  }, [settings.theme]);
+
   useEffect(() => {
     if (settings.isScreenAwakeOn) {
         noSleep.enable();
@@ -59,6 +65,7 @@ function App() {
         noSleep.disable();
     }
   }, [settings.isScreenAwakeOn]);
+
   useEffect(()=>{
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("/service-worker.js").then(() => {

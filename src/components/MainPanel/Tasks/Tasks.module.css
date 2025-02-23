@@ -45,7 +45,7 @@
     margin-right: auto;
 }
 .category option{
-    background-color: #171717;
+    background-color: var(--bg-color);
 }
 .header .task-buttons{
     margin-left: auto;
@@ -111,8 +111,8 @@
     min-height: 100%;
 }
 .task.selected{
-    border-left: 2px solid white;
-    border-right: 2px solid white;
+    border-left: 2px solid var(--accent-color);
+    border-right: 2px solid var(--accent-color);
 }
 .task input[type="checkbox"]{
     height: 25px;
@@ -122,7 +122,7 @@
     border-radius: 5px;
     background-color: transparent;
     appearance: none;
-    border: 2px solid #fff
+    border: 2px solid var(--accent-color);
 }
 .task button{
     background-color: transparent;
@@ -190,7 +190,7 @@ button{
     height: 300px;
     max-height: 300px;
     min-height: 300px;
-    background-color: #171717;
+    background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
     animation-name: showNewTask;
@@ -246,7 +246,7 @@ fieldset{
 }
 
 .new-task .save-button{
-    background-color: #0F0F0F;
+    background-color: var(--secondary-color);
     color: white;
     height: 50px;
     min-height: 50px;
