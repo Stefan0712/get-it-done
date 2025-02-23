@@ -12,15 +12,10 @@ const NewTask = ({closeNewTask}) => {
 
     const [title, setTitle] = useState('');
     const [priority, setPriority] = useState('normal');
-    const todayRawDate = new Date();
-    const todayDate = todayRawDate.toISOString().split("T")[0];
-    const [dueDate, setDueDate] = useState(todayDate);
-    const [dueHour, setDueHour] = useState("00:00");
-    const [isPinned, setIsPinned] = useState(false);
 
     const handleNewTask = () =>{
         const taskId = uuidv4();
-        dispatch(addTask({id: taskId, title, priority, dueDate, dueHour, isPinned}));
+        dispatch(addTask({id: taskId, title, priority}));
         closeNewTask();
     }
 
@@ -42,14 +37,6 @@ const NewTask = ({closeNewTask}) => {
                     <option value={'normal'}>Normal</option>
                     <option value={'high'}>High</option>
                 </select>
-            </fieldset>
-            <fieldset id={styles['due-date-input']}>
-                <label>Due Date</label>
-                <input type='date' name='dueDate' onChange={(e)=>setDueDate(e.target.value)} value={dueDate}></input>
-            </fieldset>
-            <fieldset id={styles['due-hour-input']}>
-                <label>Due Hour</label>
-                <input type='time' name='dueHour' onChange={(e)=>setDueHour(e.target.value)} value={dueHour}></input>
             </fieldset>
             <button className={styles['save-button']} type='button' onClick={handleNewTask}>Save</button>
         </div>

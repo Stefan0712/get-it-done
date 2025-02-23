@@ -192,21 +192,22 @@ button{
     min-height: 300px;
     background-color: #171717;
     display: flex;
+    flex-direction: column;
     animation-name: showNewTask;
     animation-duration: 0.1s;
     border-radius: 10px;
     border: 1px solid rgba(211, 211, 211, 0.1);
     z-index: 15;
     padding: 20px 10px;
-    flex-wrap: wrap;
     gap: 10px;
-    justify-content: center;
+    align-items: center;
 }
 fieldset{
     border: none;
     display: flex;
     flex-direction: column;
     gap: 5px;
+    width: 100%;
 }
 .new-task-header{
     height: 40px;
@@ -219,18 +220,7 @@ fieldset{
     border: 1px solid transparent;
     background-color: transparent !important;
 }
-#title-input{
-    width: calc(60% - 10px);
-}
-#priority-input{
-    width: calc(40% - 10px);
-}
-#due-date-input{
-    width: calc(60% - 10px);
-}
-#due-hour-input{
-    width: calc(40% - 10px);
-}
+
 
 @keyframes showNewTask {
     from{
@@ -247,6 +237,7 @@ fieldset{
 .new-task select,
 .new-task option{
     height: 40px;
+    width: 100%;
     border: none;
     border-radius: 5px;
     color: black;
@@ -261,6 +252,7 @@ fieldset{
     min-height: 50px;
     max-height: 50px;
     width: 60%;
+    margin-top: 10px;
 }
 .new-task .header{
     width: 100%;
