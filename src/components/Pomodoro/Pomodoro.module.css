@@ -18,6 +18,7 @@
     left: 15px;
     background-color: transparent;
     border: none;
+    z-index: 20;
 }
 .settings-button{
     right: 15px;
@@ -75,7 +76,6 @@
 }
 :global(.App.amoled) .buttons button{
     background-color: black;
-    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .timer-background.animated-session-end {
