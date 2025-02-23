@@ -23,7 +23,7 @@ const PomodoroSettings = ({closeSettings}) => {
     
     const handleSave = () =>{
         dispatch(updatePomodoroSettings({focusDuration, breakDuration, longBreakDuration, includeLongBreaks, longBreakFrequency, enableNotifications, autoSkip}));
-        console.log(settings)
+        closeSettings();
     }
 
     return ( 
