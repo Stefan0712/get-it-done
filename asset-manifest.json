@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/get-it-done/static/css/main.93830f48.css",
-    "main.js": "/get-it-done/static/js/main.519aa310.js",
+    "main.css": "/get-it-done/static/css/main.cef8e44d.css",
+    "main.js": "/get-it-done/static/js/main.fad6c739.js",
     "static/media/settings.svg": "/get-it-done/static/media/settings.2498d573236dab36464096cc00740241.svg",
     "static/media/pin.svg": "/get-it-done/static/media/pin.96563a31d4c8ed00a61444284419f92d.svg",
     "static/media/disableFullscreen.svg": "/get-it-done/static/media/disableFullscreen.3e53f76ffbaa37d5041b82a2a5537d6e.svg",
@@ -16,6 +16,8 @@
     "static/media/checkmark.svg": "/get-it-done/static/media/checkmark.ff804de6cb3dd5d279a4adc4ce0a744c.svg",
     "static/media/expand-right.svg": "/get-it-done/static/media/expand-right.f5d7d8e6ba8de469fb9bd040791139cd.svg",
     "static/media/expand-left.svg": "/get-it-done/static/media/expand-left.a0fc68672f8da92adf8152ab14a05f84.svg",
+    "static/media/restore.svg": "/get-it-done/static/media/restore.48b0267ac7022542ecfcb969a89e5ee4.svg",
+    "static/media/swap.svg": "/get-it-done/static/media/swap.cb976f25149b39c04d383f954f7d406c.svg",
     "static/media/plus-circle.svg": "/get-it-done/static/media/plus-circle.2afb0dd875f4ec5cbb104188c89cecd3.svg",
     "static/media/minimize.svg": "/get-it-done/static/media/minimize.80179aa2df88f0e477b9930e52dc157b.svg",
     "static/media/delete.svg": "/get-it-done/static/media/delete.4419437b7c28ceeb8d50f8f56d3fe08d.svg",
@@ -24,11 +26,11 @@
     "static/media/plus.svg": "/get-it-done/static/media/plus.2219490fcaffbcbf3e4634b363ad41f6.svg",
     "static/media/pause.svg": "/get-it-done/static/media/pause.4014fb6e8a328d0bc2037b631c3a24d7.svg",
     "static/media/finish.svg": "/get-it-done/static/media/finish.15eb3505dbbd83f8ba9437562b75ef62.svg",
-    "main.93830f48.css.map": "/get-it-done/static/css/main.93830f48.css.map",
-    "main.519aa310.js.map": "/get-it-done/static/js/main.519aa310.js.map"
+    "main.cef8e44d.css.map": "/get-it-done/static/css/main.cef8e44d.css.map",
+    "main.fad6c739.js.map": "/get-it-done/static/js/main.fad6c739.js.map"
   },
   "entrypoints": [
-    "static/css/main.93830f48.css",
-    "static/js/main.519aa310.js"
+    "static/css/main.cef8e44d.css",
+    "static/js/main.fad6c739.js"
   ]
 }
