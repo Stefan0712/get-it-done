@@ -340,9 +340,11 @@
         width: 100vw;
         padding: 0;
         flex-direction: row;
+        border: none;
         border-top: 1px solid rgba(211, 211, 211, 0.1);
         overflow: hidden;
         align-items: center;
+        z-index: 20;
     }
     .minimizedButtons{
         display: flex;

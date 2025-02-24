@@ -19,6 +19,7 @@ import Unpin from './assets/icons/unpin.svg';
 import Edit from './assets/icons/edit.svg';
 import Minimize from './assets/icons/minimize.svg';
 import Maximize from './assets/icons/maximize.svg';
+import Restore from './assets/icons/restore.svg';
 
 
 export const IconLibrary = {
@@ -42,5 +43,6 @@ export const IconLibrary = {
     Unpin,
     Edit,
     Minimize,
-    Maximize
+    Maximize,
+    Restore
 }

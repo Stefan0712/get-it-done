@@ -66,9 +66,28 @@ const tasksSlice = createSlice({
           state.tasks[taskIndex] = { ...state.tasks[taskIndex], ...updatedTaskData };
       }
     },
+    restoreTask: (state, action) => {
+      const id = action.payload;
+      const taskIndex = state.deleted.findIndex(item => item.id === id);
+      
+      if (taskIndex !== -1) {
+          const [restoredTask] = state.deleted.splice(taskIndex, 1); // Remove from deleted
+          state.tasks.push(restoredTask); // Add back to tasks
+          // If the task was completed, increase the counter
+          if (restoredTask.isCompleted) {
+              const today = new Date().toISOString().split("T")[0];
+              const existingDay = state.completedTasksByDay.find(d => d.date === today);
+              if (existingDay) {
+                  existingDay.count += 1;
+              } else {
+                  state.completedTasksByDay.push({ date: today, count: 1 });
+              }
+          }
+      }
+  },
     resetTasks: () => initialState,
   },
 });
 
-export const { addTask, deleteTask, toggleTaskCompletion, togglePin, updateTask, resetTasks } = tasksSlice.actions;
+export const { addTask, deleteTask, restoreTask, toggleTaskCompletion, togglePin, updateTask, resetTasks } = tasksSlice.actions;
 export default tasksSlice.reducer;

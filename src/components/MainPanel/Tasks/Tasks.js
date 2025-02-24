@@ -7,7 +7,7 @@ import styles from './Tasks.module.css';
 import Task from './Task/Task';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteTask, togglePin } from '../../../store/tasksSlice';
+import { deleteTask, restoreTask, togglePin } from '../../../store/tasksSlice';
 import { setSelectedTask } from '../../../store/appSettingsSlice';
 
 import EditTask from './EditTask';
@@ -22,6 +22,7 @@ const Tasks = () => {
 
     const tasks = useSelector(state=>state.tasks.tasks)
     const selectedTask = useSelector(state=>state.appSettings.selectedTask);
+    const deletedTasks = useSelector(state=>state.tasks.deleted);
 
     const isMaximized = useSelector(state=>state.appSettings.isPomodoroMinimized);
 
@@ -62,7 +63,7 @@ const Tasks = () => {
             setFilteredTasks([]);
             return;
         }
-    
+        dispatch(setSelectedTask(null));
         switch (category) {
             case 'all':
                 setFilteredTasks([...tasks]);
@@ -80,6 +81,10 @@ const Tasks = () => {
                 setFilteredTasks(tasks.filter(item => item.isPinned));
                 setSelectedCategory('pinned');
                 break;
+            case 'deleted':
+                setFilteredTasks(deletedTasks || []);
+                setSelectedCategory('deleted');
+                break;
             default:
                 setFilteredTasks([...tasks]);
                 setSelectedCategory('all');
@@ -93,10 +98,14 @@ const Tasks = () => {
         dispatch(deleteTask(selectedTask));
         dispatch(setSelectedTask(null));
     }
+    const handleRestoreTask = () =>{
+        dispatch(restoreTask(selectedTask));
+        dispatch(setSelectedTask(null));
+        setSelectedCategory('all');
+    }
     const handlePinTask = () =>{
         dispatch(togglePin(selectedTask));
         dispatch(setSelectedTask(null));
-        console.log(selectedTask)
     }
     const handleEditTask = () =>{
         setShowEditTask(selectedTask);
@@ -113,14 +122,20 @@ const Tasks = () => {
                     <option value={'not-completed'}>Not Completed</option>
                     <option value={'pinned'}>Pinned</option>
                     <option value={'completed'}>Completed</option>
+                    <option value={'deleted'}>Deleted</option>
                 </select>      
-                {selectedTask ? (
+                {selectedTask && selectedCategory !== 'deleted' ? (
                     <div className={styles['task-buttons']}>
                         <button onClick={handleEditTask}><img className='small-icon' src={IconLibrary.Edit} alt='edit selected task'></img></button>
                         <button onClick={handlePinTask}><img className='small-icon' src={tasks.some(item=>item.id === selectedTask && item.isPinned) ? IconLibrary.Unpin : IconLibrary.Pin} alt='pin selected task'></img></button>
                         <button onClick={handleDeleteTask}><img className='small-icon' src={IconLibrary.Delete} alt='delete selected task'></img></button>
                     </div>
-                ) : null}
+                ) : 
+                selectedTask && selectedCategory === 'deleted' ? (
+                    <div className={styles['task-buttons']}>
+                        <button onClick={handleRestoreTask}><img className='small-icon' src={IconLibrary.Restore} alt='Restore selected deleted task'></img></button>
+                    </div>
+                 ) : null}
                 <button onClick={()=>setShowNewTask(true)}>
                     <img className='small-icon' src={IconLibrary.Plus} alt='open new project'></img>
                 </button>
