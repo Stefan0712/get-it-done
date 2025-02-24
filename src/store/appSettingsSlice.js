@@ -23,7 +23,8 @@ const initialState = {
     history: {},
     theme: 'dark',
     isPomodoroMinimized: false,
-    isTasksMaximized: false
+    isTasksMaximized: false,
+    isSwapped: false,
 
 };
 

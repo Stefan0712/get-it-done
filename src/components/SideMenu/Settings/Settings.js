@@ -37,8 +37,11 @@ const Settings = () => {
                 </div>
                 <div className={styles.setting}>
                     <h3>Keep Screen Awake</h3>
-                    <Toggle isActive={settings.isScreenAwakeOn} functionToRun={settings.isScreenAwakeOn ? toggleScreenAwakeOff : toggleScreenAwakeOn} />
-                    
+                    <Toggle isActive={settings.isScreenAwakeOn} functionToRun={settings.isScreenAwakeOn ? toggleScreenAwakeOff : toggleScreenAwakeOn} />  
+                </div>
+                <div className={styles.setting}>
+                    <h3>Swap Panels</h3>
+                    <Toggle isActive={settings.isSwapped} functionToRun={settings.isSwapped ? ()=>dispatch(updateSetting({ settingKey: 'isSwapped', value: false })) : ()=>dispatch(updateSetting({ settingKey: 'isSwapped', value: true }))} />  
                 </div>
                 
                 <div className={styles.setting}>
