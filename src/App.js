@@ -17,22 +17,6 @@ function App() {
   const settings = useSelector((state)=>state.appSettings);
 
   const dispatch = useDispatch();
-
-  
-
-  useEffect(() => {
-    const setAppHeight = () => {
-      const height = window.innerHeight;
-      document.documentElement.style.setProperty('--app-height', `${height}px`);
-    };
-  
-    setAppHeight();
-    window.addEventListener('resize', setAppHeight);
-  
-    return () => {
-      window.removeEventListener('resize', setAppHeight);
-    };
-  }, []);
   
   
   useEffect(() => {
