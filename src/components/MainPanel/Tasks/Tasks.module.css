@@ -111,8 +111,8 @@
     min-height: 100%;
 }
 .task.selected{
-    border-left: 2px solid var(--accent-color);
-    border-right: 2px solid var(--accent-color);
+    border-left: 2px solid var(--selected-item-color);
+    border-right: 2px solid var(--selected-item-color);
 }
 .task input[type="checkbox"]{
     height: 25px;
@@ -122,7 +122,7 @@
     border-radius: 5px;
     background-color: transparent;
     appearance: none;
-    border: 2px solid var(--accent-color);
+    border: 2px solid var(--checkbox-color);
 }
 .task button{
     background-color: transparent;
@@ -138,7 +138,7 @@
     overflow: hidden;
 }
 button{
-    border: 1px solid rgba(211, 211, 211, 0.1);
+    border: 1px solid var(--button-border-color);
     border-radius: 5px;
     font-size: 1.2rem;
 }
@@ -196,7 +196,7 @@ button{
     animation-name: showNewTask;
     animation-duration: 0.1s;
     border-radius: 10px;
-    border: 1px solid rgba(211, 211, 211, 0.1);
+    border: 1px solid var(--general-border-color);
     z-index: 15;
     padding: 20px 10px;
     gap: 10px;
@@ -246,13 +246,13 @@ fieldset{
 }
 
 .new-task .save-button{
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: var(--button-bg-color);
     height: 50px;
     min-height: 50px;
     max-height: 50px;
     width: 60%;
     margin-top: 10px;
+    border: 1px solid var(--button-border-color);
 }
 .new-task .header{
     width: 100%;
@@ -268,7 +268,7 @@ fieldset{
     background-color: transparent !important;
 }
 #pin-task-input option{
-    color: black;
+    color: var(--text-color);
 }
 
 

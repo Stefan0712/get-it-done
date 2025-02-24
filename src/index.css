@@ -28,12 +28,13 @@
     --secondary-color: #0F0F0F;  
     --module-bg-color: #0F0F0F;
     --timer-border-color: lightgray;
-    --settings-divider-color: lightgray;
-    --selected-item-color: lightgray;
+    --settings-divider-color: rgba(221, 221, 221, 0.1);
+    --selected-item-color: #ff4500;
     --flash-animation-color: red;
-    --button-border-color: lightgray;
+    --button-border-color: rgba(221, 221, 221, 0.1);
+    --button-bg-color: #171717;
     --checkbox-color: #ff4500;
-    
+    --general-border-color: rgba(221, 221, 221, 0.1);
 }
 *{
     box-sizing: border-box;
@@ -49,6 +50,14 @@
     --accent-color: #ff4500;
     --secondary-color: #0F0F0F; 
     --module-bg-color: #0F0F0F;
+    --timer-border-color: lightgray;
+    --settings-divider-color: rgba(221, 221, 221, 0.1);
+    --selected-item-color: #ff4500;
+    --flash-animation-color: red;
+    --button-border-color: rgba(221, 221, 221, 0.1);
+    --button-bg-color: #171717;
+    --checkbox-color: #ff4500;
+    --general-border-color: rgba(221, 221, 221, 0.1);
 }
 
 /* Light Theme */
@@ -58,6 +67,14 @@
     --accent-color: #ff4500;
     --secondary-color: #d8d8d8;  
     --module-bg-color: #d8d8d8;
+    --timer-border-color: rgba(211, 211, 211, 0.5);
+    --settings-divider-color: rgba(0, 0, 0, 0.2);
+    --selected-item-color: #ff4500;
+    --flash-animation-color: red;
+    --button-border-color: rgba(0, 0, 0, 0.1);
+    --button-bg-color: #ffffff;
+    --checkbox-color: #ff4500;
+    --general-border-color: rgba(0, 0, 0, 0.2);
 }
 .light-theme img{
     filter: invert(1);
@@ -69,6 +86,14 @@
     --accent-color: #ff4500;
     --secondary-color: rgb(37, 37, 37);  
     --module-bg-color: rgb(0, 0, 0);
+    --timer-border-color: lightgray;
+    --settings-divider-color: rgba(221, 221, 221, 0.1);
+    --selected-item-color: #ff4500;
+    --flash-animation-color: red;
+    --button-border-color: rgba(221, 221, 221, 0.1);
+    --button-bg-color: #171717;
+    --checkbox-color: #ff4500;
+    --general-border-color: rgba(221, 221, 221, 0.1);
 }
 
 /* Sakura Theme */
@@ -78,6 +103,14 @@
     --accent-color: #F5B7B1;
     --secondary-color: #cacaca;  
     --module-bg-color: #F5B7B1;
+    --timer-border-color: lightgray;
+    --settings-divider-color: rgba(221, 221, 221, 0.1);
+    --selected-item-color: #ff4500;
+    --flash-animation-color: red;
+    --button-border-color: rgba(221, 221, 221, 0.1);
+    --button-bg-color: #171717;
+    --checkbox-color: #ff4500;
+    --general-border-color: rgba(221, 221, 221, 0.1);
 }
 .sakura-theme img{
     filter: invert(1);
@@ -89,4 +122,12 @@
     --accent-color: #47c8c0;
     --secondary-color: #bec8d1; 
     --module-bg-color: #252525;
+    --timer-border-color: lightgray;
+    --settings-divider-color: rgba(221, 221, 221, 0.1);
+    --selected-item-color: #ff4500;
+    --flash-animation-color: red;
+    --button-border-color: rgba(221, 221, 221, 0.1);
+    --button-bg-color: #171717;
+    --checkbox-color: #ff4500;
+    --general-border-color: rgba(221, 221, 221, 0.1);
 }

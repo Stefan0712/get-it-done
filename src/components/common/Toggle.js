@@ -4,7 +4,7 @@
 const Toggle = ({isActive, functionToRun}) => {
 
     const buttonStyles = {
-        backgroundColor: isActive ? 'var(--accent-color)' : 'white',
+        backgroundColor: isActive ? 'var(--accent-color)' : 'var(--secondary-color)',
         height: '28px',
         width: '50px',
         borderRadius: '30px',

@@ -73,7 +73,7 @@
     
 }
 .selected{
-    border-bottom: 2px solid var(--accent-color) !important;
+    border-bottom: 2px solid var(--selected-item-color) !important;
 }
 .content{
     flex-grow: 1;

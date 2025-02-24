@@ -32,7 +32,7 @@ const Settings = () => {
                 <div className={styles.setting}>
                     <h3>Fullscreen</h3>
                     <div className={styles['setting-buttons']}>
-                        <Toggle isActive={settings.isScreenAwakeOn} functionToRun={settings.isFullscreen ? exitFullScreen : enterFullScreen} />
+                        <Toggle isActive={settings.isFullscreen} functionToRun={settings.isFullscreen ? exitFullScreen : enterFullScreen} />
                     </div>
                 </div>
                 <div className={styles.setting}>

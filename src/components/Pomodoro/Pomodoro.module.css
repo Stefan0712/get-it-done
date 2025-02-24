@@ -37,7 +37,7 @@
     position: relative;
 }
 .timer-background{
-    background-color: var(--accent-color);
+    background-color: var(--timer-border-color);
     width: 100%;
     height: 100%;
     aspect-ratio: 1 / 1;
@@ -144,7 +144,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-color);
+    background-color: var(--button-bg-color);
     width: 75px;
     border: 1px solid transparent;
     transition: transform 0.1s ease-in-out, border-color 0.1s ease-in-out;
@@ -222,7 +222,7 @@
     display: flex;
     align-items: center;
     padding: 0 15px;
-    border-bottom: 1px solid var(--accent-color);
+    border-bottom: 1px solid var(--settings-divider-color);
     gap: 20px;
 }
 .setting p{
@@ -250,7 +250,7 @@
     align-items: center;
     border-left: 1px solid rgba(221, 221, 221, 0.2);
     justify-content: space-between;
-    background: linear-gradient(to top, #FF8C00 var(--progress), transparent var(--progress));
+    background: linear-gradient(to top, var(--timer-border-color) var(--progress), transparent var(--progress));
     padding: 10px 0;
 }
 .minimized-pomodoro .info{
@@ -261,7 +261,7 @@
     align-items: center;
     gap: 10px;
     text-align: center;
-    background-color: var(--bg-color);
+    background-color: var(--button-bg-color);
     border-radius: 5px;
     border: 1px solid transparent;
 }
@@ -282,13 +282,13 @@
 }
 @keyframes flashText {
     0% {
-        color: red;
+        color: var(--flash-animation-color);
     }
     50% {
         color: white;
     }
     100% {
-        color: red;
+        color: var(--flash-animation-color);
     }
 }
 .minimized-pomodoro .sessions-counter{
@@ -361,7 +361,7 @@
     .minimizedButtons button{
         width: 50px;
         height: 50px;
-        background-color: var(--bg-color);
+        background-color: var(--button-bg-color);
         border: none;
     }
    
