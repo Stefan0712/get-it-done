@@ -236,7 +236,7 @@ const Pomodoro = () => {
                     <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--secondary-color) ${percentageElapsed()}% 100%)`}}>
                         <div className={styles['timer-content']}>
                             
-                            <div className={`${styles['timer-info']} ${areButtonsHidden ? styles['expanded-info'] : ''}`}>
+                            <div className={`${styles['timer-info']} ${areButtonsHidden ? styles['expanded-info'] : ''}`}  onClick={isRunning ? pauseTimer : startTimer}>
                                 <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
                                 <div className={styles['sessions-counter']}>
                                     <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
