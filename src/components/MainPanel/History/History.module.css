@@ -47,7 +47,9 @@
 @media (orientation: portrait) {
     
     .history{
-        max-height: calc(100vh - 100vw - 60px);
+        max-height: calc(100vh - 110px);
+        height: auto;
+        flex-grow: 1;
         width: 100vw;
     }
 

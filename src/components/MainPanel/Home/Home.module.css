@@ -115,8 +115,9 @@
 
     .home{
         width: 100vw;
-        height: calc(50vh - 80px);
-        max-height: calc(50vh - 80px);
+        height: auto;
+        flex-grow: 1;
+        max-height: calc(100vh - 160px);
     }
 
 }

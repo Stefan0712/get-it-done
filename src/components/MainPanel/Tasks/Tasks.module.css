@@ -275,7 +275,7 @@ fieldset{
 
 @media (orientation: portrait) {
     .tasks{
-        height: 100%;
+        height: auto;
         flex-grow: 1;
         width: 100%;
     }
