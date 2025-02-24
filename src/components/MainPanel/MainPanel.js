@@ -7,6 +7,7 @@ import Settings from '../SideMenu/Settings/Settings';
 import { useSelector } from 'react-redux';
 import { enterFullScreen, exitFullScreen, isFullscreen } from '../../helpers';
 import { IconLibrary } from '../../IconLibrary';
+import About from './About/About';
 
 
 const MainPanel = () => {
@@ -26,6 +27,7 @@ const MainPanel = () => {
                     <button onClick={()=>setSelectedScreen('tasks')} className={selectedScreen === "tasks" ? styles.selected : ''}>Tasks</button>
                     <button onClick={()=>setSelectedScreen('history')} className={selectedScreen === "history" ? styles.selected : ''}>History</button>
                     <button onClick={()=>setSelectedScreen('settings')} className={selectedScreen === "settings" ? styles.selected : ''}>Settings</button>
+                    <button onClick={()=>setSelectedScreen('about')} className={selectedScreen === "about" ? styles.selected : ''}>About</button>
                 </div>
                     <button className={styles['maximize-panel-button']} onClick={()=>setIsPanelExpanded(true)}>
                         <img className='small-icon' src={IconLibrary.Maximize} alt='toggle panel maximize'></img>
@@ -37,7 +39,7 @@ const MainPanel = () => {
                             <img className='small-icon' src={IconLibrary.Minimize} alt='minimize panel'></img>
                         </button> 
                     : null} 
-                {selectedScreen === 'home' ? <Home /> : selectedScreen === "tasks" ? <Tasks /> : selectedScreen === "history" ? <History /> : selectedScreen === "settings" ? <Settings /> : <Home />}
+                {selectedScreen === 'home' ? <Home /> : selectedScreen === "tasks" ? <Tasks /> : selectedScreen === "history" ? <History /> : selectedScreen === "settings" ? <Settings /> :selectedScreen === "about" ? <About /> : <Home />}
             </div>
         </div>
      );
