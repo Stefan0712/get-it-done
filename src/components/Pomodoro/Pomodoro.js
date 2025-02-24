@@ -219,6 +219,12 @@ const Pomodoro = () => {
             </div>
         );
     };
+    const handleMinimizeTimer = () =>{
+        dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))
+    }
+    const handleMaximizeTimer = () =>{
+        dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))
+    }
     if(!isMinimized){
         return (
             <div className={styles.pomodoro} >
@@ -230,7 +236,7 @@ const Pomodoro = () => {
                     <button className={styles['settings-button']} onClick={enableSettings}>
                         <img className='medium-icon' src={IconLibrary.Settings} alt="Settings" />
                     </button>
-                    <button className={styles['minimize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))}>
+                    <button className={styles['minimize-button']} onClick={handleMinimizeTimer} onTouchStart={handleMinimizeTimer}>
                         <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
                     </button>
                     <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--secondary-color) ${percentageElapsed()}% 100%)`}}>
@@ -282,7 +288,7 @@ const Pomodoro = () => {
     }else if(isMinimized){
         return (
             <div className={styles['minimized-pomodoro']} style={{ '--progress': `${percentageElapsed()}%`,}}>
-                <button className={styles['maximize-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))}>
+                <button className={styles['maximize-button']} onClick={handleMaximizeTimer}>
                     <img className='medium-icon' src={IconLibrary.Maximize} alt="enable pomodoro" />
                 </button>
                 <div className={styles.info}>

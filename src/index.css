@@ -27,6 +27,13 @@
     --accent-color: #ff4500;
     --secondary-color: #0F0F0F;  
     --module-bg-color: #0F0F0F;
+    --timer-border-color: lightgray;
+    --settings-divider-color: lightgray;
+    --selected-item-color: lightgray;
+    --flash-animation-color: red;
+    --button-border-color: lightgray;
+    --checkbox-color: #ff4500;
+    
 }
 *{
     box-sizing: border-box;
