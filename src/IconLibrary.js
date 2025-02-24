@@ -20,6 +20,7 @@ import Edit from './assets/icons/edit.svg';
 import Minimize from './assets/icons/minimize.svg';
 import Maximize from './assets/icons/maximize.svg';
 import Restore from './assets/icons/restore.svg';
+import Swap from './assets/icons/swap.svg';
 
 
 export const IconLibrary = {
@@ -44,5 +45,6 @@ export const IconLibrary = {
     Edit,
     Minimize,
     Maximize,
-    Restore
+    Restore,
+    Swap
 }
