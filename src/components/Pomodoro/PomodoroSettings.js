@@ -1,5 +1,5 @@
 import { IconLibrary } from '../../IconLibrary';
-import { updatePomodoroSettings } from '../../store/appSettingsSlice';
+import { updatePomodoroSettings, updatePomodoroSetting } from '../../store/appSettingsSlice';
 import Toggle from '../common/Toggle';
 import styles from './Pomodoro.module.css';
 import { useState } from 'react';
@@ -25,7 +25,16 @@ const PomodoroSettings = ({closeSettings}) => {
         dispatch(updatePomodoroSettings({focusDuration, breakDuration, longBreakDuration, includeLongBreaks, longBreakFrequency, enableNotifications, autoSkip}));
         closeSettings();
     }
-
+    const handleSettingUpdate = (settingKey) =>{
+        
+        if(settings[settingKey]){
+            console.log('Setting was true', settingKey)
+            dispatch(updatePomodoroSetting({ settingKey, value: false }))
+        }else if(!settings[settingKey]){
+            console.log('Setting was false')
+            dispatch(updatePomodoroSetting({ settingKey, value: true }))
+        }
+    }
     return ( 
         <div className={styles.settings}>
             <div className={styles.header}>
@@ -63,6 +72,34 @@ const PomodoroSettings = ({closeSettings}) => {
                 <div className={styles['setting']}>
                     <p>Auto Skip Sessions</p>
                     <Toggle isActive={autoSkip} functionToRun={autoSkip ? ()=>setAutoSkip(false) : ()=>setAutoSkip(true)} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Timer Progress</p>
+                    <Toggle isActive={settings.showTimerRing} functionToRun={()=>handleSettingUpdate('showTimerRing')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Minimized Timer Progress</p>
+                    <Toggle isActive={settings.showMinimizedTimerProgress} functionToRun={()=>handleSettingUpdate('showMinimizedTimerProgress')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Session End Animation</p>
+                    <Toggle isActive={settings.sessionEndAnimation} functionToRun={()=>handleSettingUpdate('sessionEndAnimation')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p> Show Minimize Button</p>
+                    <Toggle isActive={settings.showMinimizeButton} functionToRun={()=>handleSettingUpdate('showMinimizeButton')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Sessions Counter</p>
+                    <Toggle isActive={settings.showSessionCounter} functionToRun={()=>handleSettingUpdate('showSessionCounter')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Current Session</p>
+                    <Toggle isActive={settings.showCurrentSession} functionToRun={()=>handleSettingUpdate('showCurrentSession')} />
+                </div>
+                <div className={styles['setting']}>
+                    <p>Show Buttons</p>
+                    <Toggle isActive={settings.showBottomButtons} functionToRun={()=>handleSettingUpdate('showBottomButtons')} />
                 </div>
             </div>
         </div>

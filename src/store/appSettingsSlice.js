@@ -19,12 +19,30 @@ const initialState = {
         includeLongBreaks: true,
         enableNotifications: false,
         autoSkip: false,
+        showTimerRing: true,
+        showMinimizedTimerProgress: true,
+        sessionEndAnimation: true,
+        showMinimizeButton: true,
+        showSessionCounter: true,
+        showCurrentSession: true,
+        showBottomButtons: true
+
     },
     history: {},
     theme: 'dark',
     isPomodoroMinimized: false,
     isTasksMaximized: false,
     isSwapped: false,
+    showMaximizeButton: true,
+    showHistoryButton: true,
+    showHomeButton: true,
+    showAboutPage: true,
+    showTasksHistory: true,
+    showTasksSummary: true,
+    showWorkHistory: true,
+    forcePortrait: false,
+    forceLandspace: false
+
 
 };
 
@@ -85,11 +103,26 @@ const appSettingsSlice = createSlice({
             if (state.hasOwnProperty(settingKey)) {
                 console.log(action.payload)
                 state[settingKey] = value;
+                //if one orientation is forced, disable the other one
+                if(settingKey === 'forceLandscape' && value){
+                    state.forcePortrait = false;
+                };
+                if(settingKey === 'forcePortret' && value){
+                    state.forceLandspace = false;
+                };
+            }
+        },
+        updatePomodoroSetting: (state, action) =>{
+            const { settingKey, value } = action.payload;
+            console.log(settingKey, value)
+            if (state.pomodoroSettings.hasOwnProperty(settingKey)) {
+                console.log(action.payload)
+                state.pomodoroSettings[settingKey] = value;
             }
         },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage, updateSetting, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
+export const { toggleTheme, setTheme, setLanguage,updatePomodoroSetting, updateSetting, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;
