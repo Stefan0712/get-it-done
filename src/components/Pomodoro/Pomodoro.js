@@ -225,6 +225,7 @@ const Pomodoro = () => {
     }
     const handleMaximizeTimer = () =>{
         dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))
+        console.log('Maximize Timer function was triggered')
     }
     if(!isMinimized){
         return (
