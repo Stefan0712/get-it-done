@@ -378,7 +378,7 @@
         width: auto;
     }
     .minimized-pomodoro .maximize-button{
-        z-index: 10;
+        z-index: 20;
     }
     .minimized-pomodoro{
         background: linear-gradient(to right, var(--accent-color) var(--progress), transparent var(--progress));
