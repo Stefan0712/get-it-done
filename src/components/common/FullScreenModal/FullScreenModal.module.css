@@ -7,7 +7,8 @@
     min-height: 60px;
     max-height: 150px;
     padding: 10px 5px;
-    background-color: #0b090a;
+    background-color: var(--module-bg-color);
+    border: 1px solid var(--general-border-color);
     z-index: 100;
     display: flex;
     align-items: center;
@@ -22,7 +23,7 @@
     height: 40px;
     font-size: 20px;
     padding: 0 10px;
-    background-color: var(--bg-color);
+    background-color: var(--button-bg-color);
 }
 .close-button{
     margin-left: auto;
