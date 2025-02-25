@@ -23,15 +23,17 @@ const MainPanel = () => {
                 {settings.showFullscreenButton && window.innerWidth < 1000  ? <button className={styles['fullscreen-button']} onClick={isFullscreen() ? exitFullScreen : enterFullScreen} >
                     <img className='small-icon' src={isFullscreen() ? IconLibrary.DisableFullscreen : IconLibrary.EnableFullscreen} alt='enable fullscreen' /></button> : null}
                 <div className={styles.buttons}>
-                    <button onClick={()=>setSelectedScreen('home')} className={selectedScreen === "home" ? styles.selected : ''}>Home</button>
+                    {settings.showHomeButton ? (<button onClick={()=>setSelectedScreen('home')} className={selectedScreen === "home" ? styles.selected : ''}>Home</button>) : null}
                     <button onClick={()=>setSelectedScreen('tasks')} className={selectedScreen === "tasks" ? styles.selected : ''}>Tasks</button>
-                    <button onClick={()=>setSelectedScreen('history')} className={selectedScreen === "history" ? styles.selected : ''}>History</button>
+                    {settings.showHistoryButton ? (<button onClick={()=>setSelectedScreen('history')} className={selectedScreen === "history" ? styles.selected : ''}>History</button>) : null}
                     <button onClick={()=>setSelectedScreen('settings')} className={selectedScreen === "settings" ? styles.selected : ''}>Settings</button>
-                    <button onClick={()=>setSelectedScreen('about')} className={selectedScreen === "about" ? styles.selected : ''}>About</button>
+                    {settings.showAboutButton ? (<button onClick={()=>setSelectedScreen('about')} className={selectedScreen === "about" ? styles.selected : ''}>About</button>) : null}
                 </div>
+                   {settings.showMaximizeButton ? (
                     <button className={styles['maximize-panel-button']} onClick={()=>setIsPanelExpanded(true)}>
                         <img className='small-icon' src={IconLibrary.Maximize} alt='toggle panel maximize'></img>
                     </button> 
+                   ) : null}
             </div>
             <div className={styles.content}>
                     {isPanelExpanded ?

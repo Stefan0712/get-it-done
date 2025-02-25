@@ -56,8 +56,6 @@ function App() {
         .then(() => console.log('Service Worker registered'))
         .catch((err) => console.error('Service Worker registration failed', err));
     }
-  
-  
   },[])
   return (
     <div className={`App ${settings.isSwapped ? 'swapped' : ''}`}>

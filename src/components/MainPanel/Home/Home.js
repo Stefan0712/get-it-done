@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import Habit from './Habit';
 import Summary from './Summary';
 import WorkHistory from './WorkHistory';
+import { useSelector } from 'react-redux';
 
 
 const Home = () => {
 
     const [currentTime, setCurrentTime] = useState(new Date());
+    const settings = useSelector(state=>state.appSettings)
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -34,9 +36,9 @@ const Home = () => {
                     <div className={styles['time']}>{formattedTime}</div>
                 </div>
             </div>  
-            <Habit />
-            <Summary />
-            <WorkHistory />
+            {settings.showTasksHistory ? (<Habit />) : null}
+            {settings.showTasksSummary ? (<Summary />) : null}
+            {settings.showWorkHistory ? (<WorkHistory />) : null}
         </div>
      );
 }

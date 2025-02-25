@@ -36,12 +36,10 @@ const initialState = {
     showMaximizeButton: true,
     showHistoryButton: true,
     showHomeButton: true,
-    showAboutPage: true,
+    showAboutButton: true,
     showTasksHistory: true,
     showTasksSummary: true,
     showWorkHistory: true,
-    forcePortrait: false,
-    forceLandspace: false
 
 
 };
@@ -103,13 +101,6 @@ const appSettingsSlice = createSlice({
             if (state.hasOwnProperty(settingKey)) {
                 console.log(action.payload)
                 state[settingKey] = value;
-                //if one orientation is forced, disable the other one
-                if(settingKey === 'forceLandscape' && value){
-                    state.forcePortrait = false;
-                };
-                if(settingKey === 'forcePortret' && value){
-                    state.forceLandspace = false;
-                };
             }
         },
         updatePomodoroSetting: (state, action) =>{

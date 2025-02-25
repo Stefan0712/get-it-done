@@ -96,7 +96,7 @@ const Settings = () => {
                 </div>
                 <div className={styles.setting}>
                     <h3>Force Landscape Mode</h3>
-                    <Toggle isActive={settings.forceLandspace} functionToRun={()=>handleSettingUpdate('forceLandspace')} />  
+                    <Toggle isActive={settings.forceLandscape} functionToRun={()=>handleSettingUpdate('forceLandscape')} />  
                 </div>
                 <div className={styles.setting}>
                     <h3>Force Portrait Mode</h3>
