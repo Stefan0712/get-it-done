@@ -9,10 +9,10 @@ const WorkHistory = () => {
     const date = new Date().toISOString().split("T")[0];
     const history = useSelector(state=>state.appSettings.history)[date];
 
-    const focus = history.reduce((sum, item) => sum + item.focusSessions, 0);
-    const shortBreak = history.reduce((sum, item) => sum + item.breaks, 0);
-    const longBreak = history.reduce((sum, item) => sum + item.longBreaks, 0);
-    const totalTime = history.reduce((sum, item) => sum + item.totalTimeElapsed, 0);
+    const focus = history?.reduce((sum, item) => sum + item.focusSessions, 0);
+    const shortBreak = history && history.length ? history.reduce((sum, item) => sum + item.breaks, 0) : 0;
+    const longBreak = history && history.length ? history.reduce((sum, item) => sum + item.longBreaks, 0) : 0;
+    const totalTime = history && history.length ? history.reduce((sum, item) => sum + item.totalTimeElapsed, 0) : 0;
     return ( 
         <div className={`${styles.module} ${'work-history'}`}>
             <div className={styles.header}>
