@@ -237,7 +237,7 @@ const Pomodoro = () => {
                     <button className={styles['settings-button']} onClick={enableSettings}>
                         <img className='medium-icon' src={IconLibrary.Settings} alt="Settings" />
                     </button>
-                    <button className={styles['minimize-button']} onClick={()=>handleMinimizeTimer()} onTouchStart={handleMinimizeTimer}>
+                    <button className={styles['minimize-button']} onClick={()=>handleMinimizeTimer()} >
                         <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
                     </button>
                     <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={{background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--timer-border-color) ${percentageElapsed()}% 100%)`}}>
