@@ -220,7 +220,8 @@ const Pomodoro = () => {
         );
     };
     const handleMinimizeTimer = () =>{
-        dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}))
+        dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: true}));
+        console.log('Minimize Timer function was triggered')
     }
     const handleMaximizeTimer = () =>{
         dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))
