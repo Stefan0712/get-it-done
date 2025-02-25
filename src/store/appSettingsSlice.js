@@ -19,7 +19,7 @@ const initialState = {
         includeLongBreaks: true,
         enableNotifications: false,
         autoSkip: false,
-        showTimerRing: true,
+        showTimerRing: true,//
         showMinimizedTimerProgress: true,
         sessionEndAnimation: true,
         showMinimizeButton: true,

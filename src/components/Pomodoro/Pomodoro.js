@@ -238,45 +238,52 @@ const Pomodoro = () => {
                     <button className={styles['settings-button']} onClick={enableSettings}>
                         <img className='medium-icon' src={IconLibrary.Settings} alt="Settings" />
                     </button>
-                    <button className={styles['minimize-button']} onClick={()=>handleMinimizeTimer()} >
-                        <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
-                    </button>
-                    <div className={`${styles['timer-background']} ${isSessionFinished ? styles['animated-session-end'] : ''}`} style={settings.showTimerRing ? {background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--timer-border-color) ${percentageElapsed()}% 100%)`} : {background: 'transparent'}}>
+                    {settings.showMinimizeButton ? (
+                        <button className={styles['minimize-button']} onClick={()=>handleMinimizeTimer()} >
+                            <img className='medium-icon' src={IconLibrary.Minimize} alt="minimize pomodoro" />
+                        </button>
+                    ) : null}
+                    <div className={`${styles['timer-background']} ${isSessionFinished && settings.sessionEndAnimation ? styles['animated-session-end'] : ''}`} style={settings.showTimerRing ? {background: `conic-gradient(var(--accent-color) ${percentageElapsed()}%, var(--timer-border-color) ${percentageElapsed()}% 100%)`} : {background: 'transparent'}}>
                         <div className={styles['timer-content']}>
                             
                             <div className={`${styles['timer-info']} ${areButtonsHidden ? styles['expanded-info'] : ''}`}  onClick={isRunning ? pauseTimer : startTimer}>
-                                <h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>
-                                <div className={styles['sessions-counter']}>
-                                    <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>
-                                /   <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
-                                    <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p></div>
+                                {settings.showCurrentSession ? (<h3>{currentSession === 'focus' ? 'Focus' : currentSession === 'break' ? 'Break' : 'Long Break'}</h3>) : null}
+                                {settings.showSessionCounter ? (
+                                    <div className={styles['sessions-counter']}>
+                                        <p className={currentSession === 'focus' ? styles['current-section-counter'] : ''}>{focusSessions}</p>/
+                                        <p className={currentSession === 'break' ? styles['current-section-counter'] : ''}>{breaks}</p>/
+                                        <p className={currentSession === 'longBreak' ? styles['current-section-counter'] : ''}>{longBreaks}</p>
+                                    </div>
+                                ) : null}
                                 <div className={styles.time}>
                                     {formatTime(timeLeft)}
                                 </div>
                                 
                             </div>
-                            <div className={`${styles.buttons} ${areButtonsHidden ? styles['minimized-buttons'] : ''}`} >
-                                <div className={`${styles['buttons-container']} ${areButtonsHidden ? 'hide' : ''}`}>
-                                    <button onClick={resetTimer}>
-                                        <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
-                                    </button>
-                                    <button onClick={skipSession}>
-                                        <img className='medium-icon' src={IconLibrary.Next} alt="Skip" />
-                                    </button>
-                                    <button onClick={isRunning ? pauseTimer : startTimer}>
-                                        <img className='medium-icon' src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
-                                    </button>
-                                    <button onClick={handleFinish}>
-                                        <img className='medium-icon' src={IconLibrary.Finish} alt="Finish" />
-                                    </button>
-                                    <button onClick={()=>setAreButtonsHidden(true)}>
-                                        <img className='small-icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(90deg)'}} alt='hide timer buttons'></img>
+                            {settings.showBottomButtons ? (
+                                <div className={`${styles.buttons} ${areButtonsHidden ? styles['minimized-buttons'] : ''}`} >
+                                    <div className={`${styles['buttons-container']} ${areButtonsHidden ? 'hide' : ''}`}>
+                                        <button onClick={resetTimer}>
+                                            <img className='medium-icon' src={IconLibrary.Restart} alt="Restart" />
+                                        </button>
+                                        <button onClick={skipSession}>
+                                            <img className='medium-icon' src={IconLibrary.Next} alt="Skip" />
+                                        </button>
+                                        <button onClick={isRunning ? pauseTimer : startTimer}>
+                                            <img className='medium-icon' src={isRunning ? IconLibrary.Pause : IconLibrary.Start} alt="Pause/Play" />
+                                        </button>
+                                        <button onClick={handleFinish}>
+                                            <img className='medium-icon' src={IconLibrary.Finish} alt="Finish" />
+                                        </button>
+                                        <button onClick={()=>setAreButtonsHidden(true)}>
+                                            <img className='small-icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(90deg)'}} alt='hide timer buttons'></img>
+                                        </button>
+                                    </div>
+                                    <button className={`${styles['expand-buttons-button']} ${areButtonsHidden ? '' : 'hide'}`} onClick={()=>setAreButtonsHidden(false)}>
+                                        <img className='icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(-90deg)'}} alt='show timer buttons' />
                                     </button>
                                 </div>
-                                <button className={`${styles['expand-buttons-button']} ${areButtonsHidden ? '' : 'hide'}`} onClick={()=>setAreButtonsHidden(false)}>
-                                    <img className='icon' src={IconLibrary.ExpandRight} style={{transform: 'rotateZ(-90deg)'}} alt='show timer buttons' />
-                                </button>
-                            </div>
+                            ) : null}
                         </div>
                         
                     </div>
@@ -289,7 +296,7 @@ const Pomodoro = () => {
         );
     }else if(isMinimized){
         return (
-            <div className={styles['minimized-pomodoro']} style={{ '--progress': `${percentageElapsed()}%`,}}>
+            <div className={styles['minimized-pomodoro']} style={settings.showMinimizedTimerProgress ? { '--progress': `${percentageElapsed()}%`,} : {background: 'transparent'}}>
                 <button className={styles['maximize-button']} onClick={handleMaximizeTimer}>
                     <img className='medium-icon' src={IconLibrary.Maximize} alt="enable pomodoro" />
                 </button>
