@@ -1,6 +1,6 @@
 const CACHE_NAME = "app-cache-v3"; // Increment version to update cache
 const urlsToCache = [
-    "./",  // Use relative paths for GitHub Pages
+    "./",  
     "./index.html",
     "./styles.css", 
     "./script.js",
