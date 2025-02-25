@@ -51,11 +51,12 @@ function App() {
   }, [settings.isScreenAwakeOn]);
 
   useEffect(()=>{
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/service-worker.js").then(() => {
-          console.log("Service Worker registered!");
-      });
-  }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/get-it-done/service-worker.js')
+        .then(() => console.log('Service Worker registered'))
+        .catch((err) => console.error('Service Worker registration failed', err));
+    }
+  
   
   },[])
   return (
