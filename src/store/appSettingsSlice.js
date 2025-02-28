@@ -29,7 +29,7 @@ const initialState = {
 
     },
     history: {},
-    theme: 'dark',
+    theme: 'dark-theme',
     isPomodoroMinimized: false,
     isTasksMaximized: false,
     isSwapped: false,

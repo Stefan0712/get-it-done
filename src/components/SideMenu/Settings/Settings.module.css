@@ -40,7 +40,32 @@
     justify-content: space-between;
     border: none;
 }
-
+.confirm-delete-buttons button{
+    width: 40px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: expandConfirmDeleteButtons;
+    animation-duration: 0.1s;
+    overflow: hidden;
+}
+@keyframes expandConfirmDeleteButtons {
+    from{
+        width: 0px;
+        opacity: 0;
+    }
+    to{
+        width: 40px;
+        opacity: 1;
+    }
+}
+.confirm-delete-buttons{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: auto;
+}
 @media (orientation: portrait) {
     .container{
         padding-bottom: 50px;

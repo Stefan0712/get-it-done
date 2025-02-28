@@ -5,6 +5,7 @@ import { resetTasks } from '../../../store/tasksSlice';
 import { resetAppSettings, toggleScreenAwake, updateSetting } from '../../../store/appSettingsSlice';
 import Toggle from '../../common/Toggle';
 import { IconLibrary } from '../../../IconLibrary';
+import { useState } from 'react';
 
 
 const Settings = () => {
@@ -13,12 +14,8 @@ const Settings = () => {
     
     const settings = useSelector((state)=>state.appSettings);
 
+    const [confirmDelete, setConfirmDelete] = useState(null);
 
-
-    const handleResetAll = () =>{
-        dispatch(resetTasks());
-        dispatch(resetAppSettings());
-    }
     const toggleScreenAwakeOn = () =>{
         dispatch(toggleScreenAwake(true))
 
@@ -32,6 +29,15 @@ const Settings = () => {
         }else if(!settings[settingKey]){
             dispatch(updateSetting({ settingKey, value: true }))
         }
+    }
+
+    const handleDelete = settingName =>{
+        if(settingName === 'settings'){
+            dispatch(resetAppSettings())
+        }else if(settingName === 'tasks'){
+            dispatch(resetTasks())
+        }
+        setConfirmDelete(null);
     }
     return ( 
         <div className={`${styles.settings} ${settings.isPomodoroMinimized ? styles['extended-settings'] : ''}`}>
@@ -96,13 +102,22 @@ const Settings = () => {
                 </div>
                 <h3>Reset Items</h3>
                 <div className={styles.setting}>
-                    <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
+                    <button onClick={()=>setConfirmDelete('settings')}>Settings</button>
+                    {confirmDelete === 'settings' ? 
+                    <div className={styles['confirm-delete-buttons']}>
+                        <button onClick={()=>handleDelete('settings')}><img className={'small-icon'} src={IconLibrary.Checkmark} alt='confirm delete'></img></button>
+                        <button onClick={()=>setConfirmDelete(null)}><img className={'small-icon'} src={IconLibrary.Close} alt='cancel delete'></img></button>
+                    </div>
+                    : null}
                 </div>
                 <div className={styles.setting}>
-                    <button onClick={()=>dispatch(resetTasks())}>Tasks</button>
-                </div>
-                <div className={styles.setting}>
-                    <button onClick={handleResetAll}>All</button>
+                    <button onClick={()=>setConfirmDelete('tasks')}>Tasks</button>
+                    {confirmDelete === 'tasks' ? 
+                    <div className={styles['confirm-delete-buttons']}>
+                        <button onClick={()=>handleDelete('tasks')}><img className={'small-icon'} src={IconLibrary.Checkmark} alt='confirm delete'></img></button>
+                        <button onClick={()=>setConfirmDelete(null)}><img className={'small-icon'} src={IconLibrary.Close} alt='cancel delete'></img></button>
+                    </div>
+                    : null}
                 </div>
                 <h3>Themes</h3>
                 <div className={styles.setting}>
