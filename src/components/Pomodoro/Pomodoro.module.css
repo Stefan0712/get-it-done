@@ -300,18 +300,22 @@
     background-color: transparent;
     border: none;
 }
-.minimized-pomodoro .buttons{
-    width: auto;
-    height: 240px;
+.minimizedButtons{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0;
     gap: 10px;
+    flex-direction: column;
+    padding: 0;
+    height: 250px;
+    width: 60px;
+    margin: 0;
+    background-color: transparent;
+    align-items: center;   
 }
-.minimized-pomodoro .buttons button{
+.minimizedButtons button{
     width: 50px;
     height: 50px;
+    background-color: var(--button-bg-color);
+    border: none;
 }
 
 
@@ -355,8 +359,7 @@
         width: 250px;
         margin: 0;
         background-color: transparent;
-        align-items: center;
-        
+        align-items: center;   
     }
     .minimizedButtons button{
         width: 50px;
