@@ -94,14 +94,6 @@ const Settings = () => {
                     <h3>Show Work History</h3>
                     <Toggle isActive={settings.showWorkHistory} functionToRun={()=>handleSettingUpdate('showWorkHistory')} />  
                 </div>
-                <div className={styles.setting}>
-                    <h3>Force Landscape Mode</h3>
-                    <Toggle isActive={settings.forceLandscape} functionToRun={()=>handleSettingUpdate('forceLandscape')} />  
-                </div>
-                <div className={styles.setting}>
-                    <h3>Force Portrait Mode</h3>
-                    <Toggle isActive={settings.forcePortrait} functionToRun={()=>handleSettingUpdate('forcePortrait')} />  
-                </div>
                 <h3>Reset Items</h3>
                 <div className={styles.setting}>
                     <button onClick={()=>dispatch(resetAppSettings())}>Settings</button>
