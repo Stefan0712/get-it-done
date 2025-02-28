@@ -21,6 +21,11 @@ import Minimize from './assets/icons/minimize.svg';
 import Maximize from './assets/icons/maximize.svg';
 import Restore from './assets/icons/restore.svg';
 import Swap from './assets/icons/swap.svg';
+import Github from './assets/icons/github.svg';
+import Email from './assets/icons/email.svg';
+import Website from './assets/icons/website.svg';
+import Tiktok from './assets/icons/tiktok.svg';
+import Donate from './assets/icons/donate.svg';
 
 
 export const IconLibrary = {
@@ -46,5 +51,10 @@ export const IconLibrary = {
     Minimize,
     Maximize,
     Restore,
-    Swap
+    Swap,
+    Github,
+    Email,
+    Website,
+    Tiktok,
+    Donate
 }

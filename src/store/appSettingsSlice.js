@@ -28,7 +28,52 @@ const initialState = {
         showBottomButtons: true
 
     },
-    history: {},
+    history: {
+        '2025-02-28' :[
+            {
+                "startTime": "2025-02-28T15:26:49.248Z",
+                "finishTime": "2025-02-28T15:27:04.763Z",
+                "totalTimeElapsed": 12,
+                "longBreaks": 0,
+                "breaks": 0,
+                "focusSessions": 1
+            },
+            {
+                "startTime": "2025-02-28T18:10:20.500Z",
+                "finishTime": "2025-02-28T18:45:32.123Z",
+                "totalTimeElapsed": 35,
+                "longBreaks": 0,
+                "breaks": 1,
+                "focusSessions": 2
+            }
+        ],
+        '2025-03-01' :[
+            {
+            "startTime": "2025-03-01T09:00:15.800Z",
+            "finishTime": "2025-03-01T09:45:45.987Z",
+            "totalTimeElapsed": 45,
+            "longBreaks": 1,
+            "breaks": 2,
+            "focusSessions": 3
+            }   
+        ],
+        '2025-03-02' :[{
+            "startTime": "2025-03-02T14:30:00.120Z",
+            "finishTime": "2025-03-02T15:20:45.500Z",
+            "totalTimeElapsed": 50,
+            "longBreaks": 0,
+            "breaks": 1,
+            "focusSessions": 2
+        }],
+        '2025-03-03' :[{
+            "startTime": "2025-03-03T21:10:35.600Z",
+            "finishTime": "2025-03-03T22:00:20.890Z",
+            "totalTimeElapsed": 50,
+            "longBreaks": 1,
+            "breaks": 2,
+            "focusSessions": 3
+        }]
+    },
     theme: 'dark-theme',
     isPomodoroMinimized: false,
     isTasksMaximized: false,

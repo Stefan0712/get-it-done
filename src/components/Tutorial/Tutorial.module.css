@@ -1,0 +1,50 @@
+.tutorial{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--secondary-color);
+    z-index: 100;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header button{
+    background-color: transparent;
+    border: none;
+}
+.full-app-image{
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+h4{
+    padding: 10px 0;
+}
+
+.section{
+    width: 100%;
+    background-color: var(--bg-color);
+    padding: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+ul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 10px 20px;
+}
