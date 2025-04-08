@@ -36,6 +36,9 @@ const Home = () => {
                     <div className={styles['time']}>{formattedTime}</div>
                 </div>
             </div>  
+            <div className={styles['warning-message']}>
+                <h3>Please open Developer Tools and enable Device Emulation for a mobile phone. This app doesn't have a desktop layout yet since it's made only for mobile phones.</h3>
+            </div>
             {settings.showTasksHistory ? (<Habit />) : null}
             {settings.showTasksSummary ? (<Summary />) : null}
             {settings.showWorkHistory ? (<WorkHistory />) : null}
