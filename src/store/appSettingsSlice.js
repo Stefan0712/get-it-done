@@ -28,6 +28,7 @@ const initialState = {
         showBottomButtons: true
 
     },
+    snapshot: null,
     history: {
         '2025-02-28' :[
             {
@@ -156,9 +157,30 @@ const appSettingsSlice = createSlice({
                 state.pomodoroSettings[settingKey] = value;
             }
         },
+        saveSnapshot: (state, action) =>{
+            const snapshot = action.payload;
+            if(!state.snapshot){
+                state.snapshot = null;
+            }
+            state.snapshot = snapshot;
+        },
+        deleteSnapshot: (state) =>{
+            if(!state.snapshot){
+                state.snapshot = null;
+            }
+            if( state.snapshot){
+                state.snapshot = null;
+                console.log("Snapshot deleted")
+            }else{
+                console.log("There was no snapshot to remove")
+            }
+        },
+        resetSnapshot: (state) =>{
+            state.snapshot = null;
+        },
         resetAppSettings: () => initialState,
     }
 });
 
-export const { toggleTheme, setTheme, setLanguage,updatePomodoroSetting, updateSetting, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
+export const { resetSnapshot, saveSnapshot, deleteSnapshot, toggleTheme, setTheme, setLanguage,updatePomodoroSetting, updateSetting, setFocusSessions, toggleScreenAwake, toggleFullscreen, setBreakSessions, toggleSoundAlarm, addToHistory, resetAppSettings,setSelectedProject, updatePomodoroSettings, setSelectedTask } = appSettingsSlice.actions;
 export default appSettingsSlice.reducer;

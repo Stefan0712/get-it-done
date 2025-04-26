@@ -2,7 +2,7 @@ import styles from './Settings.module.css';
 import { enterFullScreen, exitFullScreen } from '../../../helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetTasks } from '../../../store/tasksSlice';
-import { resetAppSettings, toggleScreenAwake, updateSetting } from '../../../store/appSettingsSlice';
+import { resetAppSettings, resetSnapshot, toggleScreenAwake, updateSetting } from '../../../store/appSettingsSlice';
 import Toggle from '../../common/Toggle';
 import { IconLibrary } from '../../../IconLibrary';
 import { useState } from 'react';
@@ -134,6 +134,9 @@ const Settings = () => {
                 </div>
                 <div className={styles.setting}>
                     <button className={styles['theme-button']} onClick={()=>dispatch(updateSetting({ settingKey: 'theme', value: 'miku-theme' }))}><p>Miku</p>{settings.theme === 'miku-theme' ? <img className='small-icon' src={IconLibrary.Checkmark} alt='selected theme' /> : null}</button>
+                </div>
+                <div className={styles.setting}>
+                    <button className={styles['theme-button']} onClick={()=>dispatch(resetSnapshot())}><p>Reset Snapshot</p></button>
                 </div>
             </div>
             

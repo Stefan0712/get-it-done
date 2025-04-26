@@ -3,17 +3,19 @@ import styles from './Pomodoro.module.css';
 import { useState, useEffect, useRef } from 'react';
 import PomodoroSettings from './PomodoroSettings';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToHistory, updateSetting } from '../../store/appSettingsSlice';
+import { addToHistory, deleteSnapshot, saveSnapshot, updateSetting,  } from '../../store/appSettingsSlice';
 import MessageModal from '../common/MessageModal';
-import {formatTime} from '../../helpers';
+import {formatDate, formatTime} from '../../helpers';
+import { v4 as uuid } from 'uuid';
 
 const Pomodoro = () => {
     const [showSettings, setShowSettings] = useState(false); 
     const dispatch = useDispatch();
     const settings = useSelector(state => state.appSettings.pomodoroSettings); // All pomodoro related settings from the store
     const isMinimized = useSelector(state=>state.appSettings.isPomodoroMinimized);
+    const snapshot = useSelector(state=>state.appSettings.snapshot) || null;
     const intervalRef  = useRef(); // Ref for the timer interval
-
+    const [id, setId] = useState('');
     // Timer states
     const [timeLeft, setTimeLeft] = useState(settings.focusDuration * 60); // Set the initial time left to the duration of the focus session since it's always the first session
     const [currentSession, setCurrentSession] = useState('focus'); // It can be 'focus', 'break', or 'longBreak'
@@ -62,6 +64,7 @@ const Pomodoro = () => {
                 setFocusSessions(prev => prev + 1); // Update the counter of focus sessions
                 setTimeLeft(settings.focusDuration * 60);
             }
+            takeSnapshot();
             clearInterval(intervalRef.current);
             if(settings.autoSkip){
                 startTimer();
@@ -76,6 +79,7 @@ const Pomodoro = () => {
                 setStartTime(new Date().toISOString());
             }
             setIsActive(true);
+            takeSnapshot();
             setAction('Running')
             setIsSessionFinished(false);
             setIsRunning(true);
@@ -90,13 +94,15 @@ const Pomodoro = () => {
             });
             }, 1000);
         }
+        
     };
 
     // Handles pausing the timer
     const pauseTimer = () =>{
         clearInterval(intervalRef.current);
         setIsRunning(false);
-        setAction('Paused')
+        setAction('Paused');
+        takeSnapshot();
     }
 
     // Reset the timer by sending a notification and then by setting the time left to whatever current session is and their corresponding values from settings
@@ -117,11 +123,13 @@ const Pomodoro = () => {
         }
         setAction('Session Reset')
         setIsRunning(false); // Pause the timer
+        dispatch(deleteSnapshot(id));
     };
     
 
     // Effect to handle start/stop logic
     useEffect(() => {
+
         // If the timer is running and there is time left, then do nothing
         if (timeLeft > 0 && isRunning) {
             setTotalTimeElapsed(prev => prev + 1)
@@ -130,6 +138,9 @@ const Pomodoro = () => {
         // If timer reaches 0, end session
         if (timeLeft <= 0) {
             handleSessionEnd();
+        }
+        if(isActive && timeLeft % 15 === 0 ){
+            takeSnapshot();
         }
     }, [isRunning, timeLeft]);
 
@@ -146,7 +157,8 @@ const Pomodoro = () => {
     const skipSession = () =>{
         sendNotification({type: 'info', msg: 'Session was skipped!'})
         handleSessionEnd(true);
-        setAction("Skipped")
+        setAction("Skipped");
+        takeSnapshot();
     };
     
     // Resets all values to default state
@@ -171,13 +183,14 @@ const Pomodoro = () => {
             totalTimeElapsed,
             longBreaks,
             breaks,
-            focusSessions
+            focusSessions,
         };
         console.log(sessionLog)
         dispatch(addToHistory(sessionLog));
         resetWorkSession();
         sendNotification({type: 'success', msg: 'Work session is done!'})
-        setAction('Finished')
+        setAction('Finished');
+        dispatch(deleteSnapshot());
     };
    
     const sendNotification = (msg) => {
@@ -227,12 +240,61 @@ const Pomodoro = () => {
         dispatch(updateSetting({ settingKey: 'isPomodoroMinimized', value: false}))
         console.log('Maximize Timer function was triggered')
     }
+    
+    // Handles saving current progress that can be restored later
+    const takeSnapshot = () =>{
+        const session = {
+            savedAt: new Date().toISOString(),
+            timeLeft,
+            currentSession,
+            isRunning,
+            isSessionFinished,
+            totalTimeElapsed,
+            focusSessions,
+            breaks,
+            longBreaks,
+            startTime,
+            action,
+            message,
+            isActive,
+            areButtonsHidden,
+        }
+        dispatch(saveSnapshot(session));
+    }
+    const handleRestoreSnapshot = () =>{
+        if(snapshot){
+            setTimeLeft(snapshot.timeLeft);
+            setCurrentSession(snapshot.currentSession);
+            setIsRunning(snapshot.isRunning);
+            setIsSessionFinished(snapshot.isSessionFinished);
+            setTotalTimeElapsed(snapshot.totalTimeElapsed);
+            setFocusSessions(snapshot.focusSessions);
+            setBreaks(snapshot.breaks);
+            setLongBreaks(snapshot.longBreaks);
+            setStartTime(snapshot.startTime);
+            setAction(snapshot.action);
+            setMessage(snapshot.message);
+            setIsActive(snapshot.isActive);
+            setAreButtonsHidden(snapshot.areButtonsHidden);
+            console.log("Snapshot restored");
+            startTimer();
+        }
+    }
+    const handleDeleteSnapshot = () =>{
+        if(snapshot){
+            dispatch(deleteSnapshot());
+        }
+    }
     if(!isMinimized){
         return (
             <div className={styles.pomodoro} >
                 {message ? <MessageModal data={message} closeModal={()=>setMessage(null)} /> : null}
                 {showSettings && totalTimeElapsed === 0 ? <PomodoroSettings closeSettings={() => setShowSettings(false)} /> : null}
-                
+                {snapshot && totalTimeElapsed < 1 ? <div className={styles.snapshot}>
+                    <p>Restore last session?</p>
+                    <button onClick={handleRestoreSnapshot}><img className='small-icon' src={IconLibrary.Checkmark} alt="" /></button>
+                    <button onClick={handleDeleteSnapshot}><img className='small-icon' src={IconLibrary.Close} alt="" /></button>
+                </div>  : null}
                
                 <div className={styles.timer}>
                     <button className={styles['settings-button']} onClick={enableSettings}>

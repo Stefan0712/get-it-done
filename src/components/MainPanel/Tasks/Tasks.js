@@ -11,7 +11,6 @@ import { deleteTask, restoreTask, togglePin } from '../../../store/tasksSlice';
 import { setSelectedTask } from '../../../store/appSettingsSlice';
 
 import EditTask from './EditTask';
-import { isPending } from '@reduxjs/toolkit';
 
 
 

@@ -11,6 +11,31 @@
     padding: 10px;
     position: relative;
 }
+.snapshot{
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    z-index: 9999;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.snapshot p{
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.snapshot button{
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .minimize-button,
 .settings-button{
     position: absolute;
